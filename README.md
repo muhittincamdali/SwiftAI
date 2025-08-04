@@ -274,6 +274,23 @@ swift package generate-documentation
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+**⭐ Star this repository if it helped you!**
+
+## 📊 Project Statistics
+
+<div align="center">
+
+[![GitHub stars](https://img.shields.io/github/stars/muhittincamdali/SwiftAI?style=social)](https://github.com/muhittincamdali/SwiftAI/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/muhittincamdali/SwiftAI?style=social)](https://github.com/muhittincamdali/SwiftAI/network)
+[![GitHub issues](https://img.shields.io/github/issues/muhittincamdali/SwiftAI)](https://github.com/muhittincamdali/SwiftAI/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/muhittincamdali/SwiftAI)](https://github.com/muhittincamdali/SwiftAI/pulls)
+
+</div>
+
+## 🌟 Stargazers
+
+[![Stargazers repo roster for @muhittincamdali/SwiftAI](https://reporoster.com/stars/muhittincamdali/SwiftAI)](https://github.com/muhittincamdali/SwiftAI/stargazers)
+
 ## 🙏 Acknowledgments
 
 - Apple for Core ML, Vision, and Natural Language frameworks
@@ -285,7 +302,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Documentation**: [Complete Documentation](Documentation/)
 - **Issues**: [GitHub Issues](https://github.com/muhittincamdali/SwiftAI/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/muhittincamdali/SwiftAI/discussions)
-- **Email**: Contact through GitHub
+- **Email**: Contact through GitHub Issues
 
 ## ⭐ Star History
 
