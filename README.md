@@ -1,280 +1,830 @@
-# 🤖 SwiftAI
+# 🤖 Swift AI
 
-[![Swift](https://img.shields.io/badge/Swift-5.9-orange.svg)](https://swift.org)
-[![iOS](https://img.shields.io/badge/iOS-15.0+-blue.svg)](https://developer.apple.com/ios/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/Platform-iOS%20%7C%20macOS%20%7C%20watchOS%20%7C%20tvOS-lightgrey.svg)](https://developer.apple.com/)
-[![Documentation](https://img.shields.io/badge/Documentation-Complete-blue.svg)](Documentation/)
-[![Tests](https://img.shields.io/badge/Tests-100%25-green.svg)](Tests/)
+<div align="center">
 
-**Professional AI/ML Integration Framework for iOS**
+![Swift](https://img.shields.io/badge/Swift-5.9+-FA7343?style=for-the-badge&logo=swift&logoColor=white)
+![iOS](https://img.shields.io/badge/iOS-15.0+-000000?style=for-the-badge&logo=ios&logoColor=white)
+![Xcode](https://img.shields.io/badge/Xcode-15.0+-007ACC?style=for-the-badge&logo=Xcode&logoColor=white)
+![AI](https://img.shields.io/badge/AI-Artificial%20Intelligence-4CAF50?style=for-the-badge)
+![Machine Learning](https://img.shields.io/badge/Machine%20Learning-ML-2196F3?style=for-the-badge)
+![Neural Networks](https://img.shields.io/badge/Neural%20Networks-Deep%20Learning-FF9800?style=for-the-badge)
+![Natural Language](https://img.shields.io/badge/Natural%20Language-NLP-9C27B0?style=for-the-badge)
+![Computer Vision](https://img.shields.io/badge/Computer%20Vision-CV-00BCD4?style=for-the-badge)
+![Speech Recognition](https://img.shields.io/badge/Speech%20Recognition-ASR-607D8B?style=for-the-badge)
+![Predictive Analytics](https://img.shields.io/badge/Predictive%20Analytics-ML-795548?style=for-the-badge)
+![Architecture](https://img.shields.io/badge/Architecture-Clean-FF5722?style=for-the-badge)
+![Swift Package Manager](https://img.shields.io/badge/SPM-Dependencies-FF6B35?style=for-the-badge)
+![CocoaPods](https://img.shields.io/badge/CocoaPods-Supported-E91E63?style=for-the-badge)
 
-SwiftAI is a comprehensive, production-ready framework that seamlessly integrates AI and Machine Learning capabilities into iOS applications. Built with Clean Architecture principles, it provides a robust foundation for implementing AI features with enterprise-grade quality.
+**🏆 Professional Swift AI Framework**
 
-## 🚀 Key Features
+**🤖 Advanced AI & Machine Learning Tools**
 
-### 🤖 **AI/ML Capabilities**
-- **Core ML Integration**: Native Core ML model support with optimization
-- **Vision Framework**: Advanced computer vision and image processing
-- **Natural Language Processing**: Text classification, sentiment analysis, and language understanding
-- **Speech Recognition**: Real-time speech-to-text conversion
-- **Custom Model Support**: Easy integration of custom trained models
-- **Batch Processing**: Efficient processing of multiple inputs
-- **On-Device Processing**: 100% local processing for privacy
+**🧠 Intelligent iOS Applications**
 
-### 🏗️ **Architecture & Design**
-- **Clean Architecture**: Separation of concerns with clear layer boundaries
-- **MVVM Pattern**: Modern UI architecture with reactive programming
-- **Dependency Injection**: Flexible and testable component design
-- **Protocol-Oriented**: Swift-first design with protocol extensions
-- **Modular Design**: Easy to integrate and extend
-- **SOLID Principles**: Maintainable and scalable codebase
+</div>
 
-### ⚡ **Performance & Optimization**
-- **Model Quantization**: 4x size reduction with minimal accuracy loss
-- **Memory Management**: Intelligent caching and memory optimization
-- **GPU Acceleration**: Neural Engine and GPU utilization
-- **Lazy Loading**: On-demand model loading
-- **Parallel Processing**: Multi-threaded inference
-- **Performance Monitoring**: Real-time performance tracking
+---
 
-### 🔒 **Security & Privacy**
-- **On-Device Processing**: No data leaves the device
-- **Zero Data Collection**: Complete privacy protection
-- **Model Security**: Secure model loading and validation
-- **Input Validation**: Comprehensive input sanitization
-- **Encrypted Storage**: Secure local data storage
-- **GDPR/CCPA Compliant**: Privacy-first design
+## 📋 Table of Contents
 
-### 🧪 **Testing & Quality**
-- **100% Test Coverage**: Comprehensive unit and integration tests
-- **Performance Tests**: Automated performance benchmarking
-- **Memory Tests**: Memory leak detection and prevention
-- **Security Tests**: Automated security validation
-- **UI Tests**: Complete UI automation testing
-- **Continuous Integration**: Automated quality assurance
+- [🚀 Overview](#-overview)
+- [✨ Key Features](#-key-features)
+- [🧠 Machine Learning](#-machine-learning)
+- [📝 Natural Language Processing](#-natural-language-processing)
+- [👁️ Computer Vision](#-computer-vision)
+- [🎤 Speech Recognition](#-speech-recognition)
+- [🚀 Quick Start](#-quick-start)
+- [📱 Usage Examples](#-usage-examples)
+- [🔧 Configuration](#-configuration)
+- [📚 Documentation](#-documentation)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+- [🙏 Acknowledgments](#-acknowledgments)
+- [📊 Project Statistics](#-project-statistics)
+- [🌟 Stargazers](#-stargazers)
 
-## 📱 Supported Platforms
+---
 
-- **iOS 15.0+**
-- **macOS 12.0+**
-- **watchOS 8.0+**
-- **tvOS 15.0+**
+## 🚀 Overview
 
-## 🛠️ Quick Start
+**Swift AI** is the most comprehensive, professional, and feature-rich AI framework for iOS applications. Built with enterprise-grade standards and modern AI/ML practices, this framework provides essential tools for machine learning, natural language processing, computer vision, and speech recognition.
+
+### 🎯 What Makes This Framework Special?
+
+- **🧠 Machine Learning**: Advanced ML models and algorithms
+- **📝 Natural Language Processing**: Text analysis and language understanding
+- **👁️ Computer Vision**: Image recognition and visual analysis
+- **🎤 Speech Recognition**: Voice recognition and speech processing
+- **📊 Predictive Analytics**: Data analysis and prediction models
+- **🔍 Pattern Recognition**: Advanced pattern detection and analysis
+- **🎯 Model Optimization**: AI model optimization and performance
+- **📱 iOS Integration**: Native iOS AI capabilities
+
+---
+
+## ✨ Key Features
+
+### 🧠 Machine Learning
+
+* **Neural Networks**: Deep learning and neural network implementation
+* **Supervised Learning**: Classification and regression algorithms
+* **Unsupervised Learning**: Clustering and dimensionality reduction
+* **Reinforcement Learning**: Q-learning and policy optimization
+* **Model Training**: On-device model training and fine-tuning
+* **Model Inference**: Real-time model inference and prediction
+* **Feature Engineering**: Advanced feature extraction and selection
+* **Model Evaluation**: Comprehensive model evaluation metrics
+
+### 📝 Natural Language Processing
+
+* **Text Classification**: Document and text classification
+* **Sentiment Analysis**: Emotion and sentiment detection
+* **Named Entity Recognition**: Entity extraction and recognition
+* **Text Summarization**: Automatic text summarization
+* **Language Translation**: Multi-language translation
+* **Text Generation**: AI-powered text generation
+* **Question Answering**: Intelligent Q&A systems
+* **Text Similarity**: Semantic text similarity analysis
+
+### 👁️ Computer Vision
+
+* **Image Classification**: Object and scene classification
+* **Object Detection**: Real-time object detection
+* **Face Recognition**: Facial recognition and analysis
+* **Image Segmentation**: Pixel-level image segmentation
+* **Optical Character Recognition**: Text extraction from images
+* **Image Enhancement**: AI-powered image improvement
+* **Style Transfer**: Neural style transfer
+* **Image Generation**: AI-generated images and art
+
+### 🎤 Speech Recognition
+
+* **Speech-to-Text**: Real-time speech transcription
+* **Text-to-Speech**: Natural voice synthesis
+* **Voice Commands**: Voice command recognition
+* **Speaker Recognition**: Voice biometrics
+* **Emotion Detection**: Speech emotion analysis
+* **Language Detection**: Spoken language identification
+* **Noise Reduction**: Audio noise suppression
+* **Audio Processing**: Advanced audio analysis
+
+---
+
+## 🧠 Machine Learning
+
+### Neural Network Manager
+
+```swift
+// Neural network manager
+let neuralNetworkManager = NeuralNetworkManager()
+
+// Configure neural network
+let networkConfig = NeuralNetworkConfiguration()
+networkConfig.enableDeepLearning = true
+networkConfig.enableGPUAcceleration = true
+networkConfig.enableModelOptimization = true
+networkConfig.enableRealTimeInference = true
+
+// Setup neural network
+neuralNetworkManager.configure(networkConfig)
+
+// Create neural network
+let neuralNetwork = NeuralNetwork(
+    layers: [
+        DenseLayer(inputSize: 784, outputSize: 128, activation: .relu),
+        DenseLayer(inputSize: 128, outputSize: 64, activation: .relu),
+        DenseLayer(inputSize: 64, outputSize: 10, activation: .softmax)
+    ],
+    optimizer: .adam(learningRate: 0.001),
+    lossFunction: .categoricalCrossentropy
+)
+
+// Train neural network
+neuralNetworkManager.train(
+    network: neuralNetwork,
+    trainingData: trainingData,
+    epochs: 100
+) { result in
+    switch result {
+    case .success(let trainingResult):
+        print("✅ Neural network training completed")
+        print("Final loss: \(trainingResult.finalLoss)")
+        print("Accuracy: \(trainingResult.accuracy)%")
+        print("Training time: \(trainingResult.trainingTime)s")
+    case .failure(let error):
+        print("❌ Neural network training failed: \(error)")
+    }
+}
+
+// Make predictions
+neuralNetworkManager.predict(
+    network: neuralNetwork,
+    input: testData
+) { result in
+    switch result {
+    case .success(let predictions):
+        print("✅ Predictions generated")
+        print("Predictions: \(predictions)")
+        print("Confidence: \(predictions.confidence)")
+    case .failure(let error):
+        print("❌ Prediction failed: \(error)")
+    }
+}
+```
+
+### Supervised Learning
+
+```swift
+// Supervised learning manager
+let supervisedLearningManager = SupervisedLearningManager()
+
+// Configure supervised learning
+let supervisedConfig = SupervisedLearningConfiguration()
+supervisedConfig.enableClassification = true
+supervisedConfig.enableRegression = true
+supervisedConfig.enableCrossValidation = true
+supervisedConfig.enableFeatureSelection = true
+
+// Setup supervised learning
+supervisedLearningManager.configure(supervisedConfig)
+
+// Create classification model
+let classificationModel = ClassificationModel(
+    algorithm: .randomForest,
+    parameters: [
+        "n_estimators": 100,
+        "max_depth": 10,
+        "min_samples_split": 2
+    ]
+)
+
+// Train classification model
+supervisedLearningManager.train(
+    model: classificationModel,
+    features: features,
+    labels: labels
+) { result in
+    switch result {
+    case .success(let trainingResult):
+        print("✅ Classification model trained")
+        print("Accuracy: \(trainingResult.accuracy)%")
+        print("Precision: \(trainingResult.precision)")
+        print("Recall: \(trainingResult.recall)")
+        print("F1 Score: \(trainingResult.f1Score)")
+    case .failure(let error):
+        print("❌ Classification training failed: \(error)")
+    }
+}
+
+// Create regression model
+let regressionModel = RegressionModel(
+    algorithm: .linearRegression,
+    parameters: [
+        "fit_intercept": true,
+        "normalize": false
+    ]
+)
+
+// Train regression model
+supervisedLearningManager.train(
+    model: regressionModel,
+    features: features,
+    targets: targets
+) { result in
+    switch result {
+    case .success(let trainingResult):
+        print("✅ Regression model trained")
+        print("R² Score: \(trainingResult.r2Score)")
+        print("Mean Squared Error: \(trainingResult.meanSquaredError)")
+        print("Root Mean Squared Error: \(trainingResult.rootMeanSquaredError)")
+    case .failure(let error):
+        print("❌ Regression training failed: \(error)")
+    }
+}
+```
+
+---
+
+## 📝 Natural Language Processing
+
+### NLP Manager
+
+```swift
+// NLP manager
+let nlpManager = NLPManager()
+
+// Configure NLP
+let nlpConfig = NLPConfiguration()
+nlpConfig.enableTextClassification = true
+nlpConfig.enableSentimentAnalysis = true
+nlpConfig.enableNamedEntityRecognition = true
+nlpConfig.enableTextSummarization = true
+
+// Setup NLP
+nlpManager.configure(nlpConfig)
+
+// Text classification
+let textClassifier = TextClassifier(
+    model: .bert,
+    categories: ["technology", "sports", "politics", "entertainment"]
+)
+
+// Classify text
+nlpManager.classifyText(
+    text: "Apple released the new iPhone with advanced AI features",
+    classifier: textClassifier
+) { result in
+    switch result {
+    case .success(let classification):
+        print("✅ Text classification completed")
+        print("Category: \(classification.category)")
+        print("Confidence: \(classification.confidence)%")
+        print("All predictions: \(classification.allPredictions)")
+    case .failure(let error):
+        print("❌ Text classification failed: \(error)")
+    }
+}
+
+// Sentiment analysis
+let sentimentAnalyzer = SentimentAnalyzer(
+    model: .distilbert,
+    languages: ["en", "es", "fr", "de"]
+)
+
+// Analyze sentiment
+nlpManager.analyzeSentiment(
+    text: "I love this new AI framework! It's amazing!",
+    analyzer: sentimentAnalyzer
+) { result in
+    switch result {
+    case .success(let sentiment):
+        print("✅ Sentiment analysis completed")
+        print("Sentiment: \(sentiment.sentiment)")
+        print("Score: \(sentiment.score)")
+        print("Confidence: \(sentiment.confidence)%")
+    case .failure(let error):
+        print("❌ Sentiment analysis failed: \(error)")
+    }
+}
+```
+
+### Named Entity Recognition
+
+```swift
+// Named entity recognition
+let nerModel = NamedEntityRecognizer(
+    model: .spacy,
+    entities: ["PERSON", "ORGANIZATION", "LOCATION", "DATE"]
+)
+
+// Extract entities
+nlpManager.extractEntities(
+    text: "Apple CEO Tim Cook announced new products in San Francisco on September 12, 2023",
+    recognizer: nerModel
+) { result in
+    switch result {
+    case .success(let entities):
+        print("✅ Entity extraction completed")
+        for entity in entities {
+            print("Entity: \(entity.text)")
+            print("Type: \(entity.type)")
+            print("Confidence: \(entity.confidence)%")
+        }
+    case .failure(let error):
+        print("❌ Entity extraction failed: \(error)")
+    }
+}
+
+// Text summarization
+let summarizer = TextSummarizer(
+    model: .t5,
+    maxLength: 150,
+    minLength: 50
+)
+
+// Summarize text
+nlpManager.summarizeText(
+    text: "Long article text here...",
+    summarizer: summarizer
+) { result in
+    switch result {
+    case .success(let summary):
+        print("✅ Text summarization completed")
+        print("Summary: \(summary.text)")
+        print("Original length: \(summary.originalLength)")
+        print("Summary length: \(summary.summaryLength)")
+        print("Compression ratio: \(summary.compressionRatio)%")
+    case .failure(let error):
+        print("❌ Text summarization failed: \(error)")
+    }
+}
+```
+
+---
+
+## 👁️ Computer Vision
+
+### Computer Vision Manager
+
+```swift
+// Computer vision manager
+let computerVisionManager = ComputerVisionManager()
+
+// Configure computer vision
+let visionConfig = ComputerVisionConfiguration()
+visionConfig.enableImageClassification = true
+visionConfig.enableObjectDetection = true
+visionConfig.enableFaceRecognition = true
+visionConfig.enableImageSegmentation = true
+
+// Setup computer vision
+computerVisionManager.configure(visionConfig)
+
+// Image classification
+let imageClassifier = ImageClassifier(
+    model: .resnet50,
+    categories: ["cat", "dog", "car", "person", "building"]
+)
+
+// Classify image
+computerVisionManager.classifyImage(
+    image: inputImage,
+    classifier: imageClassifier
+) { result in
+    switch result {
+    case .success(let classification):
+        print("✅ Image classification completed")
+        print("Top prediction: \(classification.topPrediction)")
+        print("Confidence: \(classification.confidence)%")
+        print("All predictions: \(classification.allPredictions)")
+    case .failure(let error):
+        print("❌ Image classification failed: \(error)")
+    }
+}
+
+// Object detection
+let objectDetector = ObjectDetector(
+    model: .yolo,
+    confidence: 0.5,
+    nmsThreshold: 0.4
+)
+
+// Detect objects
+computerVisionManager.detectObjects(
+    image: inputImage,
+    detector: objectDetector
+) { result in
+    switch result {
+    case .success(let detections):
+        print("✅ Object detection completed")
+        print("Objects detected: \(detections.count)")
+        for detection in detections {
+            print("Object: \(detection.label)")
+            print("Confidence: \(detection.confidence)%")
+            print("Bounding box: \(detection.boundingBox)")
+        }
+    case .failure(let error):
+        print("❌ Object detection failed: \(error)")
+    }
+}
+```
+
+### Face Recognition
+
+```swift
+// Face recognition
+let faceRecognizer = FaceRecognizer(
+    model: .facenet,
+    database: faceDatabase
+)
+
+// Recognize faces
+computerVisionManager.recognizeFaces(
+    image: inputImage,
+    recognizer: faceRecognizer
+) { result in
+    switch result {
+    case .success(let recognitions):
+        print("✅ Face recognition completed")
+        print("Faces detected: \(recognitions.count)")
+        for recognition in recognitions {
+            print("Person: \(recognition.person)")
+            print("Confidence: \(recognition.confidence)%")
+            print("Face location: \(recognition.location)")
+        }
+    case .failure(let error):
+        print("❌ Face recognition failed: \(error)")
+    }
+}
+
+// Image segmentation
+let segmenter = ImageSegmenter(
+    model: .deeplab,
+    numClasses: 21
+)
+
+// Segment image
+computerVisionManager.segmentImage(
+    image: inputImage,
+    segmenter: segmenter
+) { result in
+    switch result {
+    case .success(let segmentation):
+        print("✅ Image segmentation completed")
+        print("Segments: \(segmentation.segments.count)")
+        print("Mask size: \(segmentation.maskSize)")
+        print("Classes detected: \(segmentation.classes)")
+    case .failure(let error):
+        print("❌ Image segmentation failed: \(error)")
+    }
+}
+```
+
+---
+
+## 🎤 Speech Recognition
+
+### Speech Recognition Manager
+
+```swift
+// Speech recognition manager
+let speechRecognitionManager = SpeechRecognitionManager()
+
+// Configure speech recognition
+let speechConfig = SpeechRecognitionConfiguration()
+speechConfig.enableRealTimeRecognition = true
+speechConfig.enableLanguageDetection = true
+speechConfig.enableSpeakerRecognition = true
+speechConfig.enableEmotionDetection = true
+
+// Setup speech recognition
+speechRecognitionManager.configure(speechConfig)
+
+// Speech-to-text
+let speechToText = SpeechToText(
+    model: .whisper,
+    language: "en-US",
+    enablePunctuation: true
+)
+
+// Transcribe speech
+speechRecognitionManager.transcribeSpeech(
+    audio: audioData,
+    recognizer: speechToText
+) { result in
+    switch result {
+    case .success(let transcription):
+        print("✅ Speech transcription completed")
+        print("Text: \(transcription.text)")
+        print("Confidence: \(transcription.confidence)%")
+        print("Duration: \(transcription.duration)s")
+        print("Words: \(transcription.words)")
+    case .failure(let error):
+        print("❌ Speech transcription failed: \(error)")
+    }
+}
+
+// Text-to-speech
+let textToSpeech = TextToSpeech(
+    voice: "en-US-Neural2-F",
+    rate: 1.0,
+    pitch: 1.0
+)
+
+// Synthesize speech
+speechRecognitionManager.synthesizeSpeech(
+    text: "Hello, this is AI-generated speech!",
+    synthesizer: textToSpeech
+) { result in
+    switch result {
+    case .success(let synthesis):
+        print("✅ Speech synthesis completed")
+        print("Audio duration: \(synthesis.duration)s")
+        print("Sample rate: \(synthesis.sampleRate)Hz")
+        print("Audio data size: \(synthesis.audioData.count) bytes")
+    case .failure(let error):
+        print("❌ Speech synthesis failed: \(error)")
+    }
+}
+```
+
+### Voice Commands
+
+```swift
+// Voice command recognition
+let voiceCommandRecognizer = VoiceCommandRecognizer(
+    commands: ["play", "pause", "stop", "next", "previous"],
+    language: "en-US"
+)
+
+// Recognize voice commands
+speechRecognitionManager.recognizeVoiceCommand(
+    audio: audioData,
+    recognizer: voiceCommandRecognizer
+) { result in
+    switch result {
+    case .success(let command):
+        print("✅ Voice command recognized")
+        print("Command: \(command.text)")
+        print("Confidence: \(command.confidence)%")
+        print("Action: \(command.action)")
+    case .failure(let error):
+        print("❌ Voice command recognition failed: \(error)")
+    }
+}
+
+// Emotion detection
+let emotionDetector = EmotionDetector(
+    emotions: ["happy", "sad", "angry", "neutral", "excited"],
+    model: .emotionNet
+)
+
+// Detect emotion
+speechRecognitionManager.detectEmotion(
+    audio: audioData,
+    detector: emotionDetector
+) { result in
+    switch result {
+    case .success(let emotion):
+        print("✅ Emotion detection completed")
+        print("Emotion: \(emotion.emotion)")
+        print("Confidence: \(emotion.confidence)%")
+        print("Intensity: \(emotion.intensity)")
+    case .failure(let error):
+        print("❌ Emotion detection failed: \(error)")
+    }
+}
+```
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+* **iOS 15.0+** with iOS 15.0+ SDK
+* **Swift 5.9+** programming language
+* **Xcode 15.0+** development environment
+* **Git** version control system
+* **Swift Package Manager** for dependency management
 
 ### Installation
 
-#### Swift Package Manager
+```bash
+# Clone the repository
+git clone https://github.com/muhittincamdali/SwiftAI.git
+
+# Navigate to project directory
+cd SwiftAI
+
+# Install dependencies
+swift package resolve
+
+# Open in Xcode
+open Package.swift
+```
+
+### Swift Package Manager
+
+Add the framework to your project:
+
 ```swift
 dependencies: [
     .package(url: "https://github.com/muhittincamdali/SwiftAI.git", from: "1.0.0")
 ]
 ```
 
-#### CocoaPods
-```ruby
-pod 'SwiftAI', '~> 1.0'
-```
-
-### Basic Usage
+### Basic Setup
 
 ```swift
 import SwiftAI
 
-// Initialize AI Engine
-let aiEngine = AIEngine()
+// Initialize AI manager
+let aiManager = AIManager()
 
-// Text Classification
-let textInput = AIInput.text("Hello, how are you?")
-let result = try await aiEngine.process(textInput, type: .classification)
+// Configure AI
+let aiConfig = AIConfiguration()
+aiConfig.enableMachineLearning = true
+aiConfig.enableNaturalLanguageProcessing = true
+aiConfig.enableComputerVision = true
+aiConfig.enableSpeechRecognition = true
 
-// Image Classification
-let imageInput = AIInput.image(UIImage(named: "photo")!)
-let imageResult = try await aiEngine.process(imageInput, type: .classification)
+// Start AI manager
+aiManager.start(with: aiConfig)
 
-// Batch Processing
-let inputs = [textInput, imageInput]
-let batchResults = try await aiEngine.processBatch(inputs, type: .classification)
+// Configure model optimization
+aiManager.configureModelOptimization { config in
+    config.enableGPUAcceleration = true
+    config.enableQuantization = true
+    config.enablePruning = true
+}
 ```
 
-### Advanced Usage
+---
+
+## 📱 Usage Examples
+
+### Simple ML Prediction
 
 ```swift
-// Custom Model Configuration
-let config = AIEngineConfiguration(
-    modelPath: "custom_model.mlmodel",
-    enableGPU: true,
-    enableNeuralEngine: true,
-    batchSize: 10
-)
+// Simple ML prediction
+let simpleML = SimpleML()
 
-let customEngine = AIEngine(configuration: config)
-
-// Performance Monitoring
-let monitor = PerformanceMonitor()
-monitor.startMonitoring()
-
-let result = try await customEngine.process(input, type: .classification)
-
-let metrics = monitor.getMetrics()
-print("Inference time: \(metrics.averageInferenceTime)ms")
+// Make prediction
+simpleML.predict(
+    model: "classification_model",
+    input: [1.0, 2.0, 3.0, 4.0]
+) { result in
+    switch result {
+    case .success(let prediction):
+        print("✅ Prediction: \(prediction)")
+    case .failure(let error):
+        print("❌ Prediction failed: \(error)")
+    }
+}
 ```
+
+### Simple Text Analysis
+
+```swift
+// Simple text analysis
+let simpleNLP = SimpleNLP()
+
+// Analyze text
+simpleNLP.analyzeText("This is a great AI framework!") { result in
+    switch result {
+    case .success(let analysis):
+        print("✅ Text analysis completed")
+        print("Sentiment: \(analysis.sentiment)")
+        print("Keywords: \(analysis.keywords)")
+    case .failure(let error):
+        print("❌ Text analysis failed: \(error)")
+    }
+}
+```
+
+---
+
+## 🔧 Configuration
+
+### AI Configuration
+
+```swift
+// Configure AI settings
+let aiConfig = AIConfiguration()
+
+// Enable AI features
+aiConfig.enableMachineLearning = true
+aiConfig.enableNaturalLanguageProcessing = true
+aiConfig.enableComputerVision = true
+aiConfig.enableSpeechRecognition = true
+
+// Set ML settings
+aiConfig.enableNeuralNetworks = true
+aiConfig.enableSupervisedLearning = true
+aiConfig.enableUnsupervisedLearning = true
+aiConfig.enableReinforcementLearning = true
+
+// Set NLP settings
+aiConfig.enableTextClassification = true
+aiConfig.enableSentimentAnalysis = true
+aiConfig.enableNamedEntityRecognition = true
+aiConfig.enableTextSummarization = true
+
+// Set CV settings
+aiConfig.enableImageClassification = true
+aiConfig.enableObjectDetection = true
+aiConfig.enableFaceRecognition = true
+aiConfig.enableImageSegmentation = true
+
+// Apply configuration
+aiManager.configure(aiConfig)
+```
+
+---
 
 ## 📚 Documentation
 
-- **[Getting Started](Documentation/GettingStarted.md)** - Quick setup and basic usage
-- **[API Reference](Documentation/API.md)** - Complete API documentation
-- **[Architecture Guide](Documentation/Architecture.md)** - System architecture overview
-- **[Performance Guide](Documentation/Performance.md)** - Optimization strategies
-- **[Security Guide](Documentation/Security.md)** - Security best practices
+### API Documentation
 
-## 🏗️ Architecture
+Comprehensive API documentation is available for all public interfaces:
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Presentation Layer                      │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐      │
-│  │   Views     │  │ ViewModels  │  │ Coordinators│      │
-│  └─────────────┘  └─────────────┘  └─────────────┘      │
-└─────────────────────────────────────────────────────────────┘
-┌─────────────────────────────────────────────────────────────┐
-│                     Domain Layer                           │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐      │
-│  │  Entities   │  │  Use Cases  │  │  Protocols  │      │
-│  └─────────────┘  └─────────────┘  └─────────────┘      │
-└─────────────────────────────────────────────────────────────┘
-┌─────────────────────────────────────────────────────────────┐
-│                      Data Layer                            │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐      │
-│  │Repositories │  │Data Sources │  │    DTOs     │      │
-│  └─────────────┘  └─────────────┘  └─────────────┘      │
-└─────────────────────────────────────────────────────────────┘
-┌─────────────────────────────────────────────────────────────┐
-│                  Infrastructure Layer                       │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐      │
-│  │   Network   │  │   Storage   │  │   Utils     │      │
-│  └─────────────┘  └─────────────┘  └─────────────┘      │
-└─────────────────────────────────────────────────────────────┘
-```
+* [AI Manager API](Documentation/AIManagerAPI.md) - Core AI functionality
+* [Machine Learning API](Documentation/MachineLearningAPI.md) - ML features
+* [Natural Language Processing API](Documentation/NaturalLanguageProcessingAPI.md) - NLP capabilities
+* [Computer Vision API](Documentation/ComputerVisionAPI.md) - CV features
+* [Speech Recognition API](Documentation/SpeechRecognitionAPI.md) - Speech capabilities
+* [Model Optimization API](Documentation/ModelOptimizationAPI.md) - Model optimization
+* [Configuration API](Documentation/ConfigurationAPI.md) - Configuration options
+* [Performance API](Documentation/PerformanceAPI.md) - Performance monitoring
 
-## 🎯 Use Cases
+### Integration Guides
 
-### 📱 **Mobile Applications**
-- **Chatbots**: Intelligent conversational interfaces
-- **Image Recognition**: Photo analysis and categorization
-- **Text Analysis**: Sentiment analysis and content moderation
-- **Voice Assistants**: Speech recognition and synthesis
-- **Recommendation Systems**: Personalized content suggestions
+* [Getting Started Guide](Documentation/GettingStarted.md) - Quick start tutorial
+* [Machine Learning Guide](Documentation/MachineLearningGuide.md) - ML setup
+* [Natural Language Processing Guide](Documentation/NaturalLanguageProcessingGuide.md) - NLP setup
+* [Computer Vision Guide](Documentation/ComputerVisionGuide.md) - CV setup
+* [Speech Recognition Guide](Documentation/SpeechRecognitionGuide.md) - Speech setup
+* [Model Optimization Guide](Documentation/ModelOptimizationGuide.md) - Model optimization
+* [AI Best Practices Guide](Documentation/AIBestPracticesGuide.md) - AI best practices
 
-### 🏢 **Enterprise Solutions**
-- **Document Processing**: Automated document analysis
-- **Quality Control**: Visual inspection and defect detection
-- **Customer Support**: Intelligent ticket classification
-- **Data Analytics**: Real-time data processing and insights
-- **Security Systems**: Anomaly detection and threat analysis
+### Examples
 
-### 🎮 **Gaming & Entertainment**
-- **Game AI**: Intelligent NPC behavior and decision making
-- **Content Generation**: Dynamic content creation
-- **Player Analytics**: Behavior analysis and personalization
-- **Visual Effects**: AI-powered graphics and animations
-- **Audio Processing**: Real-time audio analysis and enhancement
+* [Basic Examples](Examples/BasicExamples/) - Simple AI implementations
+* [Advanced Examples](Examples/AdvancedExamples/) - Complex AI scenarios
+* [Machine Learning Examples](Examples/MachineLearningExamples/) - ML examples
+* [Natural Language Processing Examples](Examples/NaturalLanguageProcessingExamples/) - NLP examples
+* [Computer Vision Examples](Examples/ComputerVisionExamples/) - CV examples
+* [Speech Recognition Examples](Examples/SpeechRecognitionExamples/) - Speech examples
 
-## ⚡ Performance Benchmarks
-
-| Feature | Performance | Memory Usage | Accuracy |
-|---------|-------------|--------------|----------|
-| Text Classification | <50ms | <10MB | >95% |
-| Image Classification | <100ms | <30MB | >90% |
-| Speech Recognition | <200ms | <20MB | >85% |
-| Batch Processing | 5x faster | Optimized | Maintained |
-| Model Loading | <200ms | <50MB | N/A |
-
-## 🔒 Privacy & Security
-
-### **Privacy Features**
-- ✅ **On-Device Processing**: All AI operations performed locally
-- ✅ **Zero Data Collection**: No personal data stored or transmitted
-- ✅ **No Analytics**: No usage tracking or telemetry
-- ✅ **No Cloud Dependencies**: Complete offline functionality
-- ✅ **GDPR Compliant**: Full privacy regulation compliance
-
-### **Security Features**
-- ✅ **Model Validation**: Cryptographic signature verification
-- ✅ **Input Sanitization**: Comprehensive input validation
-- ✅ **Secure Storage**: Encrypted local data storage
-- ✅ **Memory Protection**: Secure memory management
-- ✅ **Certificate Pinning**: Network security validation
-
-## 🧪 Testing
-
-### **Test Coverage**
-```bash
-# Run all tests
-swift test
-
-# Run specific test categories
-swift test --filter UnitTests
-swift test --filter IntegrationTests
-swift test --filter PerformanceTests
-```
-
-### **Performance Testing**
-```bash
-# Run performance benchmarks
-swift test --filter PerformanceTests
-
-# Memory leak detection
-swift test --filter MemoryTests
-```
-
-## 📊 Analytics & Monitoring
-
-### **Performance Metrics**
-- Inference time tracking
-- Memory usage monitoring
-- Model accuracy metrics
-- Cache hit rates
-- Error rate tracking
-
-### **Real-time Monitoring**
-- Live performance dashboards
-- Automated alert systems
-- Performance degradation detection
-- Resource usage optimization
+---
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
-### **Development Setup**
-```bash
-# Clone the repository
-git clone https://github.com/muhittincamdali/SwiftAI.git
+### Development Setup
 
-# Install dependencies
-swift package resolve
+1. **Fork** the repository
+2. **Create feature branch** (`git checkout -b feature/amazing-feature`)
+3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
+4. **Push** to the branch (`git push origin feature/amazing-feature`)
+5. **Open Pull Request**
 
-# Run tests
-swift test
+### Code Standards
 
-# Build documentation
-swift package generate-documentation
-```
+* Follow Swift API Design Guidelines
+* Maintain 100% test coverage
+* Use meaningful commit messages
+* Update documentation as needed
+* Follow AI/ML best practices
+* Implement proper error handling
+* Add comprehensive examples
 
-### **Code Standards**
-- Follow Swift style guidelines
-- Maintain 100% test coverage
-- Document all public APIs
-- Use meaningful commit messages
-- Follow semantic versioning
+---
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+---
+
+## 🙏 Acknowledgments
+
+* **Apple** for the excellent iOS development platform
+* **The Swift Community** for inspiration and feedback
+* **All Contributors** who help improve this framework
+* **AI/ML Community** for best practices and standards
+* **Open Source Community** for continuous innovation
+* **iOS Developer Community** for AI insights
+* **Machine Learning Community** for ML expertise
+
+---
+
 **⭐ Star this repository if it helped you!**
+
+---
 
 ## 📊 Project Statistics
 
@@ -284,34 +834,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 [![GitHub forks](https://img.shields.io/github/forks/muhittincamdali/SwiftAI?style=social)](https://github.com/muhittincamdali/SwiftAI/network)
 [![GitHub issues](https://img.shields.io/github/issues/muhittincamdali/SwiftAI)](https://github.com/muhittincamdali/SwiftAI/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/muhittincamdali/SwiftAI)](https://github.com/muhittincamdali/SwiftAI/pulls)
+[![GitHub contributors](https://img.shields.io/github/contributors/muhittincamdali/SwiftAI)](https://github.com/muhittincamdali/SwiftAI/graphs/contributors)
+[![GitHub last commit](https://img.shields.io/github/last-commit/muhittincamdali/SwiftAI)](https://github.com/muhittincamdali/SwiftAI/commits/master)
 
 </div>
 
 ## 🌟 Stargazers
 
-[![Stargazers repo roster for @muhittincamdali/SwiftAI](https://reporoster.com/stars/muhittincamdali/SwiftAI)](https://github.com/muhittincamdali/SwiftAI/stargazers)
-
-## 🙏 Acknowledgments
-
-- Apple for Core ML, Vision, and Natural Language frameworks
-- The Swift community for excellent tools and libraries
-- Contributors and maintainers for their valuable input
-
-## 📞 Support
-
-- **Documentation**: [Complete Documentation](Documentation/)
-- **Issues**: [GitHub Issues](https://github.com/muhittincamdali/SwiftAI/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/muhittincamdali/SwiftAI/discussions)
-- **Email**: Contact through GitHub Issues
-
-## ⭐ Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=muhittincamdali/SwiftAI&type=Date)](https://star-history.com/#muhittincamdali/SwiftAI&Date)
-
----
-
-**Made with ❤️ for the iOS and AI communities**
-
-[![GitHub stars](https://img.shields.io/github/stars/muhittincamdali/SwiftAI?style=social)](https://github.com/muhittincamdali/SwiftAI)
-[![GitHub forks](https://img.shields.io/github/forks/muhittincamdali/SwiftAI?style=social)](https://github.com/muhittincamdali/SwiftAI)
-[![GitHub watchers](https://img.shields.io/github/watchers/muhittincamdali/SwiftAI?style=social)](https://github.com/muhittincamdali/SwiftAI) 
+[![Stargazers repo roster for @muhittincamdali/SwiftAI](https://reporoster.com/stars/muhittincamdali/SwiftAI)](https://github.com/muhittincamdali/SwiftAI/stargazers) 
