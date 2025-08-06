@@ -1,1 +1,1 @@
-# AIBestPracticesGuide
+# AI Best Practices Guide
