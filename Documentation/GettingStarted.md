@@ -1,304 +1,196 @@
-# 🚀 Getting Started with SwiftAI
+# 🚀 Getting Started Guide
 
-Quick start guide for integrating SwiftAI into your iOS applications.
+## Overview
 
-## 📋 Table of Contents
+Welcome to Swift AI! This comprehensive framework provides advanced AI and machine learning capabilities for iOS applications. This guide will help you get started with implementing AI features in your SwiftUI applications.
 
-- [Installation](#installation)
-- [Basic Usage](#basic-usage)
-- [Advanced Features](#advanced-features)
-- [Configuration](#configuration)
-- [Troubleshooting](#troubleshooting)
+## Prerequisites
 
-## 📦 Installation
+- **iOS 15.0+** with iOS 15.0+ SDK
+- **Swift 5.9+** programming language
+- **Xcode 15.0+** development environment
+- **Git** version control system
+- **Swift Package Manager** for dependency management
+
+## Installation
 
 ### Swift Package Manager
 
-Add SwiftAI to your project using Swift Package Manager:
+Add the framework to your project:
 
-1. **In Xcode**: File → Add Package Dependencies
-2. **Enter URL**: `https://github.com/muhittincamdali/SwiftAI.git`
-3. **Select Version**: Choose the latest version
-4. **Add to Target**: Select your app target
-
-### CocoaPods
-
-Add to your `Podfile`:
-
-```ruby
-pod 'SwiftAI', '~> 1.0'
-```
-
-Then run:
-```bash
-pod install
+```swift
+dependencies: [
+    .package(url: "https://github.com/muhittincamdali/SwiftAI.git", from: "1.0.0")
+]
 ```
 
 ### Manual Installation
 
-1. Download the source code
-2. Add `Sources/` folder to your project
-3. Link required frameworks:
-   - CoreML
-   - Vision
-   - NaturalLanguage
+```bash
+# Clone the repository
+git clone https://github.com/muhittincamdali/SwiftAI.git
 
-## 🎯 Basic Usage
+# Navigate to project directory
+cd SwiftAI
 
-### Import SwiftAI
+# Install dependencies
+swift package resolve
+
+# Open in Xcode
+open Package.swift
+```
+
+## Basic Setup
+
+### 1. Import the Framework
 
 ```swift
 import SwiftAI
 ```
 
-### Initialize AI Engine
+### 2. Initialize AI Manager
 
 ```swift
-let aiEngine = AIEngine()
+// Initialize AI manager
+let aiManager = AIManager()
+
+// Configure AI framework
+let aiConfig = AIConfiguration()
+aiConfig.enableMachineLearning = true
+aiConfig.enableNaturalLanguageProcessing = true
+aiConfig.enableComputerVision = true
+aiConfig.enableSpeechRecognition = true
+
+// Start AI manager
+aiManager.start(with: aiConfig)
 ```
 
-### Text Classification
+### 3. Configure Performance
 
 ```swift
-// Simple text classification
-let textInput = AIInput.text("I love this product!")
-let result = try await aiEngine.process(textInput, type: .text)
-
-switch result {
-case .classification(let classifications):
-    print("Classifications: \(classifications)")
-case .sentiment(let sentiment):
-    print("Sentiment: \(sentiment)")
-default:
-    break
+// Configure AI performance
+aiManager.configurePerformance { config in
+    config.enableOptimizedInference = true
+    config.enableModelCaching = true
+    config.enableBackgroundProcessing = true
 }
 ```
 
-### Image Classification
+## Quick Example
 
 ```swift
-// Image classification
-guard let image = UIImage(named: "photo") else { return }
-let imageInput = AIInput.image(image)
-let result = try await aiEngine.process(imageInput, type: .image)
+import SwiftUI
+import SwiftAI
 
-switch result {
-case .detection(let detections):
-    for detection in detections {
-        print("Detected: \(detection.label) with confidence: \(detection.confidence)")
-    }
-default:
-    break
-}
-```
-
-### Batch Processing
-
-```swift
-// Process multiple inputs efficiently
-let inputs = [
-    AIInput.text("Positive review"),
-    AIInput.text("Negative review"),
-    AIInput.text("Neutral review")
-]
-
-let results = try await aiEngine.processBatch(inputs, type: .text)
-
-for (index, result) in results.enumerated() {
-    print("Result \(index): \(result)")
-}
-```
-
-## ⚡ Advanced Features
-
-### Custom Model Configuration
-
-```swift
-// Create custom model manager
-class CustomModelManager: ModelManagerProtocol {
-    func loadModel(name: String) async throws -> MLModel {
-        // Custom model loading logic
-        guard let modelURL = Bundle.main.url(forResource: name, withExtension: "mlmodel") else {
-            throw AIError.modelNotFound
+struct ContentView: View {
+    @State private var inputText = ""
+    @State private var sentiment = ""
+    
+    var body: some View {
+        VStack {
+            Text("AI Sentiment Analysis")
+                .font(.title)
+            
+            TextField("Enter text", text: $inputText)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            
+            Button("Analyze") {
+                analyzeSentiment()
+            }
+            
+            if !sentiment.isEmpty {
+                Text("Sentiment: \(sentiment)")
+                    .font(.headline)
+            }
         }
-        return try MLModel(contentsOf: modelURL)
+        .padding()
     }
     
-    func validateModel(_ model: MLModel) async throws -> Bool {
-        // Custom validation logic
-        return true
-    }
-    
-    func optimizeModel(_ model: MLModel) async throws -> MLModel {
-        // Custom optimization logic
-        return model
-    }
-    
-    func clearCache() async {
-        // Custom cache clearing logic
+    private func analyzeSentiment() {
+        // AI sentiment analysis
+        let analyzer = SentimentAnalyzer()
+        analyzer.analyze(inputText) { result in
+            DispatchQueue.main.async {
+                sentiment = result.sentiment
+            }
+        }
     }
 }
-
-// Use custom model manager
-let customModelManager = CustomModelManager()
-let aiEngine = AIEngine(modelManager: customModelManager)
 ```
 
-### Performance Monitoring
+## Core Features
+
+### Machine Learning
 
 ```swift
-// Monitor performance metrics
-let aiEngine = AIEngine()
-
-// Perform some operations
-let result = try await aiEngine.process(input, type: .text)
-
-// Get performance metrics
-let metrics = aiEngine.getPerformanceMetrics()
-print("Average inference time: \(metrics.averageInferenceTime)ms")
-print("Memory usage: \(metrics.memoryUsage) bytes")
-print("Cache hit rate: \(metrics.cacheHitRate)")
-```
-
-### Error Handling
-
-```swift
-do {
-    let result = try await aiEngine.process(input, type: .text)
-    // Handle success
-} catch AIError.modelNotFound {
-    print("Model not found")
-} catch AIError.invalidInput {
-    print("Invalid input provided")
-} catch AIError.inferenceFailed {
-    print("Inference failed")
-} catch {
-    print("Unexpected error: \(error)")
+// Create ML model
+let model = MLModel()
+model.train(with: trainingData) { result in
+    switch result {
+    case .success(let metrics):
+        print("Training completed: \(metrics.accuracy)%")
+    case .failure(let error):
+        print("Training failed: \(error)")
+    }
 }
 ```
 
-## ⚙️ Configuration
-
-### Model Configuration
+### Natural Language Processing
 
 ```swift
-// Configure model settings
-struct ModelConfiguration {
-    let enableGPU: Bool
-    let enableNeuralEngine: Bool
-    let batchSize: Int
-    let cacheSize: Int
-}
-
-let config = ModelConfiguration(
-    enableGPU: true,
-    enableNeuralEngine: true,
-    batchSize: 10,
-    cacheSize: 100
-)
-```
-
-### Performance Configuration
-
-```swift
-// Configure performance settings
-struct PerformanceConfiguration {
-    let maxMemoryUsage: Int64
-    let inferenceTimeout: TimeInterval
-    let enableMonitoring: Bool
-}
-
-let perfConfig = PerformanceConfiguration(
-    maxMemoryUsage: 100 * 1024 * 1024, // 100MB
-    inferenceTimeout: 10.0,
-    enableMonitoring: true
-)
-```
-
-### Security Configuration
-
-```swift
-// Configure security settings
-struct SecurityConfiguration {
-    let enableModelValidation: Bool
-    let enableInputValidation: Bool
-    let enableSecureStorage: Bool
-}
-
-let securityConfig = SecurityConfiguration(
-    enableModelValidation: true,
-    enableInputValidation: true,
-    enableSecureStorage: true
-)
-```
-
-## 🔧 Troubleshooting
-
-### Common Issues
-
-#### Model Loading Failed
-
-```swift
-// Check if model file exists
-guard let modelURL = Bundle.main.url(forResource: "model_name", withExtension: "mlmodel") else {
-    print("Model file not found")
-    return
-}
-
-// Verify model compatibility
-let model = try MLModel(contentsOf: modelURL)
-print("Model loaded successfully")
-```
-
-#### Memory Issues
-
-```swift
-// Clear cache when memory is low
-if getCurrentMemoryUsage() > 100 * 1024 * 1024 { // 100MB
-    await aiEngine.clearCache()
+// Text analysis
+let nlp = NaturalLanguageProcessor()
+nlp.analyzeText("Hello, world!") { result in
+    print("Sentiment: \(result.sentiment)")
+    print("Entities: \(result.entities)")
 }
 ```
 
-#### Performance Issues
+### Computer Vision
 
 ```swift
-// Monitor performance and optimize
-let metrics = aiEngine.getPerformanceMetrics()
-
-if metrics.averageInferenceTime > 1.0 { // 1 second
-    print("Inference is slow, consider optimization")
-}
-
-if metrics.memoryUsage > 50 * 1024 * 1024 { // 50MB
-    print("High memory usage detected")
+// Image analysis
+let vision = ComputerVision()
+vision.analyzeImage(image) { result in
+    print("Objects: \(result.objects)")
+    print("Faces: \(result.faces)")
 }
 ```
 
-### Debug Mode
+### Speech Recognition
 
 ```swift
-// Enable debug logging
-#if DEBUG
-print("Debug mode enabled")
-print("Input: \(input)")
-print("Model: \(model)")
-print("Result: \(result)")
-#endif
+// Speech recognition
+let speech = SpeechRecognizer()
+speech.startRecording { result in
+    print("Recognized: \(result.text)")
+}
 ```
 
-## 📚 Next Steps
+## Next Steps
 
-1. **Read the [API Documentation](API.md)** for detailed API reference
-2. **Explore [Architecture Guide](Architecture.md)** for system design
-3. **Check [Performance Guide](Performance.md)** for optimization tips
-4. **Review [Security Guide](Security.md)** for security best practices
+- Read the [Machine Learning Guide](MachineLearningGuide.md) for ML implementations
+- Explore [Natural Language Processing Guide](NaturalLanguageProcessingGuide.md) for NLP features
+- Check out [Computer Vision Guide](ComputerVisionGuide.md) for image analysis
+- Review [Speech Recognition Guide](SpeechRecognitionGuide.md) for voice features
+- Learn [AI Best Practices Guide](AIBestPracticesGuide.md) for optimization tips
 
-## 🤝 Support
+## Support
 
-- **Documentation**: [Complete Documentation](Documentation/)
-- **Issues**: [GitHub Issues](https://github.com/muhittincamdali/SwiftAI/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/muhittincamdali/SwiftAI/discussions)
+If you encounter any issues or have questions:
 
----
+- Check the [API Reference](APIReference.md) for detailed documentation
+- Review the [Examples](../Examples/) folder for implementation examples
+- Open an issue on GitHub for bug reports or feature requests
+- Join our community discussions for help and feedback
 
-**Happy coding with SwiftAI! 🚀** 
+## What's Next?
+
+Now that you have the basic setup complete, you can:
+
+1. **Implement Machine Learning**: Start with classification and regression models
+2. **Add NLP Features**: Implement text analysis and language understanding
+3. **Integrate Computer Vision**: Add image recognition and analysis
+4. **Enable Speech Recognition**: Implement voice interaction features
+5. **Optimize Performance**: Fine-tune AI models for your specific use case
+6. **Add Accessibility**: Ensure your AI features work with accessibility features 
