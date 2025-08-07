@@ -7,7 +7,6 @@
 ![Xcode](https://img.shields.io/badge/Xcode-15.0+-007ACC?style=for-the-badge&logo=Xcode&logoColor=white)
 ![AI](https://img.shields.io/badge/AI-Artificial%20Intelligence-4CAF50?style=for-the-badge)
 ![Machine Learning](https://img.shields.io/badge/Machine%20Learning-ML-2196F3?style=for-the-badge)
-![Neural Networks](https://img.shields.io/badge/Neural%20Networks-Deep%20Learning-FF9800?style=for-the-badge)
 ![Natural Language](https://img.shields.io/badge/Natural%20Language-NLP-9C27B0?style=for-the-badge)
 ![Computer Vision](https://img.shields.io/badge/Computer%20Vision-CV-00BCD4?style=for-the-badge)
 ![Speech Recognition](https://img.shields.io/badge/Speech%20Recognition-ASR-607D8B?style=for-the-badge)
@@ -67,7 +66,6 @@
 
 ### 🧠 Machine Learning
 
-* **Neural Networks**: Deep learning and neural network implementation
 * **Supervised Learning**: Classification and regression algorithms
 * **Unsupervised Learning**: Clustering and dimensionality reduction
 * **Reinforcement Learning**: Q-learning and policy optimization
@@ -95,7 +93,6 @@
 * **Image Segmentation**: Pixel-level image segmentation
 * **Optical Character Recognition**: Text extraction from images
 * **Image Enhancement**: AI-powered image improvement
-* **Style Transfer**: Neural style transfer
 * **Image Generation**: AI-generated images and art
 
 ### 🎤 Speech Recognition
@@ -113,24 +110,15 @@
 
 ## 🧠 Machine Learning
 
-### Neural Network Manager
 
 ```swift
-// Neural network manager
-let neuralNetworkManager = NeuralNetworkManager()
 
-// Configure neural network
-let networkConfig = NeuralNetworkConfiguration()
 networkConfig.enableDeepLearning = true
 networkConfig.enableGPUAcceleration = true
 networkConfig.enableModelOptimization = true
 networkConfig.enableRealTimeInference = true
 
-// Setup neural network
-neuralNetworkManager.configure(networkConfig)
 
-// Create neural network
-let neuralNetwork = NeuralNetwork(
     layers: [
         DenseLayer(inputSize: 784, outputSize: 128, activation: .relu),
         DenseLayer(inputSize: 128, outputSize: 64, activation: .relu),
@@ -140,26 +128,19 @@ let neuralNetwork = NeuralNetwork(
     lossFunction: .categoricalCrossentropy
 )
 
-// Train neural network
-neuralNetworkManager.train(
-    network: neuralNetwork,
     trainingData: trainingData,
     epochs: 100
 ) { result in
     switch result {
     case .success(let trainingResult):
-        print("✅ Neural network training completed")
         print("Final loss: \(trainingResult.finalLoss)")
         print("Accuracy: \(trainingResult.accuracy)%")
         print("Training time: \(trainingResult.trainingTime)s")
     case .failure(let error):
-        print("❌ Neural network training failed: \(error)")
     }
 }
 
 // Make predictions
-neuralNetworkManager.predict(
-    network: neuralNetwork,
     input: testData
 ) { result in
     switch result {
@@ -527,7 +508,6 @@ speechRecognitionManager.transcribeSpeech(
 
 // Text-to-speech
 let textToSpeech = TextToSpeech(
-    voice: "en-US-Neural2-F",
     rate: 1.0,
     pitch: 1.0
 )
@@ -613,7 +593,6 @@ speechRecognitionManager.detectEmotion(
 
 ```bash
 # Clone the repository
-git clone https://github.com/muhittincamdali/SwiftAI.git
 
 # Navigate to project directory
 cd SwiftAI
@@ -631,7 +610,6 @@ Add the framework to your project:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/muhittincamdali/SwiftAI.git", from: "1.0.0")
 ]
 ```
 
@@ -721,10 +699,8 @@ aiConfig.enableComputerVision = true
 aiConfig.enableSpeechRecognition = true
 
 // Set ML settings
-aiConfig.enableNeuralNetworks = true
 aiConfig.enableSupervisedLearning = true
 aiConfig.enableUnsupervisedLearning = true
-aiConfig.enableReinforcementLearning = true
 
 // Set NLP settings
 aiConfig.enableTextClassification = true
@@ -830,15 +806,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-[![GitHub stars](https://img.shields.io/github/stars/muhittincamdali/SwiftAI?style=social)](https://github.com/muhittincamdali/SwiftAI/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/muhittincamdali/SwiftAI?style=social)](https://github.com/muhittincamdali/SwiftAI/network)
-[![GitHub issues](https://img.shields.io/github/issues/muhittincamdali/SwiftAI)](https://github.com/muhittincamdali/SwiftAI/issues)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/muhittincamdali/SwiftAI)](https://github.com/muhittincamdali/SwiftAI/pulls)
-[![GitHub contributors](https://img.shields.io/github/contributors/muhittincamdali/SwiftAI)](https://github.com/muhittincamdali/SwiftAI/graphs/contributors)
-[![GitHub last commit](https://img.shields.io/github/last-commit/muhittincamdali/SwiftAI)](https://github.com/muhittincamdali/SwiftAI/commits/master)
 
 </div>
 
 ## 🌟 Stargazers
 
-[![Stargazers repo roster for @muhittincamdali/SwiftAI](https://reporoster.com/stars/muhittincamdali/SwiftAI)](https://github.com/muhittincamdali/SwiftAI/stargazers) 
