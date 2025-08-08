@@ -24,6 +24,26 @@
 
 </div>
 
+<div align="center">
+
+[![GitHub stars](https://img.shields.io/github/stars/muhittincamdali/SwiftAI?style=for-the-badge&logo=github)](https://github.com/muhittincamdali/SwiftAI/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/muhittincamdali/SwiftAI?style=for-the-badge&logo=github)](https://github.com/muhittincamdali/SwiftAI/network)
+[![GitHub issues](https://img.shields.io/github/issues/muhittincamdali/SwiftAI?style=for-the-badge&logo=github)](https://github.com/muhittincamdali/SwiftAI/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/muhittincamdali/SwiftAI?style=for-the-badge&logo=github)](https://github.com/muhittincamdali/SwiftAI/pulls)
+[![GitHub license](https://img.shields.io/github/license/muhittincamdali/SwiftAI?style=for-the-badge&logo=github)](https://github.com/muhittincamdali/SwiftAI/blob/master/LICENSE)
+
+</div>
+
+---
+
+## 🔗 Quick Links
+
+<div align="center">
+
+[📚 Documentation](Documentation/) • [🚀 Examples](Examples/) • [🧪 Tests](Tests/) • [📦 Package.swift](Package.swift) • [🤝 Contributing](CONTRIBUTING.md) • [📄 License](LICENSE)
+
+</div>
+
 ---
 
 ## 📋 Table of Contents
@@ -772,7 +792,7 @@ Comprehensive API documentation is available for all public interfaces:
 ### Examples
 
 * [Basic Examples](Examples/BasicExamples/) - Simple AI implementations
-* [Advanced Examples](Examples/AdvancedExamples/) - Complex AI scenarios
+* [Advanced Examples](Examples/AdvancedExample/) - Complex AI scenarios
 * [Machine Learning Examples](Examples/MachineLearningExamples/) - ML examples
 * [Natural Language Processing Examples](Examples/NaturalLanguageProcessingExamples/) - NLP examples
 * [Computer Vision Examples](Examples/ComputerVisionExamples/) - CV examples
@@ -839,6 +859,23 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 </div>
 
+### 📈 GitHub Analytics
+
+<div align="center">
+
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=muhittincamdali&show_icons=true&theme=radical&hide_border=true&include_all_commits=true&count_private=true)
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=muhittincamdali&layout=compact&theme=radical&hide_border=true)
+![GitHub Streak](https://streak-stats.demolab.com/?user=muhittincamdali&theme=radical&hide_border=true)
+![Profile Views](https://komarev.com/ghpvc/?username=muhittincamdali&color=brightgreen&style=flat-square)
+
+</div>
+
 ## 🌟 Stargazers
 
-[![Stargazers repo roster for @muhittincamdali/SwiftAI](https://reporoster.com/stars/muhittincamdali/SwiftAI)](https://github.com/muhittincamdali/SwiftAI/stargazers) 
+<div align="center">
+
+[![Stargazers repo roster for @muhittincamdali/SwiftAI](https://reporoster.com/stars/muhittincamdali/SwiftAI)](https://github.com/muhittincamdali/SwiftAI/stargazers)
+
+**⭐ Star this repository if it helped you!**
+
+</div> 
