@@ -6,8 +6,8 @@ let package = Package(
     platforms: [
         .iOS(.v15),
         .macOS(.v12),
-        .watchOS(.v8),
-        .tvOS(.v15)
+        .tvOS(.v15),
+        .watchOS(.v8)
     ],
     products: [
         .library(
@@ -16,29 +16,43 @@ let package = Package(
         ),
     ],
     dependencies: [
-        // Core ML for AI/ML capabilities
-        .package(url: "https://github.com/apple/swift-coreml-tools", from: "1.0.0"),
+        // Core dependencies
+        .package(url: "https://github.com/apple/swift-numerics", from: "1.0.0"),
+        .package(url: "https://github.com/apple/swift-collections", from: "1.0.0"),
         
-        // Vision framework for computer vision
-        .package(url: "https://github.com/apple/swift-vision", from: "1.0.0"),
+        // AI/ML dependencies
+        .package(url: "https://github.com/tensorflow/swift-models", from: "0.13.0"),
+        .package(url: "https://github.com/tensorflow/swift-apis", from: "0.13.0"),
         
-        // Natural Language framework
-        .package(url: "https://github.com/apple/swift-natural-language", from: "1.0.0")
+        // Performance dependencies
+        .package(url: "https://github.com/apple/swift-algorithms", from: "1.0.0"),
+        .package(url: "https://github.com/apple/swift-async-algorithms", from: "0.1.0"),
+        
+        // Testing dependencies
+        .package(url: "https://github.com/Quick/Quick", from: "7.0.0"),
+        .package(url: "https://github.com/Quick/Nimble", from: "13.0.0")
     ],
     targets: [
         .target(
             name: "SwiftAI",
             dependencies: [
-                .product(name: "CoreMLTools", package: "swift-coreml-tools"),
-                .product(name: "Vision", package: "swift-vision"),
-                .product(name: "NaturalLanguage", package: "swift-natural-language")
+                .product(name: "Numerics", package: "swift-numerics"),
+                .product(name: "Collections", package: "swift-collections"),
+                .product(name: "TensorFlowModels", package: "swift-models"),
+                .product(name: "TensorFlowAPIs", package: "swift-apis"),
+                .product(name: "Algorithms", package: "swift-algorithms"),
+                .product(name: "AsyncAlgorithms", package: "swift-async-algorithms")
             ],
-            path: "Sources"
+            path: "Sources/SwiftAI"
         ),
         .testTarget(
             name: "SwiftAITests",
-            dependencies: ["SwiftAI"],
-            path: "Tests"
+            dependencies: [
+                "SwiftAI",
+                "Quick",
+                "Nimble"
+            ],
+            path: "Tests/SwiftAITests"
         ),
     ]
-) 
+)
