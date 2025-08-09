@@ -874,7 +874,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-[![Stargazers repo roster for @muhittincamdali/SwiftAI](https://reporoster.com/stars/muhittincamdali/SwiftAI)](https://github.com/muhittincamdali/SwiftAI/stargazers)
+[![Stargazers repo roster for @muhittincamdali/SwiftAI](https://starchart.cc/muhittincamdali/SwiftAI.svg)](https://github.com/muhittincamdali/SwiftAI/stargazers)
 
 **⭐ Star this repository if it helped you!**
 
