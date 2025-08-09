@@ -1,57 +1,6 @@
 # 🤖 Swift AI
 [![CI](https://github.com/muhittincamdali/SwiftAI/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/muhittincamdali/SwiftAI/actions/workflows/ci.yml)
 
-<!-- TOC START -->
-## Table of Contents
-- [🤖 Swift AI](#-swift-ai)
-- [🔗 Quick Links](#-quick-links)
-- [📋 Table of Contents](#-table-of-contents)
-- [🚀 Overview](#-overview)
-  - [🎯 What Makes This Framework Special?](#-what-makes-this-framework-special)
-- [✨ Key Features](#-key-features)
-  - [🧠 Machine Learning](#-machine-learning)
-  - [📝 Natural Language Processing](#-natural-language-processing)
-  - [👁️ Computer Vision](#-computer-vision)
-  - [🎤 Speech Recognition](#-speech-recognition)
-- [🧠 Machine Learning](#-machine-learning)
-  - [Neural Network Manager](#neural-network-manager)
-  - [Supervised Learning](#supervised-learning)
-- [📝 Natural Language Processing](#-natural-language-processing)
-  - [NLP Manager](#nlp-manager)
-  - [Named Entity Recognition](#named-entity-recognition)
-- [👁️ Computer Vision](#-computer-vision)
-  - [Computer Vision Manager](#computer-vision-manager)
-  - [Face Recognition](#face-recognition)
-- [🎤 Speech Recognition](#-speech-recognition)
-  - [Speech Recognition Manager](#speech-recognition-manager)
-  - [Voice Commands](#voice-commands)
-- [🚀 Quick Start](#-quick-start)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Clone the repository](#clone-the-repository)
-- [Navigate to project directory](#navigate-to-project-directory)
-- [Install dependencies](#install-dependencies)
-- [Open in Xcode](#open-in-xcode)
-  - [Swift Package Manager](#swift-package-manager)
-  - [Basic Setup](#basic-setup)
-- [📱 Usage Examples](#-usage-examples)
-  - [Simple ML Prediction](#simple-ml-prediction)
-  - [Simple Text Analysis](#simple-text-analysis)
-- [🔧 Configuration](#-configuration)
-  - [AI Configuration](#ai-configuration)
-- [📚 Documentation](#-documentation)
-  - [API Documentation](#api-documentation)
-  - [Integration Guides](#integration-guides)
-  - [Examples](#examples)
-- [🤝 Contributing](#-contributing)
-  - [Development Setup](#development-setup)
-  - [Code Standards](#code-standards)
-- [📄 License](#-license)
-- [🙏 Acknowledgments](#-acknowledgments)
-- [📊 Project Statistics](#-project-statistics)
-  - [📈 GitHub Analytics](#-github-analytics)
-- [🌟 Stargazers](#-stargazers)
-<!-- TOC END -->
 
 
 <div align="center">
@@ -904,7 +853,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-[![GitHub stars](https://img.shields.io/github/stars/muhittincamdali/SwiftAI?style=social&logo=github)](https://github.com/muhittincamdali/SwiftAI/stargazers)
+[](https://github.com/muhittincamdali/SwiftAI/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/muhittincamdali/SwiftAI?style=social)](https://github.com/muhittincamdali/SwiftAI/network)
 [![GitHub issues](https://img.shields.io/github/issues/muhittincamdali/SwiftAI)](https://github.com/muhittincamdali/SwiftAI/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/muhittincamdali/SwiftAI)](https://github.com/muhittincamdali/SwiftAI/pulls)
