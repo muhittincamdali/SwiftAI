@@ -1,4 +1,5 @@
 # 🤖 Swift AI
+[![CI](https://github.com/muhittincamdali/SwiftAI/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/muhittincamdali/SwiftAI/actions/workflows/ci.yml)
 
 <!-- TOC START -->
 ## Table of Contents
