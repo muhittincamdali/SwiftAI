@@ -850,7 +850,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-[![GitHub stars](https://img.shields.io/github/stars/muhittincamdali/SwiftAI?style=social)](https://github.com/muhittincamdali/SwiftAI/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/muhittincamdali/SwiftAI?style=social&logo=github)](https://github.com/muhittincamdali/SwiftAI/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/muhittincamdali/SwiftAI?style=social)](https://github.com/muhittincamdali/SwiftAI/network)
 [![GitHub issues](https://img.shields.io/github/issues/muhittincamdali/SwiftAI)](https://github.com/muhittincamdali/SwiftAI/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/muhittincamdali/SwiftAI)](https://github.com/muhittincamdali/SwiftAI/pulls)
