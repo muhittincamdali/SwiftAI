@@ -1,5 +1,45 @@
 # 🧪 Testing Guide
 
+<!-- TOC START -->
+## Table of Contents
+- [🧪 Testing Guide](#-testing-guide)
+- [📋 Table of Contents](#-table-of-contents)
+- [🎯 Testing Overview](#-testing-overview)
+  - [**Testing Principles**](#testing-principles)
+- [🧪 Unit Testing](#-unit-testing)
+  - [**Test Structure**](#test-structure)
+  - [**Mock Classes**](#mock-classes)
+- [🔗 Integration Testing](#-integration-testing)
+  - [**Repository Tests**](#repository-tests)
+- [⚡ Performance Testing](#-performance-testing)
+  - [**Benchmark Tests**](#benchmark-tests)
+- [🔒 Security Testing](#-security-testing)
+  - [**Input Validation Tests**](#input-validation-tests)
+- [🎨 UI Testing](#-ui-testing)
+  - [**SwiftUI Tests**](#swiftui-tests)
+- [📊 Test Coverage](#-test-coverage)
+  - [**Coverage Configuration**](#coverage-configuration)
+  - [**Coverage Report**](#coverage-report)
+- [Generate coverage report](#generate-coverage-report)
+- [Generate HTML report](#generate-html-report)
+  - [**Coverage Targets**](#coverage-targets)
+- [🚀 Test Automation](#-test-automation)
+  - [**CI/CD Pipeline**](#cicd-pipeline)
+  - [**Test Commands**](#test-commands)
+- [Run all tests](#run-all-tests)
+- [Run specific test target](#run-specific-test-target)
+- [Run performance tests](#run-performance-tests)
+- [Run security tests](#run-security-tests)
+- [Run with coverage](#run-with-coverage)
+- [📚 Best Practices](#-best-practices)
+  - [**Test Organization**](#test-organization)
+  - [**Test Data**](#test-data)
+  - [**Test Utilities**](#test-utilities)
+- [📚 Next Steps](#-next-steps)
+- [🤝 Support](#-support)
+<!-- TOC END -->
+
+
 Complete testing documentation for SwiftAI framework.
 
 ## 📋 Table of Contents

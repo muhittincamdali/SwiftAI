@@ -1,5 +1,33 @@
 # 🚀 Getting Started Guide
 
+<!-- TOC START -->
+## Table of Contents
+- [🚀 Getting Started Guide](#-getting-started-guide)
+- [Overview](#overview)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+  - [Swift Package Manager](#swift-package-manager)
+  - [Manual Installation](#manual-installation)
+- [Clone the repository](#clone-the-repository)
+- [Navigate to project directory](#navigate-to-project-directory)
+- [Install dependencies](#install-dependencies)
+- [Open in Xcode](#open-in-xcode)
+- [Basic Setup](#basic-setup)
+  - [1. Import the Framework](#1-import-the-framework)
+  - [2. Initialize AI Manager](#2-initialize-ai-manager)
+  - [3. Configure Performance](#3-configure-performance)
+- [Quick Example](#quick-example)
+- [Core Features](#core-features)
+  - [Machine Learning](#machine-learning)
+  - [Natural Language Processing](#natural-language-processing)
+  - [Computer Vision](#computer-vision)
+  - [Speech Recognition](#speech-recognition)
+- [Next Steps](#next-steps)
+- [Support](#support)
+- [What's Next?](#whats-next)
+<!-- TOC END -->
+
+
 ## Overview
 
 Welcome to Swift AI! This comprehensive framework provides advanced AI and machine learning capabilities for iOS applications. This guide will help you get started with implementing AI features in your SwiftUI applications.

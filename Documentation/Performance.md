@@ -1,5 +1,48 @@
 # ⚡ Performance Guide
 
+<!-- TOC START -->
+## Table of Contents
+- [⚡ Performance Guide](#-performance-guide)
+- [📋 Table of Contents](#-table-of-contents)
+- [📊 Performance Metrics](#-performance-metrics)
+  - [**Key Performance Indicators (KPIs)**](#key-performance-indicators-kpis)
+    - [**Inference Speed**](#inference-speed)
+    - [**Memory Usage**](#memory-usage)
+    - [**Model Performance**](#model-performance)
+    - [**User Experience**](#user-experience)
+- [🚀 Optimization Strategies](#-optimization-strategies)
+  - [**Model Optimization**](#model-optimization)
+    - [**Quantization**](#quantization)
+    - [**Model Compression**](#model-compression)
+  - [**Memory Management**](#memory-management)
+    - [**Lazy Loading**](#lazy-loading)
+    - [**Memory Monitoring**](#memory-monitoring)
+  - [**Inference Optimization**](#inference-optimization)
+    - [**Batch Processing**](#batch-processing)
+    - [**Parallel Processing**](#parallel-processing)
+- [💾 Caching Mechanisms](#-caching-mechanisms)
+  - [**Multi-Level Caching**](#multi-level-caching)
+    - [**Memory Cache**](#memory-cache)
+    - [**Disk Cache**](#disk-cache)
+  - [**Cache Invalidation**](#cache-invalidation)
+- [🔧 Inference Optimization](#-inference-optimization)
+  - [**GPU Acceleration**](#gpu-acceleration)
+  - [**Neural Engine**](#neural-engine)
+- [📈 Benchmarking](#-benchmarking)
+  - [**Performance Testing**](#performance-testing)
+  - [**Load Testing**](#load-testing)
+- [📊 Monitoring](#-monitoring)
+  - [**Real-time Monitoring**](#real-time-monitoring)
+  - [**Alert System**](#alert-system)
+- [🎯 Best Practices](#-best-practices)
+  - [**Code Optimization**](#code-optimization)
+  - [**Configuration Optimization**](#configuration-optimization)
+  - [**Monitoring Setup**](#monitoring-setup)
+- [📚 Next Steps](#-next-steps)
+- [🤝 Support](#-support)
+<!-- TOC END -->
+
+
 Comprehensive performance optimization guide for SwiftAI framework.
 
 ## 📋 Table of Contents

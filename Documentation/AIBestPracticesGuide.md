@@ -1,5 +1,40 @@
 # 🧠 AI Best Practices Guide
 
+<!-- TOC START -->
+## Table of Contents
+- [🧠 AI Best Practices Guide](#-ai-best-practices-guide)
+- [Overview](#overview)
+- [Table of Contents](#table-of-contents)
+- [Model Selection](#model-selection)
+  - [Choosing the Right Model](#choosing-the-right-model)
+  - [Model Comparison](#model-comparison)
+- [Performance Optimization](#performance-optimization)
+  - [Memory Management](#memory-management)
+  - [GPU Acceleration](#gpu-acceleration)
+- [Accuracy Improvement](#accuracy-improvement)
+  - [Data Quality](#data-quality)
+  - [Model Fine-tuning](#model-fine-tuning)
+- [User Experience](#user-experience)
+  - [Loading States](#loading-states)
+  - [Error Handling](#error-handling)
+- [Security & Privacy](#security-privacy)
+  - [Data Protection](#data-protection)
+  - [Privacy Compliance](#privacy-compliance)
+- [Testing & Validation](#testing-validation)
+  - [Unit Testing](#unit-testing)
+  - [Integration Testing](#integration-testing)
+- [Deployment Strategies](#deployment-strategies)
+  - [Model Deployment](#model-deployment)
+  - [Version Management](#version-management)
+- [Monitoring & Analytics](#monitoring-analytics)
+  - [Performance Monitoring](#performance-monitoring)
+  - [User Analytics](#user-analytics)
+- [Best Practices Summary](#best-practices-summary)
+  - [Do's](#dos)
+  - [Don'ts](#donts)
+<!-- TOC END -->
+
+
 ## Overview
 
 This comprehensive guide provides best practices for implementing AI features in iOS applications using the SwiftAI framework. Learn how to optimize performance, ensure accuracy, and create excellent user experiences.

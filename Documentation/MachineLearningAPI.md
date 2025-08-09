@@ -1,5 +1,26 @@
 # 🧠 Machine Learning API
 
+<!-- TOC START -->
+## Table of Contents
+- [🧠 Machine Learning API](#-machine-learning-api)
+- [Overview](#overview)
+- [Core Components](#core-components)
+  - [NeuralNetworkManager](#neuralnetworkmanager)
+  - [Neural Network Creation](#neural-network-creation)
+  - [Supervised Learning](#supervised-learning)
+  - [Unsupervised Learning](#unsupervised-learning)
+  - [Reinforcement Learning](#reinforcement-learning)
+- [Advanced Features](#advanced-features)
+  - [Model Optimization](#model-optimization)
+  - [Feature Engineering](#feature-engineering)
+  - [Model Evaluation](#model-evaluation)
+- [Best Practices](#best-practices)
+  - [Performance Optimization](#performance-optimization)
+  - [Memory Management](#memory-management)
+  - [Accuracy Improvement](#accuracy-improvement)
+<!-- TOC END -->
+
+
 ## Overview
 
 The Machine Learning API provides comprehensive tools for implementing advanced machine learning capabilities in iOS applications. This API enables neural networks, supervised learning, unsupervised learning, and reinforcement learning with high performance and accuracy.

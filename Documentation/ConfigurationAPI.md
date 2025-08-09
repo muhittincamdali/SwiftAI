@@ -1,5 +1,35 @@
 # ⚙️ Configuration API
 
+<!-- TOC START -->
+## Table of Contents
+- [⚙️ Configuration API](#-configuration-api)
+- [Overview](#overview)
+- [Core Components](#core-components)
+  - [AIConfiguration](#aiconfiguration)
+  - [Performance Configuration](#performance-configuration)
+  - [Model Configuration](#model-configuration)
+  - [Security Configuration](#security-configuration)
+  - [Network Configuration](#network-configuration)
+- [Advanced Configuration](#advanced-configuration)
+  - [Custom Configuration](#custom-configuration)
+  - [Environment Configuration](#environment-configuration)
+  - [Dynamic Configuration](#dynamic-configuration)
+- [Configuration Validation](#configuration-validation)
+  - [Validation Rules](#validation-rules)
+  - [Error Handling](#error-handling)
+- [Configuration Persistence](#configuration-persistence)
+  - [Save Configuration](#save-configuration)
+  - [Load Configuration](#load-configuration)
+- [Configuration Monitoring](#configuration-monitoring)
+  - [Monitor Changes](#monitor-changes)
+  - [Configuration Analytics](#configuration-analytics)
+- [Best Practices](#best-practices)
+  - [Configuration Management](#configuration-management)
+  - [Performance Optimization](#performance-optimization)
+  - [Security Considerations](#security-considerations)
+<!-- TOC END -->
+
+
 ## Overview
 
 The Configuration API provides comprehensive tools for configuring AI models, performance settings, and system parameters in iOS applications. This API enables fine-grained control over AI behavior and optimization.

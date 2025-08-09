@@ -1,5 +1,53 @@
 # 🏗️ Architecture Guide
 
+<!-- TOC START -->
+## Table of Contents
+- [🏗️ Architecture Guide](#-architecture-guide)
+- [📋 Table of Contents](#-table-of-contents)
+- [🎯 Overview](#-overview)
+- [🏗️ System Architecture](#-system-architecture)
+  - [**High-Level Architecture**](#high-level-architecture)
+  - [**Core Components Architecture**](#core-components-architecture)
+- [🎯 Layer Responsibilities](#-layer-responsibilities)
+  - [**Presentation Layer**](#presentation-layer)
+  - [**Domain Layer**](#domain-layer)
+  - [**Data Layer**](#data-layer)
+  - [**Infrastructure Layer**](#infrastructure-layer)
+- [🔄 Data Flow](#-data-flow)
+  - [**Request Flow**](#request-flow)
+  - [**Response Flow**](#response-flow)
+  - [**Error Flow**](#error-flow)
+- [🎨 Design Patterns](#-design-patterns)
+  - [**Dependency Injection**](#dependency-injection)
+  - [**Protocol-Oriented Programming**](#protocol-oriented-programming)
+  - [**Factory Pattern**](#factory-pattern)
+  - [**Observer Pattern**](#observer-pattern)
+- [⚡ Performance Considerations](#-performance-considerations)
+  - [**Model Optimization**](#model-optimization)
+  - [**Memory Management**](#memory-management)
+  - [**Inference Optimization**](#inference-optimization)
+  - [**Network Optimization**](#network-optimization)
+- [🔒 Security](#-security)
+  - [**Model Security**](#model-security)
+  - [**Data Security**](#data-security)
+  - [**Privacy Protection**](#privacy-protection)
+- [📊 Monitoring](#-monitoring)
+  - [**Performance Monitoring**](#performance-monitoring)
+  - [**Error Monitoring**](#error-monitoring)
+  - [**Usage Analytics**](#usage-analytics)
+- [🚀 Deployment](#-deployment)
+  - [**Model Deployment**](#model-deployment)
+  - [**App Deployment**](#app-deployment)
+  - [**CI/CD Pipeline**](#cicd-pipeline)
+- [📈 Scalability](#-scalability)
+  - [**Horizontal Scaling**](#horizontal-scaling)
+  - [**Vertical Scaling**](#vertical-scaling)
+  - [**Architecture Scaling**](#architecture-scaling)
+- [📚 Next Steps](#-next-steps)
+- [🤝 Support](#-support)
+<!-- TOC END -->
+
+
 Complete architecture documentation for SwiftAI framework.
 
 ## 📋 Table of Contents
