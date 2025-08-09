@@ -1,5 +1,28 @@
 # 📝 Natural Language Processing API
 
+<!-- TOC START -->
+## Table of Contents
+- [📝 Natural Language Processing API](#-natural-language-processing-api)
+- [Overview](#overview)
+- [Core Components](#core-components)
+  - [NLPManager](#nlpmanager)
+  - [Text Classification](#text-classification)
+  - [Sentiment Analysis](#sentiment-analysis)
+  - [Named Entity Recognition](#named-entity-recognition)
+  - [Text Summarization](#text-summarization)
+  - [Language Translation](#language-translation)
+  - [Text Generation](#text-generation)
+  - [Question Answering](#question-answering)
+- [Advanced Features](#advanced-features)
+  - [Multi-language Support](#multi-language-support)
+  - [Custom NLP Models](#custom-nlp-models)
+- [Best Practices](#best-practices)
+  - [Performance Optimization](#performance-optimization)
+  - [Accuracy Improvement](#accuracy-improvement)
+  - [Language Support](#language-support)
+<!-- TOC END -->
+
+
 ## Overview
 
 The Natural Language Processing API provides comprehensive tools for text analysis, language understanding, and linguistic processing in iOS applications. This API enables advanced NLP capabilities with high accuracy and real-time performance.

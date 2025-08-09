@@ -1,5 +1,28 @@
 # ⚡ Model Optimization API
 
+<!-- TOC START -->
+## Table of Contents
+- [⚡ Model Optimization API](#-model-optimization-api)
+- [Overview](#overview)
+- [Core Components](#core-components)
+  - [ModelOptimizer](#modeloptimizer)
+  - [Quantization](#quantization)
+  - [Pruning](#pruning)
+  - [Compression](#compression)
+- [Advanced Optimization](#advanced-optimization)
+  - [Knowledge Distillation](#knowledge-distillation)
+  - [Neural Architecture Search](#neural-architecture-search)
+  - [AutoML](#automl)
+- [Performance Monitoring](#performance-monitoring)
+  - [Optimization Metrics](#optimization-metrics)
+  - [Comparison Analysis](#comparison-analysis)
+- [Best Practices](#best-practices)
+  - [Optimization Strategy](#optimization-strategy)
+  - [Performance Optimization](#performance-optimization)
+  - [Quality Assurance](#quality-assurance)
+<!-- TOC END -->
+
+
 ## Overview
 
 The Model Optimization API provides comprehensive tools for optimizing AI models to improve performance, reduce size, and enhance efficiency in iOS applications. This API enables quantization, pruning, compression, and other optimization techniques.

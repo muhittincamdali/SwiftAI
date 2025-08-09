@@ -1,5 +1,37 @@
 # 👁️ Computer Vision Guide
 
+<!-- TOC START -->
+## Table of Contents
+- [👁️ Computer Vision Guide](#-computer-vision-guide)
+- [Overview](#overview)
+- [Table of Contents](#table-of-contents)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Permission Setup](#permission-setup)
+- [Image Classification](#image-classification)
+  - [Basic Image Classification](#basic-image-classification)
+  - [Custom Image Classification](#custom-image-classification)
+- [Object Detection](#object-detection)
+  - [Basic Object Detection](#basic-object-detection)
+  - [Real-time Object Detection](#real-time-object-detection)
+- [Face Recognition](#face-recognition)
+  - [Basic Face Recognition](#basic-face-recognition)
+  - [Face Database Management](#face-database-management)
+- [Image Segmentation](#image-segmentation)
+  - [Basic Image Segmentation](#basic-image-segmentation)
+- [Real-time Processing](#real-time-processing)
+  - [Camera Integration](#camera-integration)
+- [Best Practices](#best-practices)
+  - [Performance Optimization](#performance-optimization)
+  - [Accuracy Improvement](#accuracy-improvement)
+  - [User Experience](#user-experience)
+- [Troubleshooting](#troubleshooting)
+  - [Common Issues](#common-issues)
+  - [Debug Tips](#debug-tips)
+<!-- TOC END -->
+
+
 ## Overview
 
 This comprehensive guide will help you integrate advanced computer vision capabilities into your iOS applications using the SwiftAI framework. Learn how to implement image classification, object detection, face recognition, and more.

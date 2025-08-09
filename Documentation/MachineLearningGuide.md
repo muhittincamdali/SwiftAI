@@ -1,5 +1,39 @@
 # 🧠 Machine Learning Guide
 
+<!-- TOC START -->
+## Table of Contents
+- [🧠 Machine Learning Guide](#-machine-learning-guide)
+- [Overview](#overview)
+- [Table of Contents](#table-of-contents)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Basic Setup](#basic-setup)
+- [Neural Networks](#neural-networks)
+  - [Basic Neural Network](#basic-neural-network)
+  - [Convolutional Neural Network](#convolutional-neural-network)
+- [Supervised Learning](#supervised-learning)
+  - [Classification](#classification)
+  - [Regression](#regression)
+- [Unsupervised Learning](#unsupervised-learning)
+  - [Clustering](#clustering)
+  - [Dimensionality Reduction](#dimensionality-reduction)
+- [Reinforcement Learning](#reinforcement-learning)
+  - [Q-Learning](#q-learning)
+- [Model Optimization](#model-optimization)
+  - [Model Quantization](#model-quantization)
+  - [Feature Engineering](#feature-engineering)
+- [Best Practices](#best-practices)
+  - [Data Preparation](#data-preparation)
+  - [Model Selection](#model-selection)
+  - [Performance Optimization](#performance-optimization)
+  - [Evaluation](#evaluation)
+- [Troubleshooting](#troubleshooting)
+  - [Common Issues](#common-issues)
+  - [Debug Tips](#debug-tips)
+<!-- TOC END -->
+
+
 ## Overview
 
 This comprehensive guide will help you integrate advanced machine learning capabilities into your iOS applications using the SwiftAI framework. Learn how to implement neural networks, supervised learning, unsupervised learning, and more.

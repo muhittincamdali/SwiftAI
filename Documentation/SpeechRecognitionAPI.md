@@ -1,5 +1,30 @@
 # 🎤 Speech Recognition API
 
+<!-- TOC START -->
+## Table of Contents
+- [🎤 Speech Recognition API](#-speech-recognition-api)
+- [Overview](#overview)
+- [Core Components](#core-components)
+  - [SpeechRecognitionManager](#speechrecognitionmanager)
+  - [Speech-to-Text](#speech-to-text)
+  - [Text-to-Speech](#text-to-speech)
+  - [Voice Command Recognition](#voice-command-recognition)
+  - [Speaker Recognition](#speaker-recognition)
+  - [Emotion Detection](#emotion-detection)
+  - [Language Detection](#language-detection)
+  - [Audio Processing](#audio-processing)
+- [Advanced Features](#advanced-features)
+  - [Multi-language Support](#multi-language-support)
+  - [Custom Speech Models](#custom-speech-models)
+- [Best Practices](#best-practices)
+  - [Performance Optimization](#performance-optimization)
+  - [Accuracy Improvement](#accuracy-improvement)
+- [Error Handling](#error-handling)
+- [Integration Examples](#integration-examples)
+  - [Voice Assistant Implementation](#voice-assistant-implementation)
+<!-- TOC END -->
+
+
 ## Overview
 
 The Speech Recognition API provides comprehensive tools for speech-to-text conversion, text-to-speech synthesis, voice command recognition, and emotion detection in iOS applications. This API enables advanced speech processing capabilities with high accuracy and real-time performance.

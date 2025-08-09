@@ -3,6 +3,16 @@
 
 # APIReference
 
+<!-- TOC START -->
+## Table of Contents
+- [APIReference](#apireference)
+- [Overview](#overview)
+- [API](#api)
+- [Usage](#usage)
+- [Notes](#notes)
+<!-- TOC END -->
+
+
 ## Overview
 Explain the purpose and context.
 

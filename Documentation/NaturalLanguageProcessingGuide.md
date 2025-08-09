@@ -1,5 +1,45 @@
 # 📝 Natural Language Processing Guide
 
+<!-- TOC START -->
+## Table of Contents
+- [📝 Natural Language Processing Guide](#-natural-language-processing-guide)
+- [Overview](#overview)
+- [Table of Contents](#table-of-contents)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Basic Setup](#basic-setup)
+- [Text Classification](#text-classification)
+  - [Basic Text Classification](#basic-text-classification)
+  - [Custom Text Classification](#custom-text-classification)
+- [Sentiment Analysis](#sentiment-analysis)
+  - [Basic Sentiment Analysis](#basic-sentiment-analysis)
+  - [Advanced Sentiment Analysis](#advanced-sentiment-analysis)
+- [Named Entity Recognition](#named-entity-recognition)
+  - [Basic Entity Recognition](#basic-entity-recognition)
+  - [Advanced Entity Recognition](#advanced-entity-recognition)
+- [Text Summarization](#text-summarization)
+  - [Basic Text Summarization](#basic-text-summarization)
+  - [Advanced Text Summarization](#advanced-text-summarization)
+- [Language Translation](#language-translation)
+  - [Basic Translation](#basic-translation)
+  - [Advanced Translation](#advanced-translation)
+- [Text Generation](#text-generation)
+  - [Basic Text Generation](#basic-text-generation)
+  - [Advanced Text Generation](#advanced-text-generation)
+- [Question Answering](#question-answering)
+  - [Basic Question Answering](#basic-question-answering)
+  - [Advanced Question Answering](#advanced-question-answering)
+- [Best Practices](#best-practices)
+  - [Performance Optimization](#performance-optimization)
+  - [Accuracy Improvement](#accuracy-improvement)
+  - [User Experience](#user-experience)
+- [Troubleshooting](#troubleshooting)
+  - [Common Issues](#common-issues)
+  - [Debug Tips](#debug-tips)
+<!-- TOC END -->
+
+
 ## Overview
 
 This comprehensive guide will help you integrate advanced Natural Language Processing (NLP) capabilities into your iOS applications using the SwiftAI framework. Learn how to implement text classification, sentiment analysis, named entity recognition, and more.

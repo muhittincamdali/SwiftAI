@@ -1,5 +1,38 @@
 # ⚡ Model Optimization Guide
 
+<!-- TOC START -->
+## Table of Contents
+- [⚡ Model Optimization Guide](#-model-optimization-guide)
+- [Overview](#overview)
+- [Table of Contents](#table-of-contents)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Basic Setup](#basic-setup)
+- [Quantization](#quantization)
+  - [Basic Quantization](#basic-quantization)
+  - [Advanced Quantization](#advanced-quantization)
+- [Pruning](#pruning)
+  - [Basic Pruning](#basic-pruning)
+  - [Advanced Pruning](#advanced-pruning)
+- [Compression](#compression)
+  - [Basic Compression](#basic-compression)
+  - [Advanced Compression](#advanced-compression)
+- [Knowledge Distillation](#knowledge-distillation)
+  - [Basic Knowledge Distillation](#basic-knowledge-distillation)
+  - [Advanced Knowledge Distillation](#advanced-knowledge-distillation)
+- [Performance Monitoring](#performance-monitoring)
+  - [Optimization Metrics](#optimization-metrics)
+- [Best Practices](#best-practices)
+  - [Optimization Strategy](#optimization-strategy)
+  - [Performance Optimization](#performance-optimization)
+  - [Quality Assurance](#quality-assurance)
+- [Troubleshooting](#troubleshooting)
+  - [Common Issues](#common-issues)
+  - [Debug Tips](#debug-tips)
+<!-- TOC END -->
+
+
 ## Overview
 
 This comprehensive guide will help you optimize AI models for better performance, smaller size, and improved efficiency in iOS applications using the SwiftAI framework. Learn how to implement quantization, pruning, compression, and other optimization techniques.

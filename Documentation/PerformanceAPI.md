@@ -1,5 +1,27 @@
 # 🚀 Performance API
 
+<!-- TOC START -->
+## Table of Contents
+- [🚀 Performance API](#-performance-api)
+- [Overview](#overview)
+- [Core Components](#core-components)
+  - [PerformanceMonitor](#performancemonitor)
+  - [Performance Metrics](#performance-metrics)
+  - [Performance Optimization](#performance-optimization)
+  - [Performance Profiling](#performance-profiling)
+  - [Performance Reporting](#performance-reporting)
+- [Advanced Features](#advanced-features)
+  - [Real-time Performance Dashboard](#real-time-performance-dashboard)
+  - [Performance Alerts](#performance-alerts)
+- [Best Practices](#best-practices)
+  - [Performance Optimization Tips](#performance-optimization-tips)
+  - [Monitoring Guidelines](#monitoring-guidelines)
+- [Error Handling](#error-handling)
+- [Integration Examples](#integration-examples)
+  - [Basic Performance Monitoring](#basic-performance-monitoring)
+<!-- TOC END -->
+
+
 ## Overview
 
 The Performance API provides comprehensive tools for monitoring, analyzing, and optimizing AI model performance in iOS applications. This API enables real-time performance tracking, memory management, and optimization strategies.

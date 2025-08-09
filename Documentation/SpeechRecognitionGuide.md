@@ -1,5 +1,38 @@
 # 🎤 Speech Recognition Guide
 
+<!-- TOC START -->
+## Table of Contents
+- [🎤 Speech Recognition Guide](#-speech-recognition-guide)
+- [Overview](#overview)
+- [Table of Contents](#table-of-contents)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Permission Setup](#permission-setup)
+- [Basic Speech Recognition](#basic-speech-recognition)
+  - [Simple Speech-to-Text](#simple-speech-to-text)
+  - [File-based Speech Recognition](#file-based-speech-recognition)
+- [Advanced Features](#advanced-features)
+  - [Multi-language Recognition](#multi-language-recognition)
+  - [Speaker Recognition](#speaker-recognition)
+- [Voice Commands](#voice-commands)
+  - [Basic Voice Commands](#basic-voice-commands)
+  - [Advanced Voice Commands](#advanced-voice-commands)
+- [Text-to-Speech](#text-to-speech)
+  - [Basic Text-to-Speech](#basic-text-to-speech)
+  - [Advanced Text-to-Speech](#advanced-text-to-speech)
+- [Emotion Detection](#emotion-detection)
+  - [Basic Emotion Detection](#basic-emotion-detection)
+- [Best Practices](#best-practices)
+  - [Performance Optimization](#performance-optimization)
+  - [User Experience](#user-experience)
+  - [Security Considerations](#security-considerations)
+- [Troubleshooting](#troubleshooting)
+  - [Common Issues](#common-issues)
+  - [Debug Tips](#debug-tips)
+<!-- TOC END -->
+
+
 ## Overview
 
 This comprehensive guide will help you integrate advanced speech recognition capabilities into your iOS applications using the SwiftAI framework. Learn how to implement speech-to-text, text-to-speech, voice commands, and emotion detection.

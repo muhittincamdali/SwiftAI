@@ -1,5 +1,47 @@
 # 📚 API Reference
 
+<!-- TOC START -->
+## Table of Contents
+- [📚 API Reference](#-api-reference)
+- [📋 Table of Contents](#-table-of-contents)
+- [🤖 AIEngine](#-aiengine)
+  - [**Initialization**](#initialization)
+  - [**Methods**](#methods)
+    - [**process(_:type:)**](#processtype)
+    - [**processBatch(_:type:)**](#processbatchtype)
+    - [**getPerformanceMetrics()**](#getperformancemetrics)
+    - [**clearCache()**](#clearcache)
+- [🧠 ModelManager](#-modelmanager)
+  - [**Methods**](#methods)
+    - [**loadModel(name:)**](#loadmodelname)
+    - [**validateModel(_:)**](#validatemodel)
+    - [**optimizeModel(_:)**](#optimizemodel)
+    - [**clearCache()**](#clearcache)
+- [🔄 InferenceEngine](#-inferenceengine)
+  - [**Methods**](#methods)
+    - [**infer(input:model:)**](#inferinputmodel)
+    - [**inferBatch(inputs:model:)**](#inferbatchinputsmodel)
+- [📊 PerformanceMonitor](#-performancemonitor)
+  - [**Methods**](#methods)
+    - [**startMonitoring()**](#startmonitoring)
+    - [**stopMonitoring()**](#stopmonitoring)
+    - [**getMetrics()**](#getmetrics)
+- [📝 Data Types](#-data-types)
+  - [**AIInput**](#aiinput)
+  - [**AIOutput**](#aioutput)
+  - [**AIInputType**](#aiinputtype)
+  - [**SentimentScore**](#sentimentscore)
+  - [**DetectionResult**](#detectionresult)
+  - [**PerformanceMetrics**](#performancemetrics)
+- [❌ Error Handling](#-error-handling)
+  - [**AIError**](#aierror)
+- [🔧 Configuration](#-configuration)
+  - [**Custom Configuration**](#custom-configuration)
+- [📚 Next Steps](#-next-steps)
+- [🤝 Support](#-support)
+<!-- TOC END -->
+
+
 Complete API documentation for SwiftAI framework.
 
 ## 📋 Table of Contents

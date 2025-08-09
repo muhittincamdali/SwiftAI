@@ -1,5 +1,32 @@
 # Performance Optimization Guide
 
+<!-- TOC START -->
+## Table of Contents
+- [Performance Optimization Guide](#performance-optimization-guide)
+- [Model Optimization](#model-optimization)
+  - [Model Quantization](#model-quantization)
+  - [Model Caching](#model-caching)
+- [Memory Management](#memory-management)
+  - [Intelligent Memory Allocation](#intelligent-memory-allocation)
+  - [Lazy Loading](#lazy-loading)
+- [Parallel Processing](#parallel-processing)
+  - [Concurrent Inference](#concurrent-inference)
+  - [Pipeline Processing](#pipeline-processing)
+- [GPU Acceleration](#gpu-acceleration)
+  - [Neural Engine Optimization](#neural-engine-optimization)
+  - [Metal Performance Shaders](#metal-performance-shaders)
+- [Performance Monitoring](#performance-monitoring)
+  - [Real-time Performance Tracking](#real-time-performance-tracking)
+  - [Automated Performance Testing](#automated-performance-testing)
+- [Optimization Strategies](#optimization-strategies)
+  - [Dynamic Model Selection](#dynamic-model-selection)
+  - [Adaptive Processing](#adaptive-processing)
+- [Best Practices](#best-practices)
+  - [Configuration Management](#configuration-management)
+  - [Error Handling and Recovery](#error-handling-and-recovery)
+<!-- TOC END -->
+
+
 This guide covers performance optimization techniques and best practices for SwiftAI.
 
 ## Model Optimization

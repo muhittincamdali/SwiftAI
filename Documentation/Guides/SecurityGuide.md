@@ -1,5 +1,41 @@
 # 🔒 Security Guide
 
+<!-- TOC START -->
+## Table of Contents
+- [🔒 Security Guide](#-security-guide)
+- [📋 Table of Contents](#-table-of-contents)
+- [🛡️ Security Overview](#-security-overview)
+  - [**Security Principles**](#security-principles)
+- [🔐 Data Protection](#-data-protection)
+  - [**On-Device Processing**](#on-device-processing)
+  - [**Secure Model Storage**](#secure-model-storage)
+  - [**Memory Protection**](#memory-protection)
+- [🔒 Privacy Features](#-privacy-features)
+  - [**No Data Collection**](#no-data-collection)
+  - [**Temporary Data Handling**](#temporary-data-handling)
+- [🧠 Model Security](#-model-security)
+  - [**Model Validation**](#model-validation)
+  - [**Model Encryption**](#model-encryption)
+  - [**Model Access Control**](#model-access-control)
+- [✅ Input Validation](#-input-validation)
+  - [**AI Input Validation**](#ai-input-validation)
+- [❌ Error Handling](#-error-handling)
+  - [**Security Error Types**](#security-error-types)
+  - [**Secure Error Handling**](#secure-error-handling)
+  - [**Error Logging**](#error-logging)
+- [📋 Compliance](#-compliance)
+  - [**GDPR Compliance**](#gdpr-compliance)
+  - [**CCPA Compliance**](#ccpa-compliance)
+  - [**Security Audit**](#security-audit)
+- [🎯 Security Best Practices](#-security-best-practices)
+  - [**Code Security**](#code-security)
+  - [**Configuration Security**](#configuration-security)
+  - [**Security Monitoring**](#security-monitoring)
+- [📚 Next Steps](#-next-steps)
+- [🤝 Support](#-support)
+<!-- TOC END -->
+
+
 Complete security documentation for SwiftAI framework.
 
 ## 📋 Table of Contents
