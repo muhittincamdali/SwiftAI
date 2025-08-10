@@ -2,6 +2,7 @@ import Foundation
 import CoreML
 import Vision
 import NaturalLanguage
+import Accelerate
 
 // MARK: - Protocols
 
@@ -10,17 +11,24 @@ protocol ModelManagerProtocol {
     func validateModel(_ model: MLModel) async throws -> Bool
     func optimizeModel(_ model: MLModel) async throws -> MLModel
     func clearCache() async
+    func preloadModels(_ names: [String]) async throws -> [MLModel]
+    func getModelInfo(_ model: MLModel) -> ModelInfo
 }
 
 protocol InferenceEngineProtocol {
     func infer(input: AIInput, model: MLModel) async throws -> AIOutput
     func inferBatch(inputs: [AIInput], model: MLModel) async throws -> [AIOutput]
+    func inferWithConfidence(input: AIInput, model: MLModel, threshold: Double) async throws -> AIOutput
+    func inferWithMetadata(input: AIInput, model: MLModel) async throws -> AIOutputWithMetadata
 }
 
 protocol PerformanceMonitorProtocol {
     func startMonitoring()
     func stopMonitoring()
     func getMetrics() -> PerformanceMetrics
+    func resetMetrics()
+    func exportMetrics() -> Data
+    func setPerformanceThreshold(_ threshold: PerformanceThreshold)
 }
 
 // MARK: - Enums
@@ -30,6 +38,8 @@ enum AIInputType {
     case image
     case audio
     case video
+    case sensorData
+    case multimodal
 }
 
 enum AIInput {
@@ -37,6 +47,8 @@ enum AIInput {
     case image(UIImage)
     case audio(Data)
     case video(URL)
+    case sensorData([Double])
+    case multimodal([AIInput])
 }
 
 enum AIOutput {
@@ -45,26 +57,56 @@ enum AIOutput {
     case generation(String)
     case translation(String)
     case sentiment(SentimentScore)
+    case recommendation([Recommendation])
+    case anomaly(AnomalyResult)
+    case prediction(PredictionResult)
 }
 
-enum AIError: Error {
+enum AIError: Error, LocalizedError {
     case modelNotFound
     case invalidInput
     case inferenceFailed
     case modelLoadFailed
     case optimizationFailed
+    case insufficientMemory
+    case unsupportedInputType
+    case modelVersionMismatch
+    
+    var errorDescription: String? {
+        switch self {
+        case .modelNotFound:
+            return "AI model not found in the specified path"
+        case .invalidInput:
+            return "Invalid input data format or content"
+        case .inferenceFailed:
+            return "AI inference process failed"
+        case .modelLoadFailed:
+            return "Failed to load AI model"
+        case .optimizationFailed:
+            return "Model optimization failed"
+        case .insufficientMemory:
+            return "Insufficient memory for AI operations"
+        case .unsupportedInputType:
+            return "Unsupported input type for this model"
+        case .modelVersionMismatch:
+            return "Model version is incompatible"
+        }
+    }
 }
 
 enum SentimentScore {
     case positive(Double)
     case negative(Double)
     case neutral(Double)
+    case mixed(Double)
 }
 
 struct DetectionResult {
     let label: String
     let confidence: Double
     let boundingBox: CGRect?
+    let metadata: [String: Any]
+    let timestamp: Date
 }
 
 struct PerformanceMetrics {
@@ -72,6 +114,61 @@ struct PerformanceMetrics {
     let memoryUsage: Int64
     let cacheHitRate: Double
     let modelLoadTime: TimeInterval
+    let gpuUtilization: Double
+    let neuralEngineUtilization: Double
+    let batteryImpact: Double
+}
+
+struct ModelInfo {
+    let name: String
+    let version: String
+    let size: Int64
+    let supportedInputTypes: [AIInputType]
+    let performanceMetrics: PerformanceMetrics
+    let lastUpdated: Date
+}
+
+struct Recommendation {
+    let item: String
+    let confidence: Double
+    let reason: String
+    let category: String
+}
+
+struct AnomalyResult {
+    let isAnomaly: Bool
+    let confidence: Double
+    let severity: AnomalySeverity
+    let description: String
+}
+
+enum AnomalySeverity {
+    case low
+    case medium
+    case high
+    case critical
+}
+
+struct PredictionResult {
+    let value: Double
+    let confidence: Double
+    let range: ClosedRange<Double>
+    let factors: [String: Double]
+}
+
+struct AIOutputWithMetadata {
+    let output: AIOutput
+    let confidence: Double
+    let processingTime: TimeInterval
+    let modelVersion: String
+    let metadata: [String: Any]
+}
+
+struct PerformanceThreshold {
+    let maxInferenceTime: TimeInterval
+    let maxMemoryUsage: Int64
+    let minCacheHitRate: Double
+    let maxBatteryImpact: Double
 }
 
 // MARK: - AI Engine
@@ -80,15 +177,18 @@ public class AIEngine {
     private let modelManager: ModelManagerProtocol
     private let inferenceEngine: InferenceEngineProtocol
     private let performanceMonitor: PerformanceMonitorProtocol
+    private let configuration: AIEngineConfiguration
     
     public init(
         modelManager: ModelManagerProtocol = ModelManager(),
         inferenceEngine: InferenceEngineProtocol = InferenceEngine(),
-        performanceMonitor: PerformanceMonitorProtocol = PerformanceMonitor()
+        performanceMonitor: PerformanceMonitorProtocol = PerformanceMonitor(),
+        configuration: AIEngineConfiguration = AIEngineConfiguration()
     ) {
         self.modelManager = modelManager
         self.inferenceEngine = inferenceEngine
         self.performanceMonitor = performanceMonitor
+        self.configuration = configuration
     }
     
     public func process(_ input: AIInput, type: AIInputType) async throws -> AIOutput {
@@ -98,22 +198,17 @@ public class AIEngine {
             performanceMonitor.stopMonitoring()
         }
         
-        // Load and validate model
-        let modelName = getModelName(for: type)
-        let model = try await modelManager.loadModel(name: modelName)
+        // Validate input
+        try validateInput(input, for: type)
         
-        // Validate model
-        guard try await modelManager.validateModel(model) else {
-            throw AIError.modelLoadFailed
-        }
-        
-        // Optimize model if needed
-        let optimizedModel = try await modelManager.optimizeModel(model)
+        // Load appropriate model
+        let model = try await loadModelForType(type)
         
         // Perform inference
-        let result = try await inferenceEngine.infer(input: input, model: optimizedModel)
+        let result = try await inferenceEngine.infer(input: input, model: model)
         
-        return result
+        // Post-process result
+        return try await postProcessResult(result, for: type)
     }
     
     public func processBatch(_ inputs: [AIInput], type: AIInputType) async throws -> [AIOutput] {
@@ -123,176 +218,181 @@ public class AIEngine {
             performanceMonitor.stopMonitoring()
         }
         
-        // Load and validate model
-        let modelName = getModelName(for: type)
-        let model = try await modelManager.loadModel(name: modelName)
+        // Validate inputs
+        try inputs.forEach { try validateInput($0, for: type) }
         
-        // Validate model
-        guard try await modelManager.validateModel(model) else {
-            throw AIError.modelLoadFailed
-        }
-        
-        // Optimize model if needed
-        let optimizedModel = try await modelManager.optimizeModel(model)
+        // Load appropriate model
+        let model = try await loadModelForType(type)
         
         // Perform batch inference
-        let results = try await inferenceEngine.inferBatch(inputs: inputs, model: optimizedModel)
+        let results = try await inferenceEngine.inferBatch(inputs: inputs, model: model)
         
-        return results
+        // Post-process results
+        return try await results.map { try await postProcessResult($0, for: type) }
     }
     
-    public func getPerformanceMetrics() -> PerformanceMetrics {
-        return performanceMonitor.getMetrics()
+    public func processWithConfidence(_ input: AIInput, type: AIInputType, threshold: Double) async throws -> AIOutput {
+        performanceMonitor.startMonitoring()
+        
+        defer {
+            performanceMonitor.stopMonitoring()
+        }
+        
+        // Validate input
+        try validateInput(input, for: type)
+        
+        // Load appropriate model
+        let model = try await loadModelForType(type)
+        
+        // Perform inference with confidence threshold
+        let result = try await inferenceEngine.inferWithConfidence(input: input, model: model, threshold: threshold)
+        
+        // Post-process result
+        return try await postProcessResult(result, for: type)
     }
     
-    public func clearCache() async {
-        await modelManager.clearCache()
+    // MARK: - Private Methods
+    
+    private func validateInput(_ input: AIInput, for type: AIInputType) throws {
+        switch (input, type) {
+        case (.text(let text), .text):
+            guard !text.isEmpty else { throw AIError.invalidInput }
+        case (.image, .image):
+            // Image validation logic
+            break
+        case (.audio, .audio):
+            // Audio validation logic
+            break
+        case (.video, .video):
+            // Video validation logic
+            break
+        case (.sensorData, .sensorData):
+            // Sensor data validation logic
+            break
+        case (.multimodal, .multimodal):
+            // Multimodal validation logic
+            break
+        default:
+            throw AIError.unsupportedInputType
+        }
     }
     
-    private func getModelName(for type: AIInputType) -> String {
+    private func loadModelForType(_ type: AIInputType) async throws -> MLModel {
+        let modelName = getModelNameForType(type)
+        return try await modelManager.loadModel(name: modelName)
+    }
+    
+    private func getModelNameForType(_ type: AIInputType) -> String {
         switch type {
         case .text:
-            return "text_classifier"
+            return configuration.textModelName
         case .image:
-            return "image_classifier"
+            return configuration.imageModelName
         case .audio:
-            return "audio_classifier"
+            return configuration.audioModelName
         case .video:
-            return "video_classifier"
+            return configuration.videoModelName
+        case .sensorData:
+            return configuration.sensorModelName
+        case .multimodal:
+            return configuration.multimodalModelName
         }
+    }
+    
+    private func postProcessResult(_ result: AIOutput, for type: AIInputType) async throws -> AIOutput {
+        // Apply post-processing based on type
+        switch type {
+        case .text:
+            return try await postProcessTextResult(result)
+        case .image:
+            return try await postProcessImageResult(result)
+        case .audio:
+            return try await postProcessAudioResult(result)
+        case .video:
+            return try await postProcessVideoResult(result)
+        case .sensorData:
+            return try await postProcessSensorResult(result)
+        case .multimodal:
+            return try await postProcessMultimodalResult(result)
+        }
+    }
+    
+    private func postProcessTextResult(_ result: AIOutput) async throws -> AIOutput {
+        // Text-specific post-processing
+        return result
+    }
+    
+    private func postProcessImageResult(_ result: AIOutput) async throws -> AIOutput {
+        // Image-specific post-processing
+        return result
+    }
+    
+    private func postProcessAudioResult(_ result: AIOutput) async throws -> AIOutput {
+        // Audio-specific post-processing
+        return result
+    }
+    
+    private func postProcessVideoResult(_ result: AIOutput) async throws -> AIOutput {
+        // Video-specific post-processing
+        return result
+    }
+    
+    private func postProcessSensorResult(_ result: AIOutput) async throws -> AIOutput {
+        // Sensor-specific post-processing
+        return result
+    }
+    
+    private func postProcessMultimodalResult(_ result: AIOutput) async throws -> AIOutput {
+        // Multimodal-specific post-processing
+        return result
     }
 }
 
-// MARK: - Default Implementations
+// MARK: - AI Engine Configuration
 
-class ModelManager: ModelManagerProtocol {
-    private var loadedModels: [String: MLModel] = [:]
+public struct AIEngineConfiguration {
+    public let textModelName: String
+    public let imageModelName: String
+    public let audioModelName: String
+    public let videoModelName: String
+    public let sensorModelName: String
+    public let multimodalModelName: String
+    public let enableGPU: Bool
+    public let enableNeuralEngine: Bool
+    public let maxBatchSize: Int
+    public let enableCaching: Bool
+    public let performanceMode: PerformanceMode
     
-    func loadModel(name: String) async throws -> MLModel {
-        if let cachedModel = loadedModels[name] {
-            return cachedModel
-        }
-        
-        guard let modelURL = Bundle.main.url(forResource: name, withExtension: "mlmodel") else {
-            throw AIError.modelNotFound
-        }
-        
-        let model = try MLModel(contentsOf: modelURL)
-        loadedModels[name] = model
-        
-        return model
-    }
-    
-    func validateModel(_ model: MLModel) async throws -> Bool {
-        // Basic model validation
-        return model.modelDescription != nil
-    }
-    
-    func optimizeModel(_ model: MLModel) async throws -> MLModel {
-        // Return optimized model (could implement quantization, pruning, etc.)
-        return model
-    }
-    
-    func clearCache() async {
-        loadedModels.removeAll()
+    public init(
+        textModelName: String = "text_model_v1",
+        imageModelName: String = "image_model_v1",
+        audioModelName: String = "audio_model_v1",
+        videoModelName: String = "video_model_v1",
+        sensorModelName: String = "sensor_model_v1",
+        multimodalModelName: String = "multimodal_model_v1",
+        enableGPU: Bool = true,
+        enableNeuralEngine: Bool = true,
+        maxBatchSize: Int = 10,
+        enableCaching: Bool = true,
+        performanceMode: PerformanceMode = .balanced
+    ) {
+        self.textModelName = textModelName
+        self.imageModelName = imageModelName
+        self.audioModelName = audioModelName
+        self.videoModelName = videoModelName
+        self.sensorModelName = sensorModelName
+        self.multimodalModelName = multimodalModelName
+        self.enableGPU = enableGPU
+        self.enableNeuralEngine = enableNeuralEngine
+        self.maxBatchSize = maxBatchSize
+        self.enableCaching = enableCaching
+        self.performanceMode = performanceMode
     }
 }
 
-class InferenceEngine: InferenceEngineProtocol {
-    func infer(input: AIInput, model: MLModel) async throws -> AIOutput {
-        switch input {
-        case .text(let text):
-            return try await processText(text, model: model)
-        case .image(let image):
-            return try await processImage(image, model: model)
-        case .audio(let audioData):
-            return try await processAudio(audioData, model: model)
-        case .video(let url):
-            return try await processVideo(url, model: model)
-        }
-    }
-    
-    func inferBatch(inputs: [AIInput], model: MLModel) async throws -> [AIOutput] {
-        var results: [AIOutput] = []
-        
-        for input in inputs {
-            let result = try await infer(input: input, model: model)
-            results.append(result)
-        }
-        
-        return results
-    }
-    
-    private func processText(_ text: String, model: MLModel) async throws -> AIOutput {
-        // Text processing implementation
-        let classifications = ["positive": 0.8, "negative": 0.1, "neutral": 0.1]
-        return .classification(classifications)
-    }
-    
-    private func processImage(_ image: UIImage, model: MLModel) async throws -> AIOutput {
-        // Image processing implementation
-        let detections = [
-            DetectionResult(label: "person", confidence: 0.95, boundingBox: nil),
-            DetectionResult(label: "car", confidence: 0.87, boundingBox: nil)
-        ]
-        return .detection(detections)
-    }
-    
-    private func processAudio(_ audioData: Data, model: MLModel) async throws -> AIOutput {
-        // Audio processing implementation
-        let classifications = ["speech": 0.9, "music": 0.05, "noise": 0.05]
-        return .classification(classifications)
-    }
-    
-    private func processVideo(_ url: URL, model: MLModel) async throws -> AIOutput {
-        // Video processing implementation
-        let classifications = ["action": 0.7, "drama": 0.2, "comedy": 0.1]
-        return .classification(classifications)
-    }
-}
-
-class PerformanceMonitor: PerformanceMonitorProtocol {
-    private var startTime: Date?
-    private var metrics: PerformanceMetrics = PerformanceMetrics(
-        averageInferenceTime: 0,
-        memoryUsage: 0,
-        cacheHitRate: 0,
-        modelLoadTime: 0
-    )
-    
-    func startMonitoring() {
-        startTime = Date()
-    }
-    
-    func stopMonitoring() {
-        guard let start = startTime else { return }
-        
-        let inferenceTime = Date().timeIntervalSince(start)
-        metrics = PerformanceMetrics(
-            averageInferenceTime: inferenceTime,
-            memoryUsage: getCurrentMemoryUsage(),
-            cacheHitRate: 0.85, // Example value
-            modelLoadTime: 0.2 // Example value
-        )
-    }
-    
-    func getMetrics() -> PerformanceMetrics {
-        return metrics
-    }
-    
-    private func getCurrentMemoryUsage() -> Int64 {
-        var info = mach_task_basic_info()
-        var count = mach_msg_type_number_t(MemoryLayout<mach_task_basic_info>.size)/4
-        
-        let kerr: kern_return_t = withUnsafeMutablePointer(to: &info) {
-            $0.withMemoryRebound(to: integer_t.self, capacity: 1) {
-                task_info(mach_task_self_,
-                         task_flavor_t(MACH_TASK_BASIC_INFO),
-                         $0,
-                         &count)
-            }
-        }
-        
-        return kerr == KERN_SUCCESS ? Int64(info.resident_size) : 0
-    }
+public enum PerformanceMode {
+    case powerEfficient
+    case balanced
+    case highPerformance
+    case custom(PerformanceThreshold)
 } 
