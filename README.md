@@ -39,6 +39,12 @@
 
 ---
 
+## 🌟 Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=muhittincamdali/SwiftAI&type=Date)](https://star-history.com/#muhittincamdali/SwiftAI&Date)
+
+---
+
 ## 🔗 Quick Links
 
 <div align="center">
