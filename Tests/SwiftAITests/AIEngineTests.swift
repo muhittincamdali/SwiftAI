@@ -262,7 +262,7 @@ final class AIEngineTests: XCTestCase {
         
         let result = try await aiEngine.process(sensorInput, type: .sensorData)
         
-        XCTAssertNotNil(result)
+            XCTAssertNotNil(result)
         XCTAssertEqual(result, expectedOutput)
     }
     
@@ -279,7 +279,7 @@ final class AIEngineTests: XCTestCase {
         
         let result = try await aiEngine.process(multimodalInput, type: .multimodal)
         
-        XCTAssertNotNil(result)
+            XCTAssertNotNil(result)
         XCTAssertEqual(result, expectedOutput)
     }
     
