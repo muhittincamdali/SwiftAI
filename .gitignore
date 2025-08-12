@@ -188,4 +188,4 @@ models/
 *.mlmodelc
 *.mlpackage
 cache/
-temp/ 
+temp/ .DS_Store
