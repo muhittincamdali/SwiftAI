@@ -595,7 +595,7 @@ public enum OptimizerType {
 
 /// Training progress.
 @available(iOS 15.0, *)
-public struct TrainingProgress {
+public struct AIModelTrainingProgress {
     public let currentEpoch: Int
     public let totalEpochs: Int
     public let loss: Double
@@ -628,7 +628,7 @@ public struct AIModelAnalysisReport {
     public let currentModel: String?
     public let cachedModelsCount: Int
     public let performanceStatistics: PerformanceStatistics?
-    public let trainingProgress: TrainingProgress?
+    public let trainingProgress: AIModelTrainingProgress?
 }
 
 // MARK: - AI Analytics

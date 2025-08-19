@@ -169,25 +169,25 @@ public struct AIView: AIViewProtocol {
                         .font(.headline)
                     
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 12) {
-                        MetricCard(
+                        IconMetricCard(
                             title: "Inference Time",
                             value: String(format: "%.2fs", metrics.averageInferenceTime),
                             icon: "clock"
                         )
                         
-                        MetricCard(
+                        IconMetricCard(
                             title: "Memory Usage",
                             value: formatMemory(metrics.memoryUsage),
                             icon: "memorychip"
                         )
                         
-                        MetricCard(
+                        IconMetricCard(
                             title: "Cache Hit Rate",
                             value: String(format: "%.0f%%", metrics.cacheHitRate * 100),
                             icon: "bolt"
                         )
                         
-                        MetricCard(
+                        IconMetricCard(
                             title: "Model Load Time",
                             value: String(format: "%.2fs", metrics.modelLoadTime),
                             icon: "arrow.down.circle"
@@ -257,7 +257,7 @@ struct ResultRow: View {
 }
 
 // MARK: - Metric Card
-struct MetricCard: View {
+struct IconMetricCard: View {
     let title: String
     let value: String
     let icon: String
