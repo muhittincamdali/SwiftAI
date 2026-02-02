@@ -38,7 +38,7 @@ let package = Package(
         
         // Testing dependencies
         .package(url: "https://github.com/Quick/Quick", from: "7.3.0"),
-        .package(url: "https://github.com/Quick/Nimble", from: "13.0.0"),
+        .package(url: "https://github.com/Quick/Nimble", from: "14.0.0"),
         .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.15.0")
     ],
     targets: [
