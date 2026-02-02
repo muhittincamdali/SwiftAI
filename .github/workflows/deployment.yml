@@ -338,7 +338,7 @@ jobs:
         done
 
     - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v6
       with:
         name: deployment-artifacts-${{ matrix.platform }}-${{ needs.pre_deployment_validation.outputs.version_tag }}
         path: ${{ env.DEPLOYMENT_ARTIFACTS_PATH }}/

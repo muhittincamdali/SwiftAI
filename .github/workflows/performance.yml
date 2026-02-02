@@ -389,7 +389,7 @@ jobs:
         echo "✅ Performance dashboard data generated"
 
     - name: Upload Performance Reports
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v6
       if: always()
       with:
         name: performance-reports-${{ matrix.device }}-${{ matrix.configuration }}-${{ github.sha }}
@@ -516,7 +516,7 @@ jobs:
         fi
 
     - name: Upload Performance Summary
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v6
       with:
         name: performance-summary-${{ github.sha }}
         path: performance_summary/

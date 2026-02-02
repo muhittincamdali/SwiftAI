@@ -356,7 +356,7 @@ jobs:
         echo "✅ Security audit completed successfully"
 
     - name: Upload Security Reports
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v6
       if: always()
       with:
         name: security-reports-${{ github.sha }}
