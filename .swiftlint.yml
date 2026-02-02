@@ -1,0 +1,43 @@
+disabled_rules:
+  - trailing_whitespace
+  - line_length
+  - type_body_length
+  - file_length
+  - function_body_length
+
+opt_in_rules:
+  - empty_count
+  - closure_spacing
+  - contains_over_first_not_nil
+  - discouraged_object_literal
+  - empty_string
+  - first_where
+  - force_unwrapping
+  - implicitly_unwrapped_optional
+  - overridden_super_call
+  - redundant_nil_coalescing
+  - sorted_first_last
+
+excluded:
+  - Pods
+  - .build
+  - Package.swift
+  - */Generated/*
+  - DerivedData
+
+identifier_name:
+  min_length: 2
+  max_length: 50
+  excluded:
+    - id
+    - x
+    - y
+    - z
+    - i
+    - j
+
+nesting:
+  type_level: 3
+  function_level: 3
+
+reporter: xcode
