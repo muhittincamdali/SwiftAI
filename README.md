@@ -347,4 +347,18 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 **⭐ Star this repo if you find it useful!**
 
+
+
+---
+
+## 📈 Star History
+
+<a href="https://star-history.com/#muhittincamdali/SwiftAI&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=muhittincamdali/SwiftAI&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=muhittincamdali/SwiftAI&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=muhittincamdali/SwiftAI&type=Date" />
+ </picture>
+</a>
+
 </div>
