@@ -11,7 +11,7 @@ import Accelerate
 public final class Tensor<T: TensorNumeric>: @unchecked Sendable {
     
     // MARK: - Properties
-    public private(set) var data: [T]
+    public var data: [T]
     public let shape: [Int]
     public let rank: Int
     public let count: Int
@@ -73,7 +73,7 @@ public final class Tensor<T: TensorNumeric>: @unchecked Sendable {
             // Box-Muller transform
             let u1 = T(Double.random(in: Double.leastNonzeroMagnitude...1))
             let u2 = T(Double.random(in: 0...1))
-            let mag = std * T(sqrt(-2.0 * Double(log(Double(u1)))))
+            let mag = std * T(Foundation.sqrt(-2.0 * Foundation.log(Double(u1))))
             let angle = T(2.0 * Double.pi) * u2
             data[i] = mean + mag * T(cos(Double(angle)))
             if i + 1 < count {
@@ -83,7 +83,7 @@ public final class Tensor<T: TensorNumeric>: @unchecked Sendable {
         if count % 2 == 1 {
             let u1 = T(Double.random(in: Double.leastNonzeroMagnitude...1))
             let u2 = T(Double.random(in: 0...1))
-            let mag = std * T(sqrt(-2.0 * Double(log(Double(u1)))))
+            let mag = std * T(Foundation.sqrt(-2.0 * Foundation.log(Double(u1))))
             data[count - 1] = mean + mag * T(cos(Double(2.0 * Double.pi * Double(u2))))
         }
         return Tensor(shape: shape, data: data)
@@ -278,7 +278,7 @@ public extension Tensor where T == Float {
     }
     
     func std() -> Float {
-        sqrt(variance())
+        Foundation.sqrt(variance())
     }
     
     func max() -> Float {

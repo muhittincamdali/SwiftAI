@@ -52,7 +52,12 @@ public final class KMeans: @unchecked Sendable {
         var bestInertia: Float = .infinity
         var bestIterations = 0
         
-        let runs = (initMethod == .fixed([])) ? 1 : nInit
+        let runs: Int
+        if case .fixed = initMethod {
+            runs = 1
+        } else {
+            runs = nInit
+        }
         
         for _ in 0..<runs {
             let (cents, labs, inert, iters) = fitOnce(x)
