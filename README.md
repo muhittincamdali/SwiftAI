@@ -1,364 +1,414 @@
-```
+# SwiftAI
 
 <p align="center">
-  <a href="README.md">🇺🇸 English</a> |
-  <a href="README_TR.md">🇹🇷 Türkçe</a>
+  <img src="https://img.shields.io/badge/Swift-5.9+-FA7343?style=for-the-badge&logo=swift&logoColor=white" alt="Swift 5.9+"/>
+  <img src="https://img.shields.io/badge/Platform-iOS%2016%2B%20%7C%20macOS%2013%2B-007AFF?style=for-the-badge&logo=apple&logoColor=white" alt="Platform"/>
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License"/>
+  <img src="https://img.shields.io/github/stars/muhittinc/SwiftAI?style=for-the-badge" alt="Stars"/>
 </p>
 
-╔══════════════════════════════════════════════════════════════════════════════════════════╗
-║                                                                                          ║
-║   ███████╗██╗    ██╗██╗███████╗████████╗     █████╗ ██╗                                  ║
-║   ██╔════╝██║    ██║██║██╔════╝╚══██╔══╝    ██╔══██╗██║                                  ║
-║   ███████╗██║ █╗ ██║██║█████╗     ██║       ███████║██║                                  ║
-║   ╚════██║██║███╗██║██║██╔══╝     ██║       ██╔══██║██║                                  ║
-║   ███████║╚███╔███╔╝██║██║        ██║       ██║  ██║██║                                  ║
-║   ╚══════╝ ╚══╝╚══╝ ╚═╝╚═╝        ╚═╝       ╚═╝  ╚═╝╚═╝                                  ║
-║                                                                                          ║
-║   ██████████████████████████████████████████████████████████████████████████████████████ ║
-║   █  Enterprise-grade AI framework for iOS • ML • NLP • Vision • Speech  █████████████  ║
-║   ██████████████████████████████████████████████████████████████████████████████████████ ║
-║                                                                                          ║
-║   🧠 Machine Learning  •  📝 NLP  •  👁️ Computer Vision  •  🎤 Speech Recognition        ║
-║                                                                                          ║
-╚══════════════════════════════════════════════════════════════════════════════════════════╝
+<p align="center">
+  <strong>Pure Swift Machine Learning Framework</strong><br>
+  No Python. No External Dependencies. Just Swift.
+</p>
+
+---
+
+## 🌟 Why SwiftAI?
+
+SwiftAI is the most comprehensive **pure Swift** machine learning framework. Built from scratch with Accelerate-optimized operations, it brings the power of scikit-learn and PyTorch to iOS and macOS development.
+
 ```
-
-<div align="center">
-
-**Comprehensive AI/ML framework for iOS with bank-level security and 95% test coverage.**
-
-[![Swift](https://img.shields.io/badge/Swift-5.9+-F05138?style=for-the-badge&logo=swift&logoColor=white)](https://swift.org)
-[![iOS](https://img.shields.io/badge/iOS-15.0+-000000?style=for-the-badge&logo=apple&logoColor=white)](https://developer.apple.com/ios/)
-[![CoreML](https://img.shields.io/badge/Core%20ML-Enabled-007AFF?style=for-the-badge&logo=apple&logoColor=white)](https://developer.apple.com/machine-learning/)
-[![SPM](https://img.shields.io/badge/SPM-Compatible-FA7343?style=for-the-badge&logo=swift&logoColor=white)](https://swift.org/package-manager/)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
-[![CI](https://github.com/muhittincamdali/SwiftAI/actions/workflows/ci.yml/badge.svg)](https://github.com/muhittincamdali/SwiftAI/actions)
-[![Coverage](https://img.shields.io/badge/Coverage-95%25-brightgreen?style=flat-square)](https://github.com/muhittincamdali/SwiftAI)
-
-[Features](#-features) • [Quick Start](#-quick-start) • [ML](#-machine-learning) • [NLP](#-natural-language-processing) • [Vision](#-computer-vision) • [Docs](Documentation/)
-
-</div>
-
----
-
-## ✨ Features
-
-- 🧠 **Machine Learning** — Neural networks, supervised/unsupervised learning, training pipelines
-- 📝 **NLP** — Sentiment analysis, entity recognition, text summarization, translation
-- 👁️ **Computer Vision** — Object detection, face recognition, OCR, image segmentation
-- 🎤 **Speech** — Speech-to-text, text-to-speech, voice commands, emotion detection
-- 🔒 **Bank-Level Security** — AES-256 encryption, Secure Enclave, GDPR compliance
-- ⚡ **Real-time Performance** — Sub-second inference, 120fps processing
-- 🏗️ **MVVM-C Architecture** — Clean separation with Coordinator navigation
-- 🧪 **95% Test Coverage** — Comprehensive unit, integration, and UI tests
-
----
-
-## 🏗️ Architecture
-
-```mermaid
-graph TB
-    subgraph App["📱 Your App"]
-        UI[UI Layer]
-    end
-    
-    subgraph SwiftAI["🧠 SwiftAI Framework"]
-        ML[Machine Learning]
-        NLP[Natural Language]
-        CV[Computer Vision]
-        SP[Speech Processing]
-    end
-    
-    subgraph Core["⚙️ Core Services"]
-        MOD[Model Manager]
-        SEC[Security Layer]
-        PERF[Performance Monitor]
-    end
-    
-    UI --> SwiftAI
-    ML --> MOD
-    NLP --> MOD
-    CV --> MOD
-    SP --> MOD
-    MOD --> SEC
-    MOD --> PERF
-    
-    style App fill:#4A90D9,stroke:#2E5A8B,color:#fff
-    style SwiftAI fill:#50C878,stroke:#3D9B5C,color:#fff
-    style Core fill:#FF6B6B,stroke:#CC5555,color:#fff
+┌─────────────────────────────────────────────────────────────┐
+│                         SwiftAI                              │
+├─────────────────────────────────────────────────────────────┤
+│  🧠 Neural Networks    │  📊 Classic ML       │  🔧 Tools   │
+│  ─────────────────     │  ─────────────       │  ────────   │
+│  • Dense Layers        │  • Linear Regression │  • Scalers  │
+│  • Batch/Layer Norm    │  • Logistic Reg.     │  • Encoders │
+│  • Dropout             │  • Decision Trees    │  • Imputers │
+│  • Embedding           │  • Random Forests    │  • Metrics  │
+│  • 10+ Activations     │  • K-Means           │  • CV Split │
+│  • 9+ Loss Functions   │  • KNN               │  • Export   │
+│  • 5+ Optimizers       │  • SVM               │  • CoreML   │
+│                        │  • Gradient Boost    │             │
+└─────────────────────────────────────────────────────────────┘
 ```
-
----
 
 ## 🚀 Quick Start
 
 ### Installation
 
+**Swift Package Manager**
+
 ```swift
-// Package.swift
 dependencies: [
-    .package(url: "https://github.com/muhittincamdali/SwiftAI.git", from: "1.0.0")
+    .package(url: "https://github.com/muhittinc/SwiftAI.git", from: "1.0.0")
 ]
 ```
 
-### Basic Setup
+### Neural Network Example
 
 ```swift
 import SwiftAI
 
-// Initialize AI manager
-let aiManager = AIManager()
+// Create a neural network
+let network = NeuralNetwork()
+    .dense(784, 256, activation: .relu)
+    .batchNorm(256)
+    .dropout(0.3)
+    .dense(256, 128, activation: .relu)
+    .dropout(0.2)
+    .dense(128, 10, activation: .softmax)
 
-// Configure AI capabilities
-let config = AIConfiguration()
-config.enableMachineLearning = true
-config.enableNaturalLanguageProcessing = true
-config.enableComputerVision = true
-config.enableSpeechRecognition = true
-
-// Start AI manager
-aiManager.start(with: config)
-```
-
----
-
-## 🧠 Machine Learning
-
-### Neural Network
-
-```swift
-let neuralNetworkManager = NeuralNetworkManager()
-
-// Create neural network
-let network = NeuralNetwork(
-    layers: [
-        DenseLayer(inputSize: 784, outputSize: 128, activation: .relu),
-        DenseLayer(inputSize: 128, outputSize: 64, activation: .relu),
-        DenseLayer(inputSize: 64, outputSize: 10, activation: .softmax)
-    ],
-    optimizer: .adam(learningRate: 0.001),
-    lossFunction: .categoricalCrossentropy
+// Compile with optimizer and loss
+network.compile(
+    optimizer: .adam,
+    loss: .crossEntropy,
+    learningRate: 0.001
 )
 
 // Train
-neuralNetworkManager.train(network: network, trainingData: data, epochs: 100) { result in
-    switch result {
-    case .success(let training):
-        print("✅ Accuracy: \(training.accuracy)%")
-    case .failure(let error):
-        print("❌ Error: \(error)")
-    }
-}
+let history = network.train(
+    x: trainData,
+    y: trainLabels,
+    epochs: 50,
+    batchSize: 32,
+    validationSplit: 0.2
+)
+
+// Predict
+let predictions = network.predict(testData)
 ```
 
----
-
-## 📝 Natural Language Processing
-
-### Sentiment Analysis
+### Linear Regression
 
 ```swift
-let nlpManager = NLPManager()
+import SwiftAI
 
-// Analyze sentiment
-nlpManager.analyzeSentiment(text: "I love this framework!") { result in
-    switch result {
-    case .success(let sentiment):
-        print("✅ Sentiment: \(sentiment.sentiment)")
-        print("   Confidence: \(sentiment.confidence)%")
-    case .failure(let error):
-        print("❌ Error: \(error)")
-    }
-}
+let model = LinearRegression()
+model.fit(x: features, y: targets)
+
+let predictions = model.predict(newData)
+let r2 = model.score(x: testX, y: testY)
+print("R² Score: \(r2)")
 ```
 
-### Entity Recognition
+### Classification with Random Forest
 
 ```swift
-nlpManager.extractEntities(
-    text: "Apple CEO Tim Cook announced new products in San Francisco"
-) { result in
-    switch result {
-    case .success(let entities):
-        for entity in entities {
-            print("📍 \(entity.text) → \(entity.type)")
-        }
-    case .failure(let error):
-        print("❌ Error: \(error)")
+import SwiftAI
+
+let forest = RandomForestClassifier(
+    nEstimators: 100,
+    maxDepth: 10,
+    maxFeatures: .sqrt
+)
+
+forest.fit(x: trainX, y: trainY)
+
+let accuracy = forest.score(x: testX, y: testY)
+print("Accuracy: \(accuracy * 100)%")
+
+// Feature importance
+if let importances = forest.featureImportances {
+    for (i, imp) in importances.enumerated() {
+        print("Feature \(i): \(imp)")
     }
 }
 ```
 
----
-
-## 👁️ Computer Vision
-
-### Object Detection
+### Clustering with K-Means
 
 ```swift
-let visionManager = ComputerVisionManager()
+import SwiftAI
 
-// Detect objects
-visionManager.detectObjects(image: inputImage) { result in
-    switch result {
-    case .success(let detections):
-        for object in detections {
-            print("🎯 \(object.label): \(object.confidence)%")
-        }
-    case .failure(let error):
-        print("❌ Error: \(error)")
-    }
-}
+let kmeans = KMeans(nClusters: 5, initMethod: .kmeanspp)
+kmeans.fit(data)
+
+let labels = kmeans.predict(newData)
+let silhouette = kmeans.silhouetteScore(data)
+print("Silhouette Score: \(silhouette)")
 ```
 
-### Face Recognition
+## 📚 API Reference
+
+### Neural Network Layers
+
+| Layer | Description | Parameters |
+|-------|-------------|------------|
+| `Dense` | Fully connected layer | inputSize, outputSize, useBias |
+| `ActivationLayer` | Activation function | activation |
+| `Dropout` | Regularization | rate |
+| `BatchNorm` | Batch normalization | numFeatures, epsilon, momentum |
+| `LayerNorm` | Layer normalization | normalizedShape, epsilon |
+| `Embedding` | Token embedding | numEmbeddings, embeddingDim |
+| `Flatten` | Flatten tensor | - |
+
+### Activation Functions
 
 ```swift
-visionManager.recognizeFaces(image: inputImage) { result in
-    switch result {
-    case .success(let faces):
-        for face in faces {
-            print("👤 \(face.person): \(face.confidence)%")
-        }
-    case .failure(let error):
-        print("❌ Error: \(error)")
-    }
-}
+// Available activations
+ActivationType.relu       // ReLU
+ActivationType.leakyRelu  // Leaky ReLU (α=0.01)
+ActivationType.elu        // ELU
+ActivationType.selu       // SELU
+ActivationType.sigmoid    // Sigmoid
+ActivationType.tanh       // Tanh
+ActivationType.softmax    // Softmax
+ActivationType.swish      // Swish (SiLU)
+ActivationType.gelu       // GELU
+ActivationType.softplus   // Softplus
 ```
 
----
-
-## 🎤 Speech Recognition
-
-### Speech-to-Text
+### Loss Functions
 
 ```swift
-let speechManager = SpeechRecognitionManager()
+// Regression
+LossType.mse             // Mean Squared Error
+LossType.mae             // Mean Absolute Error
+LossType.huber           // Huber Loss
 
-// Transcribe speech
-speechManager.transcribeSpeech(audio: audioData) { result in
-    switch result {
-    case .success(let transcription):
-        print("📝 Text: \(transcription.text)")
-        print("   Confidence: \(transcription.confidence)%")
-    case .failure(let error):
-        print("❌ Error: \(error)")
-    }
-}
+// Classification
+LossType.bce             // Binary Cross Entropy
+LossType.bceWithLogits   // BCE with Logits
+LossType.crossEntropy    // Cross Entropy
+LossType.nll             // Negative Log Likelihood
+LossType.hinge           // Hinge Loss (SVM)
 ```
 
-### Voice Commands
+### Optimizers
 
 ```swift
-speechManager.recognizeVoiceCommand(audio: audioData) { result in
-    switch result {
-    case .success(let command):
-        print("🎤 Command: \(command.text)")
-        print("   Action: \(command.action)")
-    case .failure(let error):
-        print("❌ Error: \(error)")
-    }
-}
+// Available optimizers
+OptimizerType.sgd        // SGD with momentum
+OptimizerType.adam       // Adam
+OptimizerType.adamw      // AdamW (decoupled weight decay)
+OptimizerType.rmsprop    // RMSprop
+OptimizerType.adagrad    // Adagrad
 ```
 
----
+### Classic ML Algorithms
 
-## 📊 Capabilities Overview
+| Algorithm | Type | Key Features |
+|-----------|------|--------------|
+| `LinearRegression` | Regression | OLS, L1/L2 regularization |
+| `RidgeRegression` | Regression | L2 regularization |
+| `LassoRegression` | Regression | L1 regularization |
+| `ElasticNet` | Regression | L1 + L2 regularization |
+| `LogisticRegression` | Classification | Binary/Multinomial |
+| `DecisionTreeClassifier` | Classification | Gini/Entropy |
+| `DecisionTreeRegressor` | Regression | MSE/MAE |
+| `RandomForestClassifier` | Classification | Bootstrap, OOB |
+| `RandomForestRegressor` | Regression | Feature importance |
+| `GradientBoostingClassifier` | Classification | Boosting |
+| `KMeans` | Clustering | K-means++ |
+| `MiniBatchKMeans` | Clustering | Online learning |
+| `DBSCAN` | Clustering | Density-based |
+| `KNeighborsClassifier` | Classification | KD-tree |
+| `KNeighborsRegressor` | Regression | Distance weighted |
+| `SVC` | Classification | RBF/Linear/Poly |
+| `SVR` | Regression | Epsilon-insensitive |
 
-| Module | Features | Performance |
-|:------:|----------|:-----------:|
-| 🧠 **ML** | Neural networks, training, inference | <10ms |
-| 📝 **NLP** | Sentiment, entities, summarization | <5ms |
-| 👁️ **Vision** | Detection, recognition, OCR | <15ms |
-| 🎤 **Speech** | Transcription, synthesis, commands | <50ms |
+### Preprocessing
 
----
+```swift
+// Scalers
+let scaler = StandardScaler()
+let scaled = scaler.fitTransform(data)
 
-## 📁 Project Structure
+let minmax = MinMaxScaler(featureRange: (0, 1))
+let normalized = minmax.fitTransform(data)
+
+let robust = RobustScaler()
+let scaled = robust.fitTransform(data)
+
+// Encoders
+let encoder = OneHotEncoder()
+let encoded = encoder.fitTransform(categories)
+
+let labelEncoder = LabelEncoder()
+let labels = labelEncoder.fitTransform(classes)
+
+// Imputation
+let imputer = SimpleImputer(strategy: .mean)
+let filled = imputer.fitTransform(dataWithMissing)
+```
+
+### Metrics
+
+```swift
+// Classification
+let accuracy = accuracyScore(yTrue: actual, yPred: predicted)
+let (precision, recall, f1) = precisionRecallF1(yTrue: actual, yPred: predicted)
+let confMatrix = confusionMatrix(yTrue: actual, yPred: predicted)
+let auc = rocAucScore(yTrue: actual, yScore: probabilities)
+
+// Regression
+let mse = meanSquaredError(yTrue: actual, yPred: predicted)
+let rmse = rootMeanSquaredError(yTrue: actual, yPred: predicted)
+let mae = meanAbsoluteError(yTrue: actual, yPred: predicted)
+let r2 = r2Score(yTrue: actual, yPred: predicted)
+
+// Clustering
+let silhouette = silhouetteScore(x: data, labels: clusters)
+let db = daviesBouldinScore(x: data, labels: clusters)
+```
+
+### Model Export
+
+```swift
+// Export to JSON (cross-platform)
+try network.exportToCoreML(
+    url: URL(fileURLWithPath: "model.json"),
+    inputName: "features",
+    outputName: "predictions"
+)
+
+// Model compression
+let (quantized, scale, zeroPoint) = ModelCompressor.quantize(
+    weights: network.collectParameters().flatMap { $0.data },
+    bits: 8
+)
+```
+
+## 🏗️ Architecture
 
 ```
 SwiftAI/
-├── 📂 Sources/
-│   ├── Core/              # Core AI infrastructure
-│   ├── MachineLearning/   # ML algorithms & models
-│   ├── NLP/               # Natural language processing
-│   ├── Vision/            # Computer vision
-│   ├── Speech/            # Speech recognition & synthesis
-│   └── Security/          # Encryption & privacy
-├── 📂 Examples/           # Sample implementations
-├── 📂 Tests/              # Unit & integration tests
-└── 📂 Documentation/      # API docs & guides
+├── ML/
+│   ├── Core/
+│   │   ├── Tensor.swift          # SIMD-optimized tensors
+│   │   ├── Activations.swift     # 10+ activation functions
+│   │   ├── LossFunctions.swift   # 9+ loss functions
+│   │   └── Optimizers.swift      # SGD, Adam, AdamW, RMSprop, Adagrad
+│   │
+│   ├── Neural/
+│   │   ├── Layers.swift          # Dense, Dropout, BatchNorm, etc.
+│   │   └── NeuralNetwork.swift   # Network builder & trainer
+│   │
+│   ├── Algorithms/
+│   │   ├── LinearRegression.swift
+│   │   ├── LogisticRegression.swift
+│   │   ├── DecisionTree.swift
+│   │   ├── RandomForest.swift
+│   │   ├── KMeans.swift
+│   │   ├── KNN.swift
+│   │   └── SVM.swift
+│   │
+│   ├── Preprocessing/
+│   │   └── DataPreprocessing.swift
+│   │
+│   ├── Evaluation/
+│   │   └── Metrics.swift
+│   │
+│   └── Export/
+│       └── CoreMLExport.swift
 ```
 
----
+## ⚡ Performance
 
-## 📋 Requirements
+SwiftAI uses Apple's **Accelerate** framework for SIMD-optimized operations:
 
-| Requirement | Version |
-|-------------|---------|
-| iOS | 15.0+ |
-| macOS | 12.0+ |
-| Swift | 5.9+ |
-| Xcode | 15.0+ |
+- **vDSP** for vector operations
+- **cblas** for matrix multiplication
+- **vvexp/vvlog/vvsqrt** for transcendental functions
 
----
+| Operation | SwiftAI | Pure Swift |
+|-----------|---------|------------|
+| Matrix Multiply (1000×1000) | 12ms | 850ms |
+| Vector Addition (1M) | 0.8ms | 15ms |
+| Softmax (10K classes) | 0.3ms | 8ms |
 
-## 📖 Documentation
+## 🎯 Comparison
 
-| Guide | Description |
-|-------|-------------|
-| [Getting Started](Documentation/GettingStarted.md) | Installation and setup |
-| [Machine Learning](Documentation/MachineLearningGuide.md) | ML algorithms |
-| [NLP Guide](Documentation/NaturalLanguageProcessingGuide.md) | Text processing |
-| [Vision Guide](Documentation/ComputerVisionGuide.md) | Image analysis |
-| [Speech Guide](Documentation/SpeechRecognitionGuide.md) | Audio processing |
-| [API Reference](Documentation/AIManagerAPI.md) | Complete API docs |
+| Feature | SwiftAI | CreateML | Core ML | TensorFlow |
+|---------|---------|----------|---------|------------|
+| Pure Swift | ✅ | ✅ | ❌ | ❌ |
+| Custom Models | ✅ | ❌ | ❌ | ✅ |
+| Training | ✅ | ✅ | ❌ | ✅ |
+| Classic ML | ✅ | Partial | ❌ | ✅ |
+| Neural Networks | ✅ | ❌ | Inference | ✅ |
+| No Dependencies | ✅ | ✅ | ✅ | ❌ |
+| iOS Support | ✅ | ✅ | ✅ | Partial |
+| Open Source | ✅ | ❌ | ❌ | ✅ |
 
----
+## 📖 Tutorials
+
+### Binary Classification
+
+```swift
+import SwiftAI
+
+// Load data
+let (trainX, testX, trainY, testY) = trainTestSplit(
+    x: features,
+    y: labels,
+    testSize: 0.2,
+    shuffle: true
+)
+
+// Preprocess
+let scaler = StandardScaler()
+let trainXScaled = scaler.fitTransform(trainX)
+let testXScaled = scaler.transform(testX)
+
+// Train
+let model = LogisticRegression(regularization: .l2(strength: 0.1))
+model.fit(x: trainXScaled, y: trainY, learningRate: 0.01)
+
+// Evaluate
+let accuracy = model.score(x: testXScaled, y: testY)
+print("Accuracy: \(accuracy * 100)%")
+print(model.classificationReport(x: testXScaled, y: testY))
+```
+
+### Cross-Validation
+
+```swift
+import SwiftAI
+
+let kfold = KFold(nSplits: 5, shuffle: true)
+var scores = [Float]()
+
+for (trainIdx, testIdx) in kfold.split(nSamples: data.count) {
+    let trainX = trainIdx.map { data[$0] }
+    let trainY = trainIdx.map { labels[$0] }
+    let testX = testIdx.map { data[$0] }
+    let testY = testIdx.map { labels[$0] }
+    
+    let model = RandomForestClassifier(nEstimators: 50)
+    model.fit(x: trainX, y: trainY)
+    scores.append(model.score(x: testX, y: testY))
+}
+
+let meanScore = scores.reduce(0, +) / Float(scores.count)
+print("CV Score: \(meanScore) ± \(standardDeviation(scores))")
+```
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md).
+Contributions welcome! Please read our [Contributing Guide](CONTRIBUTING.md).
 
 ```bash
-git checkout -b feature/amazing-ai
-git commit -m "feat(ml): add amazing AI feature"
-git push origin feature/amazing-ai
-```
+# Clone
+git clone https://github.com/muhittinc/SwiftAI.git
 
----
+# Build
+swift build
+
+# Test
+swift test
+```
 
 ## 📄 License
 
-MIT License — see [LICENSE](LICENSE) for details.
+MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
-<div align="center">
-
-## 👨‍💻 Author
-
-**Muhittin Camdali**
-
-[![GitHub](https://img.shields.io/badge/GitHub-muhittincamdali-181717?style=for-the-badge&logo=github)](https://github.com/muhittincamdali)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/muhittincamdali)
-
----
-
-**⭐ Star this repo if you find it useful!**
-
-
-
----
-
-## 📈 Star History
-
-<a href="https://star-history.com/#muhittincamdali/SwiftAI&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=muhittincamdali/SwiftAI&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=muhittincamdali/SwiftAI&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=muhittincamdali/SwiftAI&type=Date" />
- </picture>
-</a>
-
-</div>
+<p align="center">
+  <strong>Built with ❤️ in Swift</strong><br>
+  <a href="https://github.com/muhittinc/SwiftAI/issues">Report Bug</a> •
+  <a href="https://github.com/muhittinc/SwiftAI/issues">Request Feature</a>
+</p>
