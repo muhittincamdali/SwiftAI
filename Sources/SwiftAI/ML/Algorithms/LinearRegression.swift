@@ -264,7 +264,7 @@ public final class LinearRegression: @unchecked Sendable {
             
             // Swap rows
             if maxRow != k {
-                swap(&augmented[k], &augmented[maxRow])
+                augmented.swapAt(k, maxRow)
             }
             
             // Eliminate

@@ -1,56 +1,50 @@
-# Contributing
+# Contributing to SwiftAI
 
-Thanks for your interest in contributing! Here's how to get started.
-
-## Getting Started
-
-1. Fork the repository
-2. Clone your fork: `git clone https://github.com/YOUR_USERNAME/REPO_NAME.git`
-3. Create a branch: `git checkout -b feature/your-feature`
-4. Make your changes
-5. Push to your fork: `git push origin feature/your-feature`
-6. Open a Pull Request
+Thanks for considering contributing to SwiftAI! Here's how to get started.
 
 ## Development Setup
 
 ```bash
-# Clone the repo
-git clone https://github.com/muhittincamdali/REPO_NAME.git
-cd REPO_NAME
-
-# Open in Xcode
-open Package.swift
+git clone https://github.com/muhittincamdali/SwiftAI.git
+cd SwiftAI
+swift build
+swift test
 ```
+
+## What to Contribute
+
+- **New ML algorithms** — Naive Bayes, PCA, DBSCAN, Gradient Boosting, etc.
+- **Neural network layers** — Conv1D, Conv2D, LSTM, GRU, Attention
+- **Performance** — Accelerate optimizations, Metal compute shaders
+- **Tests** — More coverage, edge cases, benchmarks
+- **Documentation** — Examples, tutorials, DocC
+- **Bug fixes** — Always welcome
 
 ## Code Style
 
 - Follow Swift API Design Guidelines
-- Use SwiftLint (config included)
-- Write descriptive commit messages
-- Add documentation for public APIs
-
-## Commit Messages
-
-Use conventional commits:
-- `feat:` new feature
-- `fix:` bug fix
-- `docs:` documentation
-- `refactor:` code refactor
-- `test:` tests
-
-Example: `feat: add dark mode support`
+- Use `Accelerate` for vectorized operations where possible
+- All public APIs need documentation comments
+- Prefer value types, use classes only for mutable state (e.g., layers with parameters)
+- Mark types as `Sendable` where appropriate
 
 ## Pull Request Process
 
-1. Update README if needed
-2. Add tests for new features
-3. Ensure CI passes
-4. Request review from maintainers
+1. Fork the repo and create a feature branch
+2. Write tests for new functionality
+3. Make sure `swift test` passes
+4. Submit a PR with a clear description
 
-## Code of Conduct
+## Commit Messages
 
-Be respectful and constructive. We're all here to build great software together.
+Format: `type(scope): description`
 
-## Questions?
+- `feat(neural)`: add LSTM layer
+- `fix(tensor)`: correct matmul for non-square matrices
+- `docs(readme)`: update installation instructions
+- `test(kmeans)`: add edge case tests
+- `perf(dense)`: optimize forward pass with vDSP
 
-Open an issue or reach out!
+## License
+
+By contributing, you agree that your contributions will be licensed under the MIT License.

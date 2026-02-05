@@ -74,7 +74,7 @@ public final class KNeighborsClassifier: @unchecked Sendable {
             useKDTree = x[0].count <= 20 && x.count > 30
         }
         
-        if useKDTree && metric == .euclidean {
+        if useKDTree, case .euclidean = metric {
             kdTree = KDTree(points: x, labels: y)
         }
     }

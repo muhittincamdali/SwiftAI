@@ -1,25 +1,23 @@
 # Acknowledgments
 
-## Contributors
+SwiftAI builds on the shoulders of these great projects and resources:
 
-Thanks to everyone who has contributed to this project!
+## Dependencies
 
-<a href="../../graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=muhittincamdali/SwiftAI" />
-</a>
-
-## Built With
-
-- [Swift](https://swift.org) - The Swift programming language
-- [SwiftUI](https://developer.apple.com/swiftui/) - Declarative UI framework
-- [Swift Package Manager](https://swift.org/package-manager/) - Dependency management
+- [swift-numerics](https://github.com/apple/swift-numerics) — Real and Complex number support for Swift
 
 ## Inspiration
 
-- [Alamofire](https://github.com/Alamofire/Alamofire) - Elegant HTTP networking
-- [Kingfisher](https://github.com/onevcat/Kingfisher) - Image downloading and caching
-- [SnapKit](https://github.com/SnapKit/SnapKit) - Auto Layout DSL
+- [scikit-learn](https://scikit-learn.org/) — The API design for classic ML algorithms
+- [PyTorch](https://pytorch.org/) — Neural network builder pattern and training loop
+- [Apple Accelerate](https://developer.apple.com/accelerate/) — SIMD-optimized math primitives
 
-## License
+## References
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- Bishop, C.M. — *Pattern Recognition and Machine Learning*
+- Goodfellow, I. et al. — *Deep Learning*
+- Hastie, T. et al. — *The Elements of Statistical Learning*
+
+## Thank You
+
+To everyone who has contributed, filed issues, or provided feedback.

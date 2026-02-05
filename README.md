@@ -2,21 +2,27 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Swift-5.9+-FA7343?style=for-the-badge&logo=swift&logoColor=white" alt="Swift 5.9+"/>
-  <img src="https://img.shields.io/badge/Platform-iOS%2016%2B%20%7C%20macOS%2013%2B-007AFF?style=for-the-badge&logo=apple&logoColor=white" alt="Platform"/>
+  <img src="https://img.shields.io/badge/Platform-iOS%2015%2B%20%7C%20macOS%2012%2B-007AFF?style=for-the-badge&logo=apple&logoColor=white" alt="Platform"/>
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License"/>
-  <img src="https://img.shields.io/github/stars/muhittinc/SwiftAI?style=for-the-badge" alt="Stars"/>
+  <img src="https://img.shields.io/github/stars/muhittincamdali/SwiftAI?style=for-the-badge" alt="Stars"/>
 </p>
 
 <p align="center">
   <strong>Pure Swift Machine Learning Framework</strong><br>
-  No Python. No External Dependencies. Just Swift.
+  Neural networks, classic ML algorithms, on-device training. No Python. No CoreML dependency. Just Swift + Accelerate.
 </p>
 
 ---
 
-## 🌟 Why SwiftAI?
+## Why SwiftAI?
 
-SwiftAI is the most comprehensive **pure Swift** machine learning framework. Built from scratch with Accelerate-optimized operations, it brings the power of scikit-learn and PyTorch to iOS and macOS development.
+Most ML frameworks for Apple platforms are either wrappers around Python (slow, bloated) or limited to CoreML inference (no training). SwiftAI is different:
+
+- **Pure Swift** — every algorithm implemented from scratch
+- **On-device training** — train models directly on iPhone/iPad/Mac
+- **Accelerate-optimized** — SIMD vector ops via vDSP/BLAS for real performance
+- **Zero heavy dependencies** — just swift-numerics, that's it
+- **scikit-learn API** — familiar `.fit()` / `.predict()` / `.score()` interface
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -31,11 +37,10 @@ SwiftAI is the most comprehensive **pure Swift** machine learning framework. Bui
 │  • 10+ Activations     │  • K-Means           │  • CV Split │
 │  • 9+ Loss Functions   │  • KNN               │  • Export   │
 │  • 5+ Optimizers       │  • SVM               │  • CoreML   │
-│                        │  • Gradient Boost    │             │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
@@ -43,16 +48,15 @@ SwiftAI is the most comprehensive **pure Swift** machine learning framework. Bui
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/muhittinc/SwiftAI.git", from: "1.0.0")
+    .package(url: "https://github.com/muhittincamdali/SwiftAI.git", from: "2.0.0")
 ]
 ```
 
-### Neural Network Example
+### Neural Network — MNIST-style Classifier
 
 ```swift
 import SwiftAI
 
-// Create a neural network
 let network = NeuralNetwork()
     .dense(784, 256, activation: .relu)
     .batchNorm(256)
@@ -61,313 +65,65 @@ let network = NeuralNetwork()
     .dropout(0.2)
     .dense(128, 10, activation: .softmax)
 
-// Compile with optimizer and loss
 network.compile(
     optimizer: .adam,
     loss: .crossEntropy,
     learningRate: 0.001
 )
 
-// Train
 let history = network.train(
-    x: trainData,
-    y: trainLabels,
-    epochs: 50,
-    batchSize: 32,
+    x: trainData, y: trainLabels,
+    epochs: 50, batchSize: 32,
     validationSplit: 0.2
 )
 
-// Predict
 let predictions = network.predict(testData)
 ```
 
 ### Linear Regression
 
 ```swift
-import SwiftAI
-
 let model = LinearRegression()
 model.fit(x: features, y: targets)
 
 let predictions = model.predict(newData)
 let r2 = model.score(x: testX, y: testY)
-print("R² Score: \(r2)")
+print("R² Score: \(r2)")  // 0.97
 ```
 
-### Classification with Random Forest
+### Random Forest Classification
 
 ```swift
-import SwiftAI
-
 let forest = RandomForestClassifier(
     nEstimators: 100,
     maxDepth: 10,
     maxFeatures: .sqrt
 )
-
 forest.fit(x: trainX, y: trainY)
 
 let accuracy = forest.score(x: testX, y: testY)
 print("Accuracy: \(accuracy * 100)%")
 
 // Feature importance
-if let importances = forest.featureImportances {
-    for (i, imp) in importances.enumerated() {
-        print("Feature \(i): \(imp)")
-    }
+for (i, imp) in forest.featureImportances!.enumerated() {
+    print("Feature \(i): \(imp)")
 }
 ```
 
-### Clustering with K-Means
+### K-Means Clustering
 
 ```swift
-import SwiftAI
-
 let kmeans = KMeans(nClusters: 5, initMethod: .kmeanspp)
 kmeans.fit(data)
 
 let labels = kmeans.predict(newData)
-let silhouette = kmeans.silhouetteScore(data)
-print("Silhouette Score: \(silhouette)")
-```
-
-## 📚 API Reference
-
-### Neural Network Layers
-
-| Layer | Description | Parameters |
-|-------|-------------|------------|
-| `Dense` | Fully connected layer | inputSize, outputSize, useBias |
-| `ActivationLayer` | Activation function | activation |
-| `Dropout` | Regularization | rate |
-| `BatchNorm` | Batch normalization | numFeatures, epsilon, momentum |
-| `LayerNorm` | Layer normalization | normalizedShape, epsilon |
-| `Embedding` | Token embedding | numEmbeddings, embeddingDim |
-| `Flatten` | Flatten tensor | - |
-
-### Activation Functions
-
-```swift
-// Available activations
-ActivationType.relu       // ReLU
-ActivationType.leakyRelu  // Leaky ReLU (α=0.01)
-ActivationType.elu        // ELU
-ActivationType.selu       // SELU
-ActivationType.sigmoid    // Sigmoid
-ActivationType.tanh       // Tanh
-ActivationType.softmax    // Softmax
-ActivationType.swish      // Swish (SiLU)
-ActivationType.gelu       // GELU
-ActivationType.softplus   // Softplus
-```
-
-### Loss Functions
-
-```swift
-// Regression
-LossType.mse             // Mean Squared Error
-LossType.mae             // Mean Absolute Error
-LossType.huber           // Huber Loss
-
-// Classification
-LossType.bce             // Binary Cross Entropy
-LossType.bceWithLogits   // BCE with Logits
-LossType.crossEntropy    // Cross Entropy
-LossType.nll             // Negative Log Likelihood
-LossType.hinge           // Hinge Loss (SVM)
-```
-
-### Optimizers
-
-```swift
-// Available optimizers
-OptimizerType.sgd        // SGD with momentum
-OptimizerType.adam       // Adam
-OptimizerType.adamw      // AdamW (decoupled weight decay)
-OptimizerType.rmsprop    // RMSprop
-OptimizerType.adagrad    // Adagrad
-```
-
-### Classic ML Algorithms
-
-| Algorithm | Type | Key Features |
-|-----------|------|--------------|
-| `LinearRegression` | Regression | OLS, L1/L2 regularization |
-| `RidgeRegression` | Regression | L2 regularization |
-| `LassoRegression` | Regression | L1 regularization |
-| `ElasticNet` | Regression | L1 + L2 regularization |
-| `LogisticRegression` | Classification | Binary/Multinomial |
-| `DecisionTreeClassifier` | Classification | Gini/Entropy |
-| `DecisionTreeRegressor` | Regression | MSE/MAE |
-| `RandomForestClassifier` | Classification | Bootstrap, OOB |
-| `RandomForestRegressor` | Regression | Feature importance |
-| `GradientBoostingClassifier` | Classification | Boosting |
-| `KMeans` | Clustering | K-means++ |
-| `MiniBatchKMeans` | Clustering | Online learning |
-| `DBSCAN` | Clustering | Density-based |
-| `KNeighborsClassifier` | Classification | KD-tree |
-| `KNeighborsRegressor` | Regression | Distance weighted |
-| `SVC` | Classification | RBF/Linear/Poly |
-| `SVR` | Regression | Epsilon-insensitive |
-
-### Preprocessing
-
-```swift
-// Scalers
-let scaler = StandardScaler()
-let scaled = scaler.fitTransform(data)
-
-let minmax = MinMaxScaler(featureRange: (0, 1))
-let normalized = minmax.fitTransform(data)
-
-let robust = RobustScaler()
-let scaled = robust.fitTransform(data)
-
-// Encoders
-let encoder = OneHotEncoder()
-let encoded = encoder.fitTransform(categories)
-
-let labelEncoder = LabelEncoder()
-let labels = labelEncoder.fitTransform(classes)
-
-// Imputation
-let imputer = SimpleImputer(strategy: .mean)
-let filled = imputer.fitTransform(dataWithMissing)
-```
-
-### Metrics
-
-```swift
-// Classification
-let accuracy = accuracyScore(yTrue: actual, yPred: predicted)
-let (precision, recall, f1) = precisionRecallF1(yTrue: actual, yPred: predicted)
-let confMatrix = confusionMatrix(yTrue: actual, yPred: predicted)
-let auc = rocAucScore(yTrue: actual, yScore: probabilities)
-
-// Regression
-let mse = meanSquaredError(yTrue: actual, yPred: predicted)
-let rmse = rootMeanSquaredError(yTrue: actual, yPred: predicted)
-let mae = meanAbsoluteError(yTrue: actual, yPred: predicted)
-let r2 = r2Score(yTrue: actual, yPred: predicted)
-
-// Clustering
-let silhouette = silhouetteScore(x: data, labels: clusters)
-let db = daviesBouldinScore(x: data, labels: clusters)
-```
-
-### Model Export
-
-```swift
-// Export to JSON (cross-platform)
-try network.exportToCoreML(
-    url: URL(fileURLWithPath: "model.json"),
-    inputName: "features",
-    outputName: "predictions"
-)
-
-// Model compression
-let (quantized, scale, zeroPoint) = ModelCompressor.quantize(
-    weights: network.collectParameters().flatMap { $0.data },
-    bits: 8
-)
-```
-
-## 🏗️ Architecture
-
-```
-SwiftAI/
-├── ML/
-│   ├── Core/
-│   │   ├── Tensor.swift          # SIMD-optimized tensors
-│   │   ├── Activations.swift     # 10+ activation functions
-│   │   ├── LossFunctions.swift   # 9+ loss functions
-│   │   └── Optimizers.swift      # SGD, Adam, AdamW, RMSprop, Adagrad
-│   │
-│   ├── Neural/
-│   │   ├── Layers.swift          # Dense, Dropout, BatchNorm, etc.
-│   │   └── NeuralNetwork.swift   # Network builder & trainer
-│   │
-│   ├── Algorithms/
-│   │   ├── LinearRegression.swift
-│   │   ├── LogisticRegression.swift
-│   │   ├── DecisionTree.swift
-│   │   ├── RandomForest.swift
-│   │   ├── KMeans.swift
-│   │   ├── KNN.swift
-│   │   └── SVM.swift
-│   │
-│   ├── Preprocessing/
-│   │   └── DataPreprocessing.swift
-│   │
-│   ├── Evaluation/
-│   │   └── Metrics.swift
-│   │
-│   └── Export/
-│       └── CoreMLExport.swift
-```
-
-## ⚡ Performance
-
-SwiftAI uses Apple's **Accelerate** framework for SIMD-optimized operations:
-
-- **vDSP** for vector operations
-- **cblas** for matrix multiplication
-- **vvexp/vvlog/vvsqrt** for transcendental functions
-
-| Operation | SwiftAI | Pure Swift |
-|-----------|---------|------------|
-| Matrix Multiply (1000×1000) | 12ms | 850ms |
-| Vector Addition (1M) | 0.8ms | 15ms |
-| Softmax (10K classes) | 0.3ms | 8ms |
-
-## 🎯 Comparison
-
-| Feature | SwiftAI | CreateML | Core ML | TensorFlow |
-|---------|---------|----------|---------|------------|
-| Pure Swift | ✅ | ✅ | ❌ | ❌ |
-| Custom Models | ✅ | ❌ | ❌ | ✅ |
-| Training | ✅ | ✅ | ❌ | ✅ |
-| Classic ML | ✅ | Partial | ❌ | ✅ |
-| Neural Networks | ✅ | ❌ | Inference | ✅ |
-| No Dependencies | ✅ | ✅ | ✅ | ❌ |
-| iOS Support | ✅ | ✅ | ✅ | Partial |
-| Open Source | ✅ | ❌ | ❌ | ✅ |
-
-## 📖 Tutorials
-
-### Binary Classification
-
-```swift
-import SwiftAI
-
-// Load data
-let (trainX, testX, trainY, testY) = trainTestSplit(
-    x: features,
-    y: labels,
-    testSize: 0.2,
-    shuffle: true
-)
-
-// Preprocess
-let scaler = StandardScaler()
-let trainXScaled = scaler.fitTransform(trainX)
-let testXScaled = scaler.transform(testX)
-
-// Train
-let model = LogisticRegression(regularization: .l2(strength: 0.1))
-model.fit(x: trainXScaled, y: trainY, learningRate: 0.01)
-
-// Evaluate
-let accuracy = model.score(x: testXScaled, y: testY)
-print("Accuracy: \(accuracy * 100)%")
-print(model.classificationReport(x: testXScaled, y: testY))
+let score = silhouetteScore(x: data, labels: kmeans.labels!)
+print("Silhouette: \(score)")
 ```
 
 ### Cross-Validation
 
 ```swift
-import SwiftAI
-
 let kfold = KFold(nSplits: 5, shuffle: true)
 var scores = [Float]()
 
@@ -382,33 +138,197 @@ for (trainIdx, testIdx) in kfold.split(nSamples: data.count) {
     scores.append(model.score(x: testX, y: testY))
 }
 
-let meanScore = scores.reduce(0, +) / Float(scores.count)
-print("CV Score: \(meanScore) ± \(standardDeviation(scores))")
+print("CV: \(scores.reduce(0,+) / Float(scores.count)) ± \(standardDeviation(scores))")
 ```
 
-## 🤝 Contributing
+## API Reference
+
+### Neural Network Layers
+
+| Layer | Description | Parameters |
+|-------|-------------|------------|
+| `Dense` | Fully connected | inputSize, outputSize, useBias |
+| `ActivationLayer` | Activation function | activation |
+| `Dropout` | Regularization | rate |
+| `BatchNorm` | Batch normalization | numFeatures, epsilon, momentum |
+| `LayerNorm` | Layer normalization | normalizedShape, epsilon |
+| `Embedding` | Token embedding | numEmbeddings, embeddingDim |
+| `Flatten` | Flatten tensor | — |
+
+### Activations
+
+`relu` · `leakyRelu` · `elu` · `selu` · `sigmoid` · `tanh` · `softmax` · `swish` · `gelu` · `softplus`
+
+### Loss Functions
+
+| Loss | Use Case |
+|------|----------|
+| `mse` | Regression |
+| `mae` | Regression (robust) |
+| `huber` | Regression (outlier-resistant) |
+| `bce` | Binary classification |
+| `bceWithLogits` | Binary with raw logits |
+| `crossEntropy` | Multi-class classification |
+| `nll` | Negative log likelihood |
+| `hinge` | SVM-style |
+| `cosineEmbedding` | Similarity learning |
+
+### Optimizers
+
+`sgd` (with momentum/nesterov) · `adam` · `adamw` · `rmsprop` · `adagrad`
+
+### Classic ML Algorithms
+
+| Algorithm | Type | Key Features |
+|-----------|------|--------------|
+| `LinearRegression` | Regression | OLS, L1/L2 regularization, SGD |
+| `RidgeRegression` | Regression | L2 regularization |
+| `LassoRegression` | Regression | L1 regularization |
+| `ElasticNet` | Regression | L1 + L2 combined |
+| `LogisticRegression` | Classification | Binary/Multinomial |
+| `DecisionTreeClassifier` | Classification | Gini/Entropy splitting |
+| `DecisionTreeRegressor` | Regression | MSE/MAE splitting |
+| `RandomForestClassifier` | Classification | Bootstrap aggregating, OOB |
+| `RandomForestRegressor` | Regression | Feature importance |
+| `KMeans` | Clustering | K-means++ initialization |
+| `KNeighborsClassifier` | Classification | KD-tree, distance weighting |
+| `KNeighborsRegressor` | Regression | Distance-based |
+| `SVC` | Classification | RBF/Linear/Poly/Sigmoid kernels |
+| `SVR` | Regression | Epsilon-insensitive |
+
+### Preprocessing
+
+```swift
+// Scalers
+StandardScaler().fitTransform(data)
+MinMaxScaler(featureRange: (0, 1)).fitTransform(data)
+RobustScaler().fitTransform(data)
+Normalizer(norm: .l2).transform(data)
+
+// Encoders
+LabelEncoder().fitTransform(labels)
+OneHotEncoder().fitTransform(categories)
+
+// Imputation
+SimpleImputer(strategy: .mean).fitTransform(data)
+
+// Splitting
+let (trainX, testX, trainY, testY) = trainTestSplit(x: x, y: y, testSize: 0.2)
+```
+
+### Metrics
+
+```swift
+// Classification
+accuracyScore(yTrue: actual, yPred: predicted)
+precisionRecallF1(yTrue: actual, yPred: predicted)
+confusionMatrix(yTrue: actual, yPred: predicted)
+rocAucScore(yTrue: actual, yScore: probabilities)
+
+// Regression
+meanSquaredError(yTrue: actual, yPred: predicted)
+rootMeanSquaredError(yTrue: actual, yPred: predicted)
+meanAbsoluteError(yTrue: actual, yPred: predicted)
+r2Score(yTrue: actual, yPred: predicted)
+
+// Clustering
+silhouetteScore(x: data, labels: clusters)
+daviesBouldinScore(x: data, labels: clusters)
+adjustedRandScore(labelsTrue: true, labelsPred: pred)
+```
+
+### Model Export
+
+```swift
+// Save/Load neural networks
+try network.save(to: modelURL)
+try network.load(from: modelURL)
+
+// Export to CoreML-compatible JSON
+try network.exportToCoreML(url: outputURL)
+
+// Model quantization (8-bit)
+let (quantized, scale, zp) = ModelCompressor.quantize(weights: params, bits: 8)
+```
+
+## Architecture
+
+```
+Sources/SwiftAI/
+├── ML/
+│   ├── Core/
+│   │   ├── Tensor.swift            # SIMD-optimized via Accelerate
+│   │   ├── Activations.swift       # 10 activation functions + derivatives
+│   │   ├── LossFunctions.swift     # 9 loss functions + gradients
+│   │   └── Optimizers.swift        # SGD, Adam, AdamW, RMSprop, Adagrad
+│   ├── Neural/
+│   │   ├── Layers.swift            # Dense, Dropout, BatchNorm, LayerNorm, Embedding
+│   │   └── NeuralNetwork.swift     # Network builder, trainer, serialization
+│   ├── Algorithms/
+│   │   ├── LinearRegression.swift  # OLS + Ridge + Lasso + ElasticNet
+│   │   ├── LogisticRegression.swift
+│   │   ├── DecisionTree.swift      # Classifier + Regressor
+│   │   ├── RandomForest.swift      # Classifier + Regressor
+│   │   ├── KMeans.swift            # K-Means + MiniBatch
+│   │   ├── KNN.swift               # Classifier + Regressor + KD-Tree
+│   │   └── SVM.swift               # SVC + SVR (SMO algorithm)
+│   ├── Preprocessing/
+│   │   └── DataPreprocessing.swift # Scalers, encoders, imputers, CV
+│   ├── Evaluation/
+│   │   └── Metrics.swift           # Classification, regression, clustering metrics
+│   └── Export/
+│       └── CoreMLExport.swift      # JSON export, ONNX info, quantization
+└── SwiftAI.swift                   # Framework entry point
+```
+
+## Performance
+
+SwiftAI uses Apple's **Accelerate** framework under the hood:
+
+| Operation | Method | Speedup vs Pure Swift |
+|-----------|--------|----------------------|
+| Matrix Multiply (1000×1000) | `cblas_sgemm` | ~70× |
+| Vector Addition (1M) | `vDSP_vadd` | ~18× |
+| Softmax (10K) | `vvexpf` | ~26× |
+| Dot Product (1M) | `vDSP_dotpr` | ~15× |
+
+## Comparison
+
+| Feature | SwiftAI | CreateML | CoreML | TensorFlow |
+|---------|---------|----------|--------|------------|
+| Pure Swift | ✅ | ✅ | ❌ | ❌ |
+| Custom Neural Nets | ✅ | ❌ | ❌ | ✅ |
+| On-Device Training | ✅ | ✅ | ❌ | ✅ |
+| Classic ML (7 algos) | ✅ | Partial | ❌ | ✅ |
+| No Heavy Dependencies | ✅ | ✅ | ✅ | ❌ |
+| Open Source | ✅ | ❌ | ❌ | ✅ |
+| Preprocessing Pipeline | ✅ | Limited | ❌ | ✅ |
+| Model Serialization | ✅ | ✅ | ✅ | ✅ |
+
+## Requirements
+
+- Swift 5.9+
+- iOS 15+ / macOS 12+ / tvOS 15+ / watchOS 8+
+- Xcode 15+
+
+## Contributing
 
 Contributions welcome! Please read our [Contributing Guide](CONTRIBUTING.md).
 
 ```bash
-# Clone
-git clone https://github.com/muhittinc/SwiftAI.git
-
-# Build
+git clone https://github.com/muhittincamdali/SwiftAI.git
+cd SwiftAI
 swift build
-
-# Test
 swift test
 ```
 
-## 📄 License
+## License
 
-MIT License - see [LICENSE](LICENSE) for details.
+MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
 <p align="center">
   <strong>Built with ❤️ in Swift</strong><br>
-  <a href="https://github.com/muhittinc/SwiftAI/issues">Report Bug</a> •
-  <a href="https://github.com/muhittinc/SwiftAI/issues">Request Feature</a>
+  <a href="https://github.com/muhittincamdali/SwiftAI/issues">Report Bug</a> · <a href="https://github.com/muhittincamdali/SwiftAI/issues">Request Feature</a>
 </p>
