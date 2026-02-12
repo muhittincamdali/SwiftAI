@@ -14,7 +14,7 @@ jobs:
         swift: ['5.9', '5.10']
     
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     
     - name: Select Swift Version
       run: |
@@ -34,7 +34,7 @@ jobs:
   build-ios:
     runs-on: macos-14
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     
     - name: Build for iOS
       run: |
