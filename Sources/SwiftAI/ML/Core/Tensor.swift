@@ -1,31 +1,24 @@
-// Tensor.swift
-// SwiftAI - Pure Swift Machine Learning Framework
-// Copyright © 2024 Muhittin Camdali. All rights reserved.
-
 import Foundation
 import Accelerate
 
 // MARK: - Tensor Core
 /// High-performance multi-dimensional array for machine learning computations
 /// Uses Accelerate framework for SIMD-optimized operations
-public final class Tensor<T: TensorNumeric>: @unchecked Sendable {
+public struct Tensor<T: TensorNumeric>: Sendable {
     
     // MARK: - Properties
     public var data: [T]
     public let shape: [Int]
-    public let rank: Int
-    public let count: Int
     
-    private let strides: [Int]
+    public var rank: Int { shape.count }
+    public var count: Int { data.count }
     
     // MARK: - Initialization
     public init(shape: [Int], repeating value: T = .zero) {
         precondition(shape.allSatisfy { $0 > 0 }, "Shape dimensions must be positive")
         self.shape = shape
-        self.rank = shape.count
-        self.count = shape.reduce(1, *)
-        self.strides = Self.computeStrides(shape)
-        self.data = Array(repeating: value, count: count)
+        let totalCount = shape.reduce(1, *)
+        self.data = Array(repeating: value, count: totalCount)
     }
     
     public init(shape: [Int], data: [T]) {
@@ -33,9 +26,6 @@ public final class Tensor<T: TensorNumeric>: @unchecked Sendable {
         let expectedCount = shape.reduce(1, *)
         precondition(data.count == expectedCount, "Data count must match shape")
         self.shape = shape
-        self.rank = shape.count
-        self.count = expectedCount
-        self.strides = Self.computeStrides(shape)
         self.data = data
     }
     
@@ -49,11 +39,27 @@ public final class Tensor<T: TensorNumeric>: @unchecked Sendable {
     }
     
     public static func random(_ shape: [Int], min: T = .zero, max: T = .one) -> Tensor<T> where T: BinaryFloatingPoint {
-        let count = shape.reduce(1, *)
-        var data = [T](repeating: .zero, count: count)
-        for i in 0..<count {
-            let random = T(Double.random(in: 0...1))
-            data[i] = min + random * (max - min)
+        let totalCount = shape.reduce(1, *)
+        var data = [T](repeating: .zero, count: totalCount)
+        for i in 0..<totalCount {
+            let randomValue = Double.random(in: 0...1)
+            data[i] = min + T(randomValue) * (max - min)
+        }
+        return Tensor(shape: shape, data: data)
+    }
+    
+    public static func randn(_ shape: [Int], mean: T = .zero, std: T = .one) -> Tensor<T> where T: BinaryFloatingPoint {
+        let totalCount = shape.reduce(1, *)
+        var data = [T](repeating: .zero, count: totalCount)
+        for i in Swift.stride(from: 0, to: totalCount - 1, by: 2) {
+            let u1 = Double.random(in: Double.leastNonzeroMagnitude...1)
+            let u2 = Double.random(in: 0...1)
+            let mag = Double(std) * sqrt(-2.0 * log(u1))
+            let angle = 2.0 * Double.pi * u2
+            data[i] = mean + T(mag * cos(angle))
+            if i + 1 < totalCount {
+                data[i + 1] = mean + T(mag * sin(angle))
+            }
         }
         return Tensor(shape: shape, data: data)
     }
@@ -64,29 +70,6 @@ public final class Tensor<T: TensorNumeric>: @unchecked Sendable {
             tensor[i, i] = .one
         }
         return tensor
-    }
-    
-    public static func randn(_ shape: [Int], mean: T = .zero, std: T = .one) -> Tensor<T> where T: BinaryFloatingPoint {
-        let count = shape.reduce(1, *)
-        var data = [T](repeating: .zero, count: count)
-        for i in stride(from: 0, to: count - 1, by: 2) {
-            // Box-Muller transform
-            let u1 = T(Double.random(in: Double.leastNonzeroMagnitude...1))
-            let u2 = T(Double.random(in: 0...1))
-            let mag = std * T(Foundation.sqrt(-2.0 * Foundation.log(Double(u1))))
-            let angle = T(2.0 * Double.pi) * u2
-            data[i] = mean + mag * T(cos(Double(angle)))
-            if i + 1 < count {
-                data[i + 1] = mean + mag * T(sin(Double(angle)))
-            }
-        }
-        if count % 2 == 1 {
-            let u1 = T(Double.random(in: Double.leastNonzeroMagnitude...1))
-            let u2 = T(Double.random(in: 0...1))
-            let mag = std * T(Foundation.sqrt(-2.0 * Foundation.log(Double(u1))))
-            data[count - 1] = mean + mag * T(cos(Double(2.0 * Double.pi * Double(u2))))
-        }
-        return Tensor(shape: shape, data: data)
     }
     
     // MARK: - Indexing
@@ -112,16 +95,6 @@ public final class Tensor<T: TensorNumeric>: @unchecked Sendable {
         let startIndex = row * rowSize
         let rowData = Array(data[startIndex..<(startIndex + rowSize)])
         return Tensor(shape: newShape, data: rowData)
-    }
-    
-    public subscript(column column: Int) -> Tensor<T> {
-        precondition(rank == 2, "Column indexing requires 2D tensor")
-        precondition(column >= 0 && column < shape[1], "Column index out of bounds")
-        var columnData = [T](repeating: .zero, count: shape[0])
-        for i in 0..<shape[0] {
-            columnData[i] = self[i, column]
-        }
-        return Tensor(shape: [shape[0]], data: columnData)
     }
     
     // MARK: - Shape Operations
@@ -155,271 +128,144 @@ public final class Tensor<T: TensorNumeric>: @unchecked Sendable {
     public var T: Tensor<T> { transpose() }
     
     // MARK: - Private Helpers
-    private static func computeStrides(_ shape: [Int]) -> [Int] {
-        var strides = [Int](repeating: 1, count: shape.count)
-        for i in stride(from: shape.count - 2, through: 0, by: -1) {
-            strides[i] = strides[i + 1] * shape[i + 1]
-        }
-        return strides
-    }
-    
     private func computeFlatIndex(_ indices: [Int]) -> Int {
         precondition(indices.count == rank, "Index count must match rank")
         var flatIndex = 0
-        for (i, idx) in indices.enumerated() {
-            precondition(idx >= 0 && idx < shape[i], "Index out of bounds")
-            flatIndex += idx * strides[i]
+        var currentStride = 1
+        for i in Swift.stride(from: rank - 1, through: 0, by: -1) {
+            precondition(indices[i] >= 0 && indices[i] < shape[i], "Index out of bounds")
+            flatIndex += indices[i] * currentStride
+            currentStride *= shape[i]
         }
         return flatIndex
     }
     
-    public func copy() -> Tensor<T> {
-        Tensor(shape: shape, data: data)
+    public func copy() -> Tensor<T> { self }
+    
+    // MARK: - Math Operations
+    public func max() -> T {
+        data.max() ?? .zero
+    }
+
+    public func argmax() -> Int {
+        guard !data.isEmpty else { return 0 }
+        var maxIdx = 0
+        var maxValue = data[0]
+        for i in 1..<data.count {
+            if data[i] > maxValue {
+                maxValue = data[i]
+                maxIdx = i
+            }
+        }
+        return maxIdx
+    }
+    
+    public func sum() -> T {
+        if T.self == Float.self {
+            var result: Float = 0
+            vDSP_sve(data as! [Float], 1, &result, vDSP_Length(count))
+            return result as! T
+        }
+        return data.reduce(.zero, +)
+    }
+    
+    public func mean() -> T {
+        if T.self == Float.self {
+            var result: Float = 0
+            vDSP_meanv(data as! [Float], 1, &result, vDSP_Length(count))
+            return result as! T
+        }
+        return sum() / T(Double(count))
+    }
+
+    public func variance() -> T {
+        let m = mean()
+        if T.self == Float.self {
+            var result: Float = 0
+            let floatData = data as! [Float]
+            let floatMean = m as! Float
+            var dev = [Float](repeating: 0, count: count)
+            vDSP_vsub(floatData, 1, [floatMean], 0, &dev, 1, vDSP_Length(count))
+            vDSP_measqv(dev, 1, &result, vDSP_Length(count))
+            return result as! T
+        }
+        return .zero 
+    }
+    
+    public func dot(_ other: Tensor<T>) -> T {
+        precondition(count == other.count, "Tensors must have same count for dot product")
+        if T.self == Float.self {
+            var result: Float = 0
+            vDSP_dotpr(data as! [Float], 1, other.data as! [Float], 1, &result, vDSP_Length(count))
+            return result as! T
+        }
+        var currentSum: T = .zero
+        for i in 0..<count {
+            currentSum += data[i] * other.data[i]
+        }
+        return currentSum
+    }
+    
+    public func matmul(_ other: Tensor<T>) -> Tensor<T> {
+        precondition(rank == 2 && other.rank == 2, "Matrix multiplication requires 2D tensors")
+        precondition(shape[1] == other.shape[0], "Matrix dimensions must match")
+        
+        let m = shape[0]
+        let k = shape[1]
+        let n = other.shape[1]
+        
+        var resultData = [T](repeating: .zero, count: m * n)
+        
+        if T.self == Float.self {
+            let a = data as! [Float]
+            let b = other.data as! [Float]
+            var c = [Float](repeating: 0, count: m * n)
+            cblas_sgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
+                        Int32(m), Int32(n), Int32(k),
+                        1.0, a, Int32(k),
+                        b, Int32(n),
+                        0.0, &c, Int32(n))
+            resultData = c as! [T]
+        } else {
+            for i in 0..<m {
+                for j in 0..<n {
+                    var currentSum: T = .zero
+                    for l in 0..<k {
+                        currentSum += self[i, l] * other[l, j]
+                    }
+                    resultData[i * n + j] = currentSum
+                }
+            }
+        }
+        
+        return Tensor(shape: [m, n], data: resultData)
+    }
+
+    public static func *(lhs: Tensor<T>, rhs: Tensor<T>) -> Tensor<T> {
+        precondition(lhs.shape == rhs.shape, "Shapes must match for element-wise multiplication")
+        var res = [T](repeating: .zero, count: lhs.count)
+        if T.self == Float.self {
+            vDSP_vmul(lhs.data as! [Float], 1, rhs.data as! [Float], 1, &res as! [Float], 1, vDSP_Length(lhs.count))
+        } else {
+            for i in 0..<lhs.count {
+                res[i] = lhs.data[i] * rhs.data[i]
+            }
+        }
+        return Tensor(shape: lhs.shape, data: res)
     }
 }
 
 // MARK: - Tensor Numeric Protocol
-public protocol TensorNumeric: Numeric, Comparable, ExpressibleByFloatLiteral {
+public protocol TensorNumeric: Numeric, Comparable, ExpressibleByFloatLiteral, Sendable {
     static var zero: Self { get }
     static var one: Self { get }
     init(_ value: Double)
-    func toDouble() -> Double
 }
 
 extension Float: TensorNumeric {
     public static var one: Float { 1.0 }
-    public func toDouble() -> Double { Double(self) }
 }
 
 extension Double: TensorNumeric {
     public static var one: Double { 1.0 }
-    public func toDouble() -> Double { self }
-}
-
-// MARK: - Accelerate Optimized Operations (Float)
-public extension Tensor where T == Float {
-    
-    static func + (lhs: Tensor<Float>, rhs: Tensor<Float>) -> Tensor<Float> {
-        precondition(lhs.shape == rhs.shape, "Shapes must match for addition")
-        var result = [Float](repeating: 0, count: lhs.count)
-        vDSP_vadd(lhs.data, 1, rhs.data, 1, &result, 1, vDSP_Length(lhs.count))
-        return Tensor(shape: lhs.shape, data: result)
-    }
-    
-    static func - (lhs: Tensor<Float>, rhs: Tensor<Float>) -> Tensor<Float> {
-        precondition(lhs.shape == rhs.shape, "Shapes must match for subtraction")
-        var result = [Float](repeating: 0, count: lhs.count)
-        vDSP_vsub(rhs.data, 1, lhs.data, 1, &result, 1, vDSP_Length(lhs.count))
-        return Tensor(shape: lhs.shape, data: result)
-    }
-    
-    static func * (lhs: Tensor<Float>, scalar: Float) -> Tensor<Float> {
-        var result = [Float](repeating: 0, count: lhs.count)
-        var s = scalar
-        vDSP_vsmul(lhs.data, 1, &s, &result, 1, vDSP_Length(lhs.count))
-        return Tensor(shape: lhs.shape, data: result)
-    }
-    
-    static func * (lhs: Tensor<Float>, rhs: Tensor<Float>) -> Tensor<Float> {
-        // Element-wise multiplication
-        precondition(lhs.shape == rhs.shape, "Shapes must match for element-wise multiplication")
-        var result = [Float](repeating: 0, count: lhs.count)
-        vDSP_vmul(lhs.data, 1, rhs.data, 1, &result, 1, vDSP_Length(lhs.count))
-        return Tensor(shape: lhs.shape, data: result)
-    }
-    
-    func matmul(_ other: Tensor<Float>) -> Tensor<Float> {
-        precondition(self.rank == 2 && other.rank == 2, "Matrix multiplication requires 2D tensors")
-        precondition(self.shape[1] == other.shape[0], "Inner dimensions must match")
-        
-        let M = Int32(self.shape[0])
-        let N = Int32(other.shape[1])
-        let K = Int32(self.shape[1])
-        
-        var result = [Float](repeating: 0, count: Int(M * N))
-        
-        cblas_sgemm(
-            CblasRowMajor, CblasNoTrans, CblasNoTrans,
-            M, N, K,
-            1.0,
-            self.data, K,
-            other.data, N,
-            0.0,
-            &result, N
-        )
-        
-        return Tensor(shape: [Int(M), Int(N)], data: result)
-    }
-    
-    func dot(_ other: Tensor<Float>) -> Float {
-        precondition(self.count == other.count, "Vectors must have same length")
-        var result: Float = 0
-        vDSP_dotpr(self.data, 1, other.data, 1, &result, vDSP_Length(count))
-        return result
-    }
-    
-    func sum() -> Float {
-        var result: Float = 0
-        vDSP_sve(data, 1, &result, vDSP_Length(count))
-        return result
-    }
-    
-    func mean() -> Float {
-        var result: Float = 0
-        vDSP_meanv(data, 1, &result, vDSP_Length(count))
-        return result
-    }
-    
-    func variance() -> Float {
-        let m = mean()
-        var meanSq: Float = 0
-        vDSP_measqv(data, 1, &meanSq, vDSP_Length(count))
-        return meanSq - m * m
-    }
-    
-    func std() -> Float {
-        Foundation.sqrt(variance())
-    }
-    
-    func max() -> Float {
-        var result: Float = 0
-        vDSP_maxv(data, 1, &result, vDSP_Length(count))
-        return result
-    }
-    
-    func min() -> Float {
-        var result: Float = 0
-        vDSP_minv(data, 1, &result, vDSP_Length(count))
-        return result
-    }
-    
-    func argmax() -> Int {
-        var maxVal: Float = 0
-        var maxIdx: vDSP_Length = 0
-        vDSP_maxvi(data, 1, &maxVal, &maxIdx, vDSP_Length(count))
-        return Int(maxIdx)
-    }
-    
-    func argmin() -> Int {
-        var minVal: Float = 0
-        var minIdx: vDSP_Length = 0
-        vDSP_minvi(data, 1, &minVal, &minIdx, vDSP_Length(count))
-        return Int(minIdx)
-    }
-    
-    func exp() -> Tensor<Float> {
-        var result = [Float](repeating: 0, count: count)
-        var n = Int32(count)
-        vvexpf(&result, data, &n)
-        return Tensor(shape: shape, data: result)
-    }
-    
-    func log() -> Tensor<Float> {
-        var result = [Float](repeating: 0, count: count)
-        var n = Int32(count)
-        vvlogf(&result, data, &n)
-        return Tensor(shape: shape, data: result)
-    }
-    
-    func sqrt() -> Tensor<Float> {
-        var result = [Float](repeating: 0, count: count)
-        var n = Int32(count)
-        vvsqrtf(&result, data, &n)
-        return Tensor(shape: shape, data: result)
-    }
-    
-    func pow(_ exponent: Float) -> Tensor<Float> {
-        var result = [Float](repeating: 0, count: count)
-        var exp = [Float](repeating: exponent, count: count)
-        var n = Int32(count)
-        vvpowf(&result, &exp, data, &n)
-        return Tensor(shape: shape, data: result)
-    }
-    
-    func clip(min minVal: Float, max maxVal: Float) -> Tensor<Float> {
-        var result = [Float](repeating: 0, count: count)
-        var minV = minVal
-        var maxV = maxVal
-        vDSP_vclip(data, 1, &minV, &maxV, &result, 1, vDSP_Length(count))
-        return Tensor(shape: shape, data: result)
-    }
-    
-    func normalize() -> Tensor<Float> {
-        let m = mean()
-        let s = std()
-        guard s > 0 else { return self.copy() }
-        var result = [Float](repeating: 0, count: count)
-        var negMean = -m
-        vDSP_vsadd(data, 1, &negMean, &result, 1, vDSP_Length(count))
-        var invStd = 1.0 / s
-        vDSP_vsmul(result, 1, &invStd, &result, 1, vDSP_Length(count))
-        return Tensor(shape: shape, data: result)
-    }
-}
-
-// MARK: - Accelerate Optimized Operations (Double)
-public extension Tensor where T == Double {
-    
-    static func + (lhs: Tensor<Double>, rhs: Tensor<Double>) -> Tensor<Double> {
-        precondition(lhs.shape == rhs.shape, "Shapes must match for addition")
-        var result = [Double](repeating: 0, count: lhs.count)
-        vDSP_vaddD(lhs.data, 1, rhs.data, 1, &result, 1, vDSP_Length(lhs.count))
-        return Tensor(shape: lhs.shape, data: result)
-    }
-    
-    static func - (lhs: Tensor<Double>, rhs: Tensor<Double>) -> Tensor<Double> {
-        precondition(lhs.shape == rhs.shape, "Shapes must match for subtraction")
-        var result = [Double](repeating: 0, count: lhs.count)
-        vDSP_vsubD(rhs.data, 1, lhs.data, 1, &result, 1, vDSP_Length(lhs.count))
-        return Tensor(shape: lhs.shape, data: result)
-    }
-    
-    static func * (lhs: Tensor<Double>, scalar: Double) -> Tensor<Double> {
-        var result = [Double](repeating: 0, count: lhs.count)
-        var s = scalar
-        vDSP_vsmulD(lhs.data, 1, &s, &result, 1, vDSP_Length(lhs.count))
-        return Tensor(shape: lhs.shape, data: result)
-    }
-    
-    func matmul(_ other: Tensor<Double>) -> Tensor<Double> {
-        precondition(self.rank == 2 && other.rank == 2, "Matrix multiplication requires 2D tensors")
-        precondition(self.shape[1] == other.shape[0], "Inner dimensions must match")
-        
-        let M = Int32(self.shape[0])
-        let N = Int32(other.shape[1])
-        let K = Int32(self.shape[1])
-        
-        var result = [Double](repeating: 0, count: Int(M * N))
-        
-        cblas_dgemm(
-            CblasRowMajor, CblasNoTrans, CblasNoTrans,
-            M, N, K,
-            1.0,
-            self.data, K,
-            other.data, N,
-            0.0,
-            &result, N
-        )
-        
-        return Tensor(shape: [Int(M), Int(N)], data: result)
-    }
-    
-    func sum() -> Double {
-        var result: Double = 0
-        vDSP_sveD(data, 1, &result, vDSP_Length(count))
-        return result
-    }
-    
-    func mean() -> Double {
-        var result: Double = 0
-        vDSP_meanvD(data, 1, &result, vDSP_Length(count))
-        return result
-    }
-}
-
-// MARK: - Description
-extension Tensor: CustomStringConvertible {
-    public var description: String {
-        "Tensor<\(T.self)>(shape: \(shape), data: \(data.prefix(10))...)"
-    }
 }
