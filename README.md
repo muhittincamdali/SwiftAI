@@ -15,6 +15,9 @@
 
 # SwiftAI
 
+> **Global Search Tags:** Swift machine learning, on-device AI iOS, CoreML alternative, Swift neural network, Accelerate framework Swift, SIMD accelerated math.
+
+
 <p align="center">
   <img src="https://img.shields.io/badge/Swift-5.9+-FA7343?style=for-the-badge&logo=swift&logoColor=white" alt="Swift 5.9+"/>
   <img src="https://img.shields.io/badge/Platform-iOS%2015%2B%20%7C%20macOS%2012%2B-007AFF?style=for-the-badge&logo=apple&logoColor=white" alt="Platform"/>
