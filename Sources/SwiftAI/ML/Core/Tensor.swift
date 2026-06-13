@@ -175,7 +175,14 @@ public struct Tensor<T: TensorNumeric>: Sendable {
             vDSP_meanv(data as! [Float], 1, &result, vDSP_Length(count))
             return result as! T
         }
-        return sum() / T(Double(count))
+        // Generic fallback with manual division
+        let s = sum()
+        if let floatS = s as? Float {
+            return (floatS / Float(count)) as! T
+        } else if let doubleS = s as? Double {
+            return (doubleS / Double(count)) as! T
+        }
+        return s
     }
 
     public func variance() -> T {
@@ -245,7 +252,9 @@ public struct Tensor<T: TensorNumeric>: Sendable {
         precondition(lhs.shape == rhs.shape, "Shapes must match for element-wise multiplication")
         var res = [T](repeating: .zero, count: lhs.count)
         if T.self == Float.self {
-            vDSP_vmul(lhs.data as! [Float], 1, rhs.data as! [Float], 1, &res as! [Float], 1, vDSP_Length(lhs.count))
+            var floatRes = [Float](repeating: 0, count: lhs.count)
+            vDSP_vmul(lhs.data as! [Float], 1, rhs.data as! [Float], 1, &floatRes, 1, vDSP_Length(lhs.count))
+            res = floatRes as! [T]
         } else {
             for i in 0..<lhs.count {
                 res[i] = lhs.data[i] * rhs.data[i]
