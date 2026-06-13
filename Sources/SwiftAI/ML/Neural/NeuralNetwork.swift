@@ -146,6 +146,9 @@ public final class NeuralNetwork: @unchecked Sendable {
                     let inputTensor = Tensor(shape: [trainX[idx].count], data: trainX[idx])
                     let targetTensor = Tensor(shape: [trainY[idx].count], data: trainY[idx])
                     
+                    // Reset gradients for each sample accumulation
+                    for layer in layers { layer.zeroGradients() }
+                    
                     // Forward
                     let output = forward(inputTensor, training: true)
                     
@@ -160,8 +163,10 @@ public final class NeuralNetwork: @unchecked Sendable {
                     // Accumulate gradients
                     let layerGrads = collectGradients()
                     for i in 0..<allGradients.count {
-                        for j in 0..<allGradients[i].count {
-                            allGradients[i].data[j] += layerGrads[i].data[j]
+                        if i < layerGrads.count {
+                            for j in 0..<allGradients[i].count {
+                                allGradients[i].data[j] += layerGrads[i].data[j]
+                            }
                         }
                     }
                 }
@@ -266,14 +271,18 @@ public final class NeuralNetwork: @unchecked Sendable {
     private func applyParameters(_ params: [Tensor<Float>]) {
         var idx = 0
         for layer in layers {
-            for param in layer.parameters {
-                if idx < params.count {
-                    for i in 0..<param.data.count {
-                        param.data[i] = params[idx].data[i]
-                    }
-                }
-                idx += 1
+            let layerParamsCount = layer.parameters.count
+            if idx + layerParamsCount <= params.count {
+                let layerParams = Array(params[idx..<(idx + layerParamsCount)])
+                layer.updateParameters(layerParams)
             }
+            idx += layerParamsCount
+        }
+    }
+    
+    public func zeroGradients() {
+        for layer in layers {
+            layer.zeroGradients()
         }
     }
     
@@ -351,13 +360,17 @@ public final class NeuralNetwork: @unchecked Sendable {
         let state = try JSONDecoder().decode([String: [[Float]]].self, from: data)
         
         for (i, layer) in layers.enumerated() {
-            for (j, param) in layer.parameters.enumerated() {
+            let layerParamsCount = layer.parameters.count
+            var newLayerParams: [Tensor<Float>] = []
+            for j in 0..<layerParamsCount {
                 if let savedData = state["layer_\(i)_param_\(j)"]?.first {
-                    precondition(savedData.count == param.count, "Parameter size mismatch")
-                    for k in 0..<param.count {
-                        param.data[k] = savedData[k]
-                    }
+                    let oldParam = layer.parameters[j]
+                    let newParam = Tensor<Float>(shape: oldParam.shape, data: savedData)
+                    newLayerParams.append(newParam)
                 }
+            }
+            if !newLayerParams.isEmpty {
+                layer.updateParameters(newLayerParams)
             }
         }
     }

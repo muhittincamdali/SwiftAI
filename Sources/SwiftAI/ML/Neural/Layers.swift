@@ -13,6 +13,8 @@ public protocol Layer: AnyObject, Sendable {
     
     func forward(_ input: Tensor<Float>) -> Tensor<Float>
     func backward(_ gradient: Tensor<Float>) -> Tensor<Float>
+    func updateParameters(_ newParams: [Tensor<Float>])
+    func zeroGradients()
     
     var name: String { get }
     var inputShape: [Int]? { get }
@@ -24,6 +26,22 @@ public final class Dense: Layer, @unchecked Sendable {
     public let name: String
     public var inputShape: [Int]? { [inputSize] }
     public var outputShape: [Int]? { [outputSize] }
+    
+    public func updateParameters(_ newParams: [Tensor<Float>]) {
+        if useBias && newParams.count >= 2 {
+            weights = newParams[0]
+            bias = newParams[1]
+        } else if !newParams.isEmpty {
+            weights = newParams[0]
+        }
+    }
+    
+    public func zeroGradients() {
+        weightsGrad = Tensor<Float>.zeros(weights.shape)
+        if useBias {
+            biasGrad = Tensor<Float>.zeros(bias?.shape ?? [outputSize])
+        }
+    }
     
     public let inputSize: Int
     public let outputSize: Int
@@ -132,6 +150,9 @@ public final class ActivationLayer: Layer, @unchecked Sendable {
     public var inputShape: [Int]?
     public var outputShape: [Int]? { inputShape }
     
+    public func updateParameters(_ newParams: [Tensor<Float>]) {}
+    public func zeroGradients() {}
+    
     public let activation: any Activation
     
     public var parameters: [Tensor<Float>] { [] }
@@ -164,6 +185,9 @@ public final class Dropout: Layer, @unchecked Sendable {
     public let name: String
     public var inputShape: [Int]?
     public var outputShape: [Int]? { inputShape }
+    
+    public func updateParameters(_ newParams: [Tensor<Float>]) {}
+    public func zeroGradients() {}
     
     public let rate: Float
     
@@ -209,6 +233,18 @@ public final class BatchNorm: Layer, @unchecked Sendable {
     public let name: String
     public var inputShape: [Int]?
     public var outputShape: [Int]? { inputShape }
+    
+    public func updateParameters(_ newParams: [Tensor<Float>]) {
+        if newParams.count >= 2 {
+            gamma = newParams[0]
+            beta = newParams[1]
+        }
+    }
+    
+    public func zeroGradients() {
+        gammaGrad = Tensor<Float>.zeros(gamma.shape)
+        betaGrad = Tensor<Float>.zeros(beta.shape)
+    }
     
     public let numFeatures: Int
     public let epsilon: Float
@@ -324,6 +360,18 @@ public final class LayerNorm: Layer, @unchecked Sendable {
     public var inputShape: [Int]?
     public var outputShape: [Int]? { inputShape }
     
+    public func updateParameters(_ newParams: [Tensor<Float>]) {
+        if newParams.count >= 2 {
+            gamma = newParams[0]
+            beta = newParams[1]
+        }
+    }
+    
+    public func zeroGradients() {
+        gammaGrad = Tensor<Float>.zeros(gamma.shape)
+        betaGrad = Tensor<Float>.zeros(beta.shape)
+    }
+    
     public let normalizedShape: [Int]
     public let epsilon: Float
     
@@ -418,6 +466,9 @@ public final class Flatten: Layer, @unchecked Sendable {
         return [shape.reduce(1, *)]
     }
     
+    public func updateParameters(_ newParams: [Tensor<Float>]) {}
+    public func zeroGradients() {}
+    
     public var parameters: [Tensor<Float>] { [] }
     public var gradients: [Tensor<Float>] { [] }
     
@@ -445,6 +496,16 @@ public final class Embedding: Layer, @unchecked Sendable {
     public let name: String
     public var inputShape: [Int]? { [1] }
     public var outputShape: [Int]? { [embeddingDim] }
+    
+    public func updateParameters(_ newParams: [Tensor<Float>]) {
+        if !newParams.isEmpty {
+            weights = newParams[0]
+        }
+    }
+    
+    public func zeroGradients() {
+        weightsGrad = Tensor<Float>.zeros(weights.shape)
+    }
     
     public let numEmbeddings: Int
     public let embeddingDim: Int
