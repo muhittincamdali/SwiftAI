@@ -75,6 +75,14 @@ xychart-beta
 
 ---
 
+### Neural Model Bridge (LLMs & CoreML)
+Bypass Python entirely. Load, compile, and run external models directly in pure Swift.
+
+```swift
+// Load a compiled CoreML model or quantized LLM directly into the engine
+try await ModelBridge.shared.loadLLM(name: "Llama-3-8B-4bit")
+```
+
 ## Quick Start
 
 ### Installation
