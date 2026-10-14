@@ -30,14 +30,14 @@ struct BoundaryPanel: Identifiable, Sendable {
     /// Trains four classifiers on the petal features and predicts every grid cell.
     static func iris() throws -> [BoundaryPanel] {
         let data = try petalData()
-        func scaled(_ fit: @escaping (Dataset<String>) throws -> any Classifier<String>) -> (Dataset<String>) throws -> any Classifier<String> {
-            { training in try ScaledModel.fit(training, fit) }
+        func scaled(_ fit: @escaping (Dataset<String>) throws -> FittedModel) -> (Dataset<String>) throws -> FittedModel {
+            { training in try FittedModel(ScaledModel.fit(training, fit)) }
         }
-        let models: [(String, (Dataset<String>) throws -> any Classifier<String>)] = [
-            ("k-nearest neighbours", scaled { try KNearestNeighborsClassifier.fit($0, k: 15) }),
-            ("Logistic regression", scaled { try LogisticRegression.fit($0) }),
-            ("Decision tree", { try DecisionTreeClassifier.fit($0, maxDepth: 3) }),
-            ("Neural network", scaled { try NeuralNetworkClassifier.fit($0, hiddenLayers: [16], learningRate: 0.01, epochs: 300, seed: 1) }),
+        let models: [(String, (Dataset<String>) throws -> FittedModel)] = [
+            ("k-nearest neighbours", scaled { try FittedModel(KNearestNeighborsClassifier.fit($0, k: 15)) }),
+            ("Logistic regression", scaled { try FittedModel(LogisticRegression.fit($0)) }),
+            ("Decision tree", { try FittedModel(DecisionTreeClassifier.fit($0, maxDepth: 3)) }),
+            ("Neural network", scaled { try FittedModel(NeuralNetworkClassifier.fit($0, hiddenLayers: [16], learningRate: 0.01, epochs: 300, seed: 1)) }),
         ]
         return try models.map { name, fit in
             let scores = try data.stratifiedFolds(5, seed: 0).map { fold in
@@ -60,12 +60,30 @@ struct BoundaryPanel: Identifiable, Sendable {
     }
 }
 
-/// A standard scaler in front of a model, erased to `any Classifier` so different models fit in one list.
+/// Any classifier of `String` labels, so different models fit in one list. A closure instead of
+/// `any Classifier<String>`, which would need the iOS 16 runtime while the package supports iOS 15.
+struct FittedModel: Classifier {
+    let featureCount: Int
+    let classes: [String]
+    private let predictLabel: @Sendable ([Double]) throws -> String
+
+    init<Model: Classifier>(_ model: Model) where Model.Label == String {
+        featureCount = model.featureCount
+        classes = model.classes
+        predictLabel = { try model.predict($0) }
+    }
+
+    func predict(_ sample: [Double]) throws -> String {
+        try predictLabel(sample)
+    }
+}
+
+/// A standard scaler in front of a model.
 struct ScaledModel: Classifier {
     let scaler: StandardScaler
-    let model: any Classifier<String>
+    let model: FittedModel
 
-    static func fit(_ data: Dataset<String>, _ fit: (Dataset<String>) throws -> any Classifier<String>) throws -> ScaledModel {
+    static func fit(_ data: Dataset<String>, _ fit: (Dataset<String>) throws -> FittedModel) throws -> ScaledModel {
         let scaler = try StandardScaler.fit(data)
         return ScaledModel(scaler: scaler, model: try fit(scaler.transform(data)))
     }
