@@ -56,7 +56,9 @@ public struct Dataset<Target: Sendable>: Sendable {
     /// The number of features per sample.
     public var featureCount: Int { features.columns }
 
-    /// The samples at `indices`, in that order.
+    /// The samples at `indices`, in that order. Indices may repeat.
+    ///
+    /// - Precondition: Every index is in `0..<count`, as for an array subscript.
     public func subset(_ indices: [Int]) -> Dataset {
         Dataset(validFeatures: features.selectingRows(indices), targets: indices.map { targets[$0] })
     }
