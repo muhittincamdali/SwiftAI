@@ -1,0 +1,7 @@
+version: 1
+builder:
+  configs:
+    - platform: ios
+      scheme: SwiftAI
+      documentation_targets: [SwiftAI]
+    - platform: macos-spm
