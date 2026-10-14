@@ -92,4 +92,18 @@ struct MetricsTests {
             try ClassificationReport<Int>(actual: [], predicted: [])
         }
     }
+
+    @Test("Regression metrics reject NaN and infinite values and sums that overflow")
+    func nonFiniteInput() {
+        for metric in [Metrics.meanSquaredError, Metrics.meanAbsoluteError, Metrics.r2Score] {
+            #expect(throws: SwiftAIError.invalidParameter(name: "actual", reason: "contains NaN or infinite values")) {
+                try metric([1, .nan], [1, 2])
+            }
+            #expect(throws: SwiftAIError.invalidParameter(name: "predicted", reason: "contains NaN or infinite values")) {
+                try metric([1, 2], [1, -.infinity])
+            }
+            #expect(throws: SwiftAIError.self) { try metric([1e308, -1e308], [-1e308, 1e308]) }
+        }
+        #expect(throws: SwiftAIError.self) { try Metrics.logLoss(actual: [0], probabilities: [[.nan, 1]]) }
+    }
 }
