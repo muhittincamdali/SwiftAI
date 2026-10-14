@@ -1,0 +1,54 @@
+{
+  "name": "SwiftAI",
+  "repository": "muhittincamdali/SwiftAI",
+  "branch": "master",
+  "tagline": {
+    "en": "Machine learning in pure Swift: train, evaluate and save models on device.",
+    "tr": "Saf Swift ile makine öğrenmesi: modelleri cihazda eğitin, değerlendirin ve kaydedin.",
+    "zh-CN": "纯 Swift 机器学习：在设备上训练、评估和保存模型。",
+    "ja": "純粋な Swift による機械学習。モデルをデバイス上で学習、評価、保存。",
+    "ko": "순수 Swift 머신러닝: 기기에서 모델을 학습하고 평가하고 저장합니다.",
+    "es": "Aprendizaje automático en Swift puro: entrena, evalúa y guarda modelos en el dispositivo.",
+    "de": "Maschinelles Lernen in reinem Swift: Modelle auf dem Gerät trainieren, bewerten und speichern.",
+    "fr": "L’apprentissage automatique en Swift pur : entraînez, évaluez et enregistrez des modèles sur l’appareil.",
+    "pt-BR": "Aprendizado de máquina em Swift puro: treine, avalie e salve modelos no dispositivo.",
+    "ru": "Машинное обучение на чистом Swift: обучайте, оценивайте и сохраняйте модели на устройстве."
+  },
+  "tags": {
+    "en": ["Pure Swift", "Swift 6", "On-device", "No dependencies"],
+    "tr": ["Saf Swift", "Swift 6", "Cihaz üzerinde", "Bağımlılık yok"],
+    "zh-CN": ["纯 Swift", "Swift 6", "设备端", "无依赖"],
+    "ja": ["純粋な Swift", "Swift 6", "オンデバイス", "依存関係なし"],
+    "ko": ["순수 Swift", "Swift 6", "온디바이스", "의존성 없음"],
+    "es": ["Swift puro", "Swift 6", "En el dispositivo", "Sin dependencias"],
+    "de": ["Reines Swift", "Swift 6", "Auf dem Gerät", "Keine Abhängigkeiten"],
+    "fr": ["Swift pur", "Swift 6", "Sur l’appareil", "Sans dépendances"],
+    "pt-BR": ["Swift puro", "Swift 6", "No dispositivo", "Sem dependências"],
+    "ru": ["Чистый Swift", "Swift 6", "На устройстве", "Без зависимостей"]
+  },
+  "motif": "code",
+  "buttons": ["start", "docs", "examples"],
+  "links": {
+    "docs": "https://muhittincamdali.github.io/SwiftAI/documentation/swiftai/",
+    "examples": "Examples/"
+  },
+  "languages": [
+    "en",
+    "tr",
+    "zh-CN",
+    "ja",
+    "ko",
+    "es",
+    "de",
+    "fr",
+    "pt-BR",
+    "ru"
+  ],
+  "docc": {
+    "targets": ["SwiftAI"]
+  },
+  "socialTheme": "dark",
+  "badgeOverrides": {
+    "versionNote": "older than master"
+  }
+}
