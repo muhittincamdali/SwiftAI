@@ -4,7 +4,7 @@
 /// for regression they are `Double` values.
 ///
 /// ```swift
-/// let houses = try Dataset(
+/// let houses = try Dataset<Double>(
 ///     features: [[50], [80], [120]],     // size in square metres
 ///     targets: [150_000, 240_000, 360_000]
 /// )

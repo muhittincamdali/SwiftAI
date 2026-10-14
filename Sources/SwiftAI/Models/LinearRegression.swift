@@ -6,8 +6,8 @@
 /// scikit-learn's `Ridge`; the intercept is not penalized.
 ///
 /// ```swift
-/// let houses = try Dataset(features: [[50, 1], [80, 2], [120, 3], [65, 1]],
-///                          targets: [150_000, 245_000, 350_000, 190_000])
+/// let houses = try Dataset<Double>(features: [[50, 1], [80, 2], [120, 3], [65, 1]],
+///                                  targets: [150_000, 245_000, 350_000, 190_000])
 /// let model = try LinearRegression.fit(houses)
 /// let price = try model.predict([100, 2])
 /// ```
