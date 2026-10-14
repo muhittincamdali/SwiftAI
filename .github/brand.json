@@ -47,8 +47,5 @@
   "docc": {
     "targets": ["SwiftAI"]
   },
-  "socialTheme": "dark",
-  "badgeOverrides": {
-    "versionNote": "older than master"
-  }
+  "socialTheme": "dark"
 }
