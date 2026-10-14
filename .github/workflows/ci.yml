@@ -1,45 +1,20 @@
+# Managed by the repository kit (muhittincamdali/.github). Edit the inputs, keep the structure.
 name: CI
 
 on:
   push:
-    branches: [ master, develop ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+  workflow_dispatch:
+
+permissions: {}
 
 jobs:
-  build-and-test:
-    runs-on: macos-14
-    strategy:
-      matrix:
-        swift: ['5.9', '5.10']
-    
-    steps:
-    - uses: actions/checkout@v4
-    
-    - name: Select Swift Version
-      run: |
-        if [ "${{ matrix.swift }}" = "5.10" ]; then
-          sudo xcode-select -s /Applications/Xcode_15.4.app
-        else
-          sudo xcode-select -s /Applications/Xcode_15.2.app
-        fi
-        swift --version
-    
-    - name: Build
-      run: swift build -v
-    
-    - name: Run Tests
-      run: swift test -v
-
-  build-ios:
-    runs-on: macos-14
-    steps:
-    - uses: actions/checkout@v4
-    
-    - name: Build for iOS
-      run: |
-        xcodebuild build \
-          -scheme SwiftAI \
-          -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
-          -skipPackagePluginValidation \
-          | tail -20
+  swift:
+    permissions:
+      contents: read
+    uses: muhittincamdali/.github/.github/workflows/swift-ci.yml@5d3c4432dae8895b16ce3caa2f78398966953212 # v1
+    with:
+      platforms: '["iOS","macOS","tvOS","watchOS","visionOS"]'
+      scheme: SwiftAI
+      test-on-simulator: true
