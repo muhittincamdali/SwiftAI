@@ -1,7 +1,4 @@
-// swift-tools-version: 5.9
-// SwiftAI - Pure Swift Machine Learning Framework
-// Copyright © 2024 Muhittin Camdali. All rights reserved.
-
+// swift-tools-version: 6.2
 import PackageDescription
 
 let package = Package(
@@ -10,29 +7,20 @@ let package = Package(
         .iOS(.v15),
         .macOS(.v12),
         .tvOS(.v15),
-        .watchOS(.v8)
+        .watchOS(.v8),
+        .visionOS(.v1)
     ],
     products: [
-        .library(
-            name: "SwiftAI",
-            targets: ["SwiftAI"]
-        )
-    ],
-    dependencies: [
-        .package(url: "https://github.com/apple/swift-numerics", from: "1.0.0")
+        .library(name: "SwiftAI", targets: ["SwiftAI"])
     ],
     targets: [
         .target(
             name: "SwiftAI",
-            dependencies: [
-                .product(name: "Numerics", package: "swift-numerics")
-            ],
             path: "Sources/SwiftAI"
         ),
         .testTarget(
             name: "SwiftAITests",
-            dependencies: ["SwiftAI"],
-            path: "Tests/SwiftAITests"
+            dependencies: ["SwiftAI"]
         )
     ]
 )
