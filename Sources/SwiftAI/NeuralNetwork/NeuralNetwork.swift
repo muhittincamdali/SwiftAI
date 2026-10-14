@@ -24,6 +24,7 @@ public struct NeuralNetworkClassifier<Label: Hashable & Sendable>: Probabilistic
     /// Trains the network.
     ///
     /// - Parameters:
+    ///   - data: Samples with at least two different labels.
     ///   - hiddenLayers: The number of units in each hidden layer, for example `[32, 16]`.
     ///   - learningRate: Adam's step size.
     ///   - epochs: The most passes over the training data.

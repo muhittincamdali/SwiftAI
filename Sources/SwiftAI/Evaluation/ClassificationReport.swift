@@ -31,7 +31,10 @@ public struct ClassificationReport<Label: Hashable & Sendable>: Sendable, Equata
 
     /// Compares predicted with actual labels.
     ///
-    /// - Parameter classes: The order of the classes in the report; see
+    /// - Parameters:
+    ///   - actual: The true label of each sample.
+    ///   - predicted: The predicted label of each sample, in the same order.
+    ///   - classes: The order of the classes in the report; see
     ///   ``ConfusionMatrix/init(actual:predicted:classes:)``.
     public init(actual: [Label], predicted: [Label], classes: [Label] = []) throws {
         let matrix = try ConfusionMatrix(actual: actual, predicted: predicted, classes: classes)

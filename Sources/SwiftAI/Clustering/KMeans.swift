@@ -24,6 +24,7 @@ public struct KMeans: Sendable, Equatable, Codable {
     /// Finds `clusterCount` clusters in the rows of `features`.
     ///
     /// - Parameters:
+    ///   - features: The samples, one per row.
     ///   - clusterCount: The number of clusters, between 1 and the number of distinct samples.
     ///   - maxIterations: The most update rounds per run.
     ///   - tolerance: A run stops when the centroids move less than this, relative to the mean

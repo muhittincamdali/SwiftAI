@@ -19,7 +19,9 @@ public struct CSVTable: Sendable, Equatable {
 
     /// Parses CSV text.
     ///
-    /// - Parameter separator: The field separator, for example `;` or a tab.
+    /// - Parameters:
+    ///   - text: The CSV text, header row first.
+    ///   - separator: The field separator, for example `;` or a tab.
     /// - Throws: ``SwiftAIError/invalidCSV(line:reason:)`` for a missing header, an unterminated
     ///   quote, duplicate column names or a row with the wrong number of fields.
     public init(_ text: String, separator: Character = ",") throws {
@@ -63,7 +65,7 @@ public struct CSVTable: Sendable, Equatable {
     ///
     /// - Throws: ``SwiftAIError/invalidParameter(name:reason:)`` when there is no such column,
     ///   ``SwiftAIError/invalidCSV(line:reason:)`` for a feature that is not a number, and the
-    ///   errors of ``Dataset/init(features:targets:)``.
+    ///   errors of ``Dataset/init(features:targets:)-(Matrix,_)``.
     public func classificationDataset(target: String) throws -> Dataset<String> {
         let column = try columnIndex(target)
         return try Dataset(features: numericFeatures(excluding: column), targets: rows.map { $0[column].trimmingCharacters(in: .whitespaces) })

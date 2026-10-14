@@ -28,6 +28,7 @@ public struct DecisionTreeClassifier<Label: Hashable & Sendable>: ProbabilisticC
     /// result is deterministic.
     ///
     /// - Parameters:
+    ///   - data: The training samples.
     ///   - maxDepth: The most splits from the root to a leaf; `nil` grows until leaves are pure.
     ///   - minSamplesSplit: A node needs at least this many samples to be split (at least 2).
     ///   - minSamplesLeaf: Every leaf keeps at least this many samples.

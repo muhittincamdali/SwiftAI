@@ -27,12 +27,12 @@ public struct Pipeline<Transformer: FeatureTransformer, Model: Sendable>: Sendab
     ///   - model: Trains the model on the transformed data.
     public static func fit<Target>(
         _ data: Dataset<Target>,
-        transformer makeTransformer: (Matrix) throws -> Transformer,
-        model makeModel: (Dataset<Target>) throws -> Model
+        transformer: (Matrix) throws -> Transformer,
+        model: (Dataset<Target>) throws -> Model
     ) throws -> Pipeline {
-        let transformer = try makeTransformer(data.features)
-        let model = try makeModel(transformer.transform(data))
-        return Pipeline(transformer: transformer, model: model)
+        let fittedTransformer = try transformer(data.features)
+        let trainedModel = try model(fittedTransformer.transform(data))
+        return Pipeline(transformer: fittedTransformer, model: trainedModel)
     }
 
     init(transformer: Transformer, model: Model) {

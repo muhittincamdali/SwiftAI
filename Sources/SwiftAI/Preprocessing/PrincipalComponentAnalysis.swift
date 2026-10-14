@@ -25,8 +25,10 @@ public struct PrincipalComponentAnalysis: FeatureTransformer, Codable, Equatable
 
     /// Computes the principal components of the rows of `features`.
     ///
-    /// - Parameter componentCount: The number of components to keep, between 1 and the feature
-    ///   count; all of them when `nil`.
+    /// - Parameters:
+    ///   - features: The training samples, one per row.
+    ///   - componentCount: The number of components to keep, between 1 and the feature count;
+    ///     all of them when `nil`.
     /// - Throws: ``SwiftAIError/insufficientSamples(required:actual:)`` with fewer than two
     ///   samples, ``SwiftAIError/invalidParameter(name:reason:)`` for an invalid count or values
     ///   too large to compute with.

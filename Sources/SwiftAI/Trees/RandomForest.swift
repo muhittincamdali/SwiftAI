@@ -23,6 +23,7 @@ public struct RandomForestClassifier<Label: Hashable & Sendable>: ProbabilisticC
     /// Trains the forest.
     ///
     /// - Parameters:
+    ///   - data: The training samples.
     ///   - treeCount: The number of trees, at least 1.
     ///   - maxDepth: The most splits from the root to a leaf in each tree; `nil` for no limit.
     ///   - minSamplesLeaf: Every leaf keeps at least this many samples.
@@ -109,9 +110,13 @@ public struct RandomForestRegressor: Regressor, Equatable, Codable {
     /// Trains the forest.
     ///
     /// - Parameters:
+    ///   - data: The training samples.
+    ///   - treeCount: The number of trees, at least 1.
+    ///   - maxDepth: The most splits from the root to a leaf in each tree; `nil` for no limit.
+    ///   - minSamplesLeaf: Every leaf keeps at least this many samples.
     ///   - maxFeatures: The features tried at each split; all of them when `nil`, as in
     ///     scikit-learn.
-    ///   - The other parameters are those of ``RandomForestClassifier/fit(_:treeCount:maxDepth:minSamplesLeaf:maxFeatures:seed:)``.
+    ///   - seed: Determines the bootstrap samples and feature subsets.
     /// - Throws: ``SwiftAIError/invalidParameter(name:reason:)`` for invalid settings or targets
     ///   too large to compute with, and ``SwiftAIError/nonFiniteTarget(row:)``.
     public static func fit(

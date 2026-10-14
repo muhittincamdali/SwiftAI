@@ -11,6 +11,8 @@ public struct ConfusionMatrix<Label: Hashable & Sendable>: Sendable, Equatable {
     /// Counts the pairs of actual and predicted labels.
     ///
     /// - Parameters:
+    ///   - actual: The true label of each sample.
+    ///   - predicted: The predicted label of each sample, in the same order.
     ///   - classes: The row and column order. Labels that appear in the data but not here are
     ///     appended in order of first appearance. Defaults to the order of first appearance.
     /// - Throws: ``SwiftAIError/emptyDataset`` or
