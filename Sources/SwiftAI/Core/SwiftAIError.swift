@@ -29,6 +29,8 @@ public enum SwiftAIError: Error, Equatable, Sendable {
     /// A saved model was written by an incompatible version of SwiftAI or its values do not fit
     /// together.
     case unreadableModel(reason: String)
+    /// CSV text could not be read into a table or dataset.
+    case invalidCSV(line: Int, reason: String)
 }
 
 extension SwiftAIError: LocalizedError {
@@ -56,6 +58,8 @@ extension SwiftAIError: LocalizedError {
             "The equations have no unique solution. Remove duplicated or constant features, or add regularization."
         case let .unreadableModel(reason):
             "The saved model cannot be read: \(reason)"
+        case let .invalidCSV(line, reason):
+            "CSV line \(line): \(reason)"
         }
     }
 }
