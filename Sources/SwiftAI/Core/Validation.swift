@@ -64,3 +64,13 @@ func checkedProduct(_ lhs: Int, _ rhs: Int) -> Int? {
     let (product, overflow) = lhs.multipliedReportingOverflow(by: rhs)
     return overflow ? nil : product
 }
+
+/// Checks that statistics computed from finite input did not overflow (values near
+/// `Double.greatestFiniteMagnitude` can add up to infinity).
+func requireRepresentable(_ values: [Double]) throws {
+    guard values.allSatisfy(\.isFinite) else {
+        throw SwiftAIError.invalidParameter(
+            name: "features", reason: "the values are too large to compute with; rescale them first"
+        )
+    }
+}
