@@ -122,6 +122,30 @@ struct MatrixTests {
         }
     }
 
+    // 2^32 × 2^32 overflows Int; 2^62 × 4 also does. Both must be a decoding error, not a trap.
+    @Test(
+        "Decoding rejects shapes whose value count overflows or is negative",
+        arguments: [
+            #"{"rows":4294967296,"columns":4294967296,"values":[]}"#,
+            #"{"rows":4611686018427387904,"columns":4,"values":[]}"#,
+            #"{"rows":-1,"columns":-1,"values":[1]}"#,
+            #"{"rows":-2,"columns":0,"values":[]}"#,
+        ]
+    )
+    func decodingRejectsOverflowingShape(json: String) {
+        #expect(throws: DecodingError.self) {
+            try JSONDecoder().decode(Matrix.self, from: Data(json.utf8))
+        }
+    }
+
+    @Test("Overflow-checked products")
+    func checkedProducts() {
+        #expect(checkedProduct(3, 4) == 12)
+        #expect(checkedProduct(0, .max) == 0)
+        #expect(checkedProduct(1 << 32, 1 << 32) == nil)
+        #expect(checkedProduct(-1, 2) == nil)
+    }
+
     @Test("Description lists the shape and rows")
     func description() throws {
         let matrix = try Matrix([[1, 2]])

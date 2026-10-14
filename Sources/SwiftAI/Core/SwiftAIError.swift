@@ -15,6 +15,8 @@ public enum SwiftAIError: Error, Equatable, Sendable {
     case featureCountMismatch(expected: Int, actual: Int)
     /// A feature value is NaN or infinite.
     case nonFiniteValue(row: Int, column: Int)
+    /// A regression target is NaN or infinite.
+    case nonFiniteTarget(row: Int)
     /// A parameter is outside its valid range.
     case invalidParameter(name: String, reason: String)
     /// The operation needs more samples than the data has.
@@ -42,6 +44,8 @@ extension SwiftAIError: LocalizedError {
             "The model expects \(expected) features per sample, but got \(actual)."
         case let .nonFiniteValue(row, column):
             "The value in row \(row), column \(column) is NaN or infinite."
+        case let .nonFiniteTarget(row):
+            "The target of row \(row) is NaN or infinite."
         case let .invalidParameter(name, reason):
             "Invalid \(name): \(reason)"
         case let .insufficientSamples(required, actual):

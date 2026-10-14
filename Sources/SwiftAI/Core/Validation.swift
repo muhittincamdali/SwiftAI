@@ -46,3 +46,21 @@ func requireConsistent(_ condition: Bool, _ reason: @autoclosure () -> String) t
         throw SwiftAIError.unreadableModel(reason: reason())
     }
 }
+
+func checkFinite(targets: [Double]) throws {
+    for (row, value) in targets.enumerated() where !value.isFinite {
+        throw SwiftAIError.nonFiniteTarget(row: row)
+    }
+}
+
+/// Checks that a value from a saved model is finite.
+func requireFinite(_ values: [Double], _ name: String) throws {
+    try requireConsistent(values.allSatisfy(\.isFinite), "\(name) contains NaN or infinite values")
+}
+
+/// The product of two non-negative counts, or `nil` when it does not fit in an `Int`.
+func checkedProduct(_ lhs: Int, _ rhs: Int) -> Int? {
+    guard lhs >= 0, rhs >= 0 else { return nil }
+    let (product, overflow) = lhs.multipliedReportingOverflow(by: rhs)
+    return overflow ? nil : product
+}

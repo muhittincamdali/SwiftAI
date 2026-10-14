@@ -21,20 +21,24 @@ public struct Matrix: Sendable, Hashable {
 
     /// Creates a matrix with every value set to `value`.
     ///
-    /// - Precondition: `rows` and `columns` are not negative.
+    /// - Precondition: `rows` and `columns` are not negative and their product fits in an `Int`.
     public init(rows: Int, columns: Int, repeating value: Double = 0) {
-        precondition(rows >= 0 && columns >= 0, "Matrix dimensions must not be negative")
+        guard let count = checkedProduct(rows, columns) else {
+            preconditionFailure("A \(rows)×\(columns) matrix has negative or too many values")
+        }
         self.rows = rows
         self.columns = columns
-        self.values = Array(repeating: value, count: rows * columns)
+        self.values = Array(repeating: value, count: count)
     }
 
     /// Creates a matrix from values in row-major order.
     ///
     /// - Precondition: `values.count == rows * columns`.
     public init(rows: Int, columns: Int, values: [Double]) {
-        precondition(rows >= 0 && columns >= 0, "Matrix dimensions must not be negative")
-        precondition(values.count == rows * columns, "Expected \(rows * columns) values, got \(values.count)")
+        precondition(
+            checkedProduct(rows, columns) == values.count,
+            "\(values.count) values do not fill a \(rows)×\(columns) matrix"
+        )
         self.rows = rows
         self.columns = columns
         self.values = values
@@ -49,7 +53,7 @@ public struct Matrix: Sendable, Hashable {
     public init(_ rowArrays: [[Double]]) throws {
         let columns = rowArrays.first?.count ?? 0
         var values: [Double] = []
-        values.reserveCapacity(rowArrays.count * columns)
+        values.reserveCapacity(checkedProduct(rowArrays.count, columns) ?? 0)
         for (index, row) in rowArrays.enumerated() {
             guard row.count == columns else {
                 throw SwiftAIError.raggedRows(row: index, expectedColumns: columns, actualColumns: row.count)
@@ -161,7 +165,9 @@ extension Matrix: Codable {
         let rows = try container.decode(Int.self, forKey: .rows)
         let columns = try container.decode(Int.self, forKey: .columns)
         let values = try container.decode([Double].self, forKey: .values)
-        guard rows >= 0, columns >= 0, values.count == rows * columns else {
+        // The shape comes from the file, so the product is checked: a crafted file with huge
+        // dimensions must be rejected, not overflow.
+        guard checkedProduct(rows, columns) == values.count else {
             throw DecodingError.dataCorruptedError(
                 forKey: .values, in: container,
                 debugDescription: "\(values.count) values do not fill a \(rows)×\(columns) matrix"
