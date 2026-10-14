@@ -74,3 +74,13 @@ func requireRepresentable(_ values: [Double]) throws {
         )
     }
 }
+
+/// Returns a prediction, or throws when finite inputs produced an infinite or NaN result.
+func finitePrediction(_ value: Double) throws -> Double {
+    guard value.isFinite else {
+        throw SwiftAIError.invalidParameter(
+            name: "sample", reason: "the prediction is too large to represent; rescale the features"
+        )
+    }
+    return value
+}
