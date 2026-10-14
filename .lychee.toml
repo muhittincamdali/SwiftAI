@@ -18,6 +18,19 @@ include_fragments = "anchor-only"
 # 403/429 from rate limiting are not broken links; everything else outside 2xx is.
 accept = ["200..=299", "403", "429"]
 
+# Pages and raw.githubusercontent.com serve the default branch, so a pull request that adds a
+# file or a DocC article would fail until it is merged. Check the checkout instead: the same
+# file must exist, which also keeps the check honest after the merge. The path is where the
+# shared workflow's runner checks this repository out.
+remap = [
+  '^https://raw\.githubusercontent\.com/muhittincamdali/SwiftAI/master/(.*)$ file:///home/runner/work/SwiftAI/SwiftAI/$1',
+  '^https://muhittincamdali\.github\.io/SwiftAI/documentation/swiftai/?$ file:///home/runner/work/SwiftAI/SwiftAI/Sources/SwiftAI/SwiftAI.docc/SwiftAI.md',
+  '^https://muhittincamdali\.github\.io/SwiftAI/documentation/swiftai/choosingamodel/?$ file:///home/runner/work/SwiftAI/SwiftAI/Sources/SwiftAI/SwiftAI.docc/ChoosingAModel.md',
+  '^https://muhittincamdali\.github\.io/SwiftAI/documentation/swiftai/gettingstarted/?$ file:///home/runner/work/SwiftAI/SwiftAI/Sources/SwiftAI/SwiftAI.docc/GettingStarted.md',
+  '^https://muhittincamdali\.github\.io/SwiftAI/documentation/swiftai/preparingdata/?$ file:///home/runner/work/SwiftAI/SwiftAI/Sources/SwiftAI/SwiftAI.docc/PreparingData.md',
+  '^https://muhittincamdali\.github\.io/SwiftAI/documentation/swiftai/savingmodels/?$ file:///home/runner/work/SwiftAI/SwiftAI/Sources/SwiftAI/SwiftAI.docc/SavingModels.md',
+]
+
 exclude_loopback = true
 exclude_private = true
 exclude_link_local = true
