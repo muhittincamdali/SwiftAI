@@ -1,4 +1,4 @@
-<!-- i18n-source: README.md@f259cb6cdf7b9b545881d4d6ec8eef1e0f111f95 status=reviewed -->
+<!-- i18n-source: README.md@e0c55bc21df63f9a2618b00bda59aa525f4235d2 status=reviewed -->
 <!-- brand:start -->
 
 <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftAI/master/.github/brand/banner-fr-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftAI/master/.github/brand/banner-fr-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftAI/master/.github/brand/banner-fr-light.svg" alt="SwiftAI: L’apprentissage automatique en Swift pur : entraînez, évaluez et enregistrez des modèles sur l’appareil."></picture></p>
@@ -127,9 +127,12 @@ targets: [
 ```
 
 La version 2.0.0 (octobre 2026) est la première version de la bibliothèque actuelle. La version
-précédente, 1.0.0 (février 2026), lui est antérieure : en juin 2026, ses sources ont été remplacées par
-du code factice, et en octobre 2026 la bibliothèque a été reconstruite de zéro autour de données validées,
-de modèles testés et de fichiers de modèle sûrs. Les API ne sont pas compatibles ; [CHANGELOG.md](CHANGELOG.md) liste les changements.
+précédente, 1.0.0 (février 2026), lui est antérieure : trois jours après sa publication, les modules
+d'architecture applicative ont été supprimés et un noyau d'apprentissage automatique plus petit a été
+écrit ; en juin 2026, ce noyau a été refactorisé, ses tests ont été réduits à un seul test factice et
+quelques petites couches stub ont été ajoutées ; en octobre 2026, la bibliothèque a été reconstruite
+de zéro autour de données validées, de modèles testés et de fichiers de modèle sûrs. Les API ne sont
+pas compatibles ; [CHANGELOG.md](CHANGELOG.md) liste les changements.
 
 ## Utilisation
 

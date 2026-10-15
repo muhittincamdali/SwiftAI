@@ -1,4 +1,4 @@
-<!-- i18n-source: README.md@f259cb6cdf7b9b545881d4d6ec8eef1e0f111f95 status=reviewed -->
+<!-- i18n-source: README.md@e0c55bc21df63f9a2618b00bda59aa525f4235d2 status=reviewed -->
 <!-- brand:start -->
 
 <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftAI/master/.github/brand/banner-de-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftAI/master/.github/brand/banner-de-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftAI/master/.github/brand/banner-de-light.svg" alt="SwiftAI: Maschinelles Lernen in reinem Swift: Modelle auf dem Gerät trainieren, bewerten und speichern."></picture></p>
@@ -127,9 +127,12 @@ targets: [
 ```
 
 Version 2.0.0 (Oktober 2026) ist das erste Release der aktuellen Bibliothek. Das frühere Release,
-1.0.0 (Februar 2026), liegt davor: Im Juni 2026 wurden seine Quellen durch Platzhaltercode ersetzt, und
-im Oktober 2026 wurde die Bibliothek von Grund auf neu aufgebaut – rund um validierte Daten, getestete
-Modelle und sichere Modelldateien. Die APIs sind nicht kompatibel; [CHANGELOG.md](CHANGELOG.md) listet die Änderungen auf.
+1.0.0 (Februar 2026), liegt davor: Drei Tage nach seiner Veröffentlichung wurden die Module der
+App-Architektur entfernt und ein kleinerer Machine-Learning-Kern geschrieben; im Juni 2026 wurde
+dieser Kern umgebaut, seine Tests wurden auf einen einzigen Platzhaltertest reduziert und einige
+kleine Stub-Layer kamen hinzu; im Oktober 2026 wurde die Bibliothek von Grund auf neu aufgebaut –
+rund um validierte Daten, getestete Modelle und sichere Modelldateien. Die APIs sind nicht
+kompatibel; [CHANGELOG.md](CHANGELOG.md) listet die Änderungen auf.
 
 ## Verwendung
 

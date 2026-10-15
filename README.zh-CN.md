@@ -1,4 +1,4 @@
-<!-- i18n-source: README.md@f259cb6cdf7b9b545881d4d6ec8eef1e0f111f95 status=reviewed -->
+<!-- i18n-source: README.md@e0c55bc21df63f9a2618b00bda59aa525f4235d2 status=reviewed -->
 <!-- brand:start -->
 
 <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftAI/master/.github/brand/banner-zh-CN-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftAI/master/.github/brand/banner-zh-CN-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftAI/master/.github/brand/banner-zh-CN-light.svg" alt="SwiftAI: 纯 Swift 机器学习：在设备上训练、评估和保存模型。"></picture></p>
@@ -108,7 +108,7 @@ targets: [
 ]
 ```
 
-2.0.0 版（2026 年 10 月）是当前这套库的首个发布版本。更早的 1.0.0 版（2026 年 2 月）早于它：2026 年 6 月，其源代码被替换为占位代码；2026 年 10 月，库围绕经过校验的数据、经过测试的模型和安全的模型文件从头重建。两者的 API 不兼容；变更列表见 [CHANGELOG.md](CHANGELOG.md)。
+2.0.0 版（2026 年 10 月）是当前这套库的首个发布版本。更早的 1.0.0 版（2026 年 2 月）早于它：1.0.0 发布三天后，其应用架构模块被移除，并编写了一个更小的机器学习核心；2026 年 6 月，该核心经过重构，测试缩减为单个占位测试，并加入了几个小型桩（stub）层；2026 年 10 月，库围绕经过校验的数据、经过测试的模型和安全的模型文件从头重建。两者的 API 不兼容；变更列表见 [CHANGELOG.md](CHANGELOG.md)。
 
 ## 使用方法
 

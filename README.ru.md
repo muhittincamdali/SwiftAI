@@ -1,4 +1,4 @@
-<!-- i18n-source: README.md@f259cb6cdf7b9b545881d4d6ec8eef1e0f111f95 status=reviewed -->
+<!-- i18n-source: README.md@e0c55bc21df63f9a2618b00bda59aa525f4235d2 status=reviewed -->
 <!-- brand:start -->
 
 <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftAI/master/.github/brand/banner-ru-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftAI/master/.github/brand/banner-ru-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftAI/master/.github/brand/banner-ru-light.svg" alt="SwiftAI: Машинное обучение на чистом Swift: обучайте, оценивайте и сохраняйте модели на устройстве."></picture></p>
@@ -126,9 +126,11 @@ targets: [
 ```
 
 Версия 2.0.0 (октябрь 2026) — первый релиз нынешней библиотеки. Предыдущий релиз, 1.0.0
-(февраль 2026), был до неё: в июне 2026 его исходный код заменили кодом-заглушкой, а в октябре 2026
-библиотеку заново создали с нуля на основе проверенных данных, протестированных моделей и безопасных
-файлов моделей. API несовместимы; изменения перечислены в [CHANGELOG.md](CHANGELOG.md).
+(февраль 2026), был до неё: через три дня после его выхода модули архитектуры приложения удалили и
+написали меньшее ядро машинного обучения; в июне 2026 это ядро переработали, тесты сократили до
+одного теста-заглушки и добавили несколько небольших слоёв-заглушек; в октябре 2026 библиотеку
+заново создали с нуля на основе проверенных данных, протестированных моделей и безопасных файлов
+моделей. API несовместимы; изменения перечислены в [CHANGELOG.md](CHANGELOG.md).
 
 ## Использование
 

@@ -1,4 +1,4 @@
-<!-- i18n-source: README.md@f259cb6cdf7b9b545881d4d6ec8eef1e0f111f95 status=reviewed -->
+<!-- i18n-source: README.md@e0c55bc21df63f9a2618b00bda59aa525f4235d2 status=reviewed -->
 <!-- brand:start -->
 
 <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftAI/master/.github/brand/banner-ko-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftAI/master/.github/brand/banner-ko-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftAI/master/.github/brand/banner-ko-light.svg" alt="SwiftAI: 순수 Swift 머신러닝: 기기에서 모델을 학습하고 평가하고 저장합니다."></picture></p>
@@ -120,9 +120,11 @@ targets: [
 ```
 
 버전 2.0.0(2026년 10월)은 현재 라이브러리의 첫 릴리스입니다. 그 이전 릴리스인 1.0.0(2026년 2월)은
-이보다 앞선 버전입니다. 2026년 6월에 소스가 자리 표시자 코드로 교체되었고, 2026년 10월에 검증된 데이터,
-테스트를 거친 모델, 안전한 모델 파일을 중심으로 라이브러리를 처음부터 다시 만들었습니다.
-두 버전의 API는 호환되지 않습니다. 변경 사항은 [CHANGELOG.md](CHANGELOG.md)에 정리되어 있습니다.
+이보다 앞선 버전입니다. 1.0.0 출시 3일 후 앱 아키텍처 모듈이 제거되고 더 작은 머신러닝 코어가
+작성되었습니다. 2026년 6월에는 이 코어가 리팩터링되어 테스트가 자리 표시자 테스트 하나로 줄었고,
+작은 스텁 레이어 몇 개가 추가되었습니다. 2026년 10월에 검증된 데이터, 테스트를 거친 모델, 안전한
+모델 파일을 중심으로 라이브러리를 처음부터 다시 만들었습니다. 두 버전의 API는 호환되지 않습니다.
+변경 사항은 [CHANGELOG.md](CHANGELOG.md)에 정리되어 있습니다.
 
 ## 사용법
 

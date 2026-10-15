@@ -1,4 +1,4 @@
-<!-- i18n-source: README.md@f259cb6cdf7b9b545881d4d6ec8eef1e0f111f95 status=reviewed -->
+<!-- i18n-source: README.md@e0c55bc21df63f9a2618b00bda59aa525f4235d2 status=reviewed -->
 <!-- brand:start -->
 
 <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftAI/master/.github/brand/banner-tr-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftAI/master/.github/brand/banner-tr-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftAI/master/.github/brand/banner-tr-light.svg" alt="SwiftAI: Saf Swift ile makine öğrenmesi: modelleri cihazda eğitin, değerlendirin ve kaydedin."></picture></p>
@@ -128,10 +128,12 @@ targets: [
 ```
 
 Sürüm 2.0.0 (Ekim 2026), kitaplığın güncel halinin ilk sürümüdür. Daha önceki sürüm olan
-1.0.0 (Şubat 2026) bunun öncesine aittir: Haziran 2026'da kaynak kodu yer tutucu kodla
-değiştirilmişti; Ekim 2026'da kitaplık, doğrulanmış veri, test edilmiş modeller ve güvenli model
-dosyaları etrafında sıfırdan yeniden yazıldı. API'ler uyumlu değildir; değişiklikler
-[CHANGELOG.md](CHANGELOG.md) dosyasında listelenir.
+1.0.0 (Şubat 2026) bunun öncesine aittir: yayımlanmasından üç gün sonra uygulama mimarisi modülleri
+kaldırıldı ve daha küçük bir makine öğrenmesi çekirdeği yazıldı; Haziran 2026'da bu çekirdek yeniden
+düzenlendi, testleri tek bir yer tutucu teste indirildi ve birkaç küçük taslak (stub) katman eklendi;
+Ekim 2026'da kitaplık, doğrulanmış veri, test edilmiş modeller ve güvenli model dosyaları etrafında
+sıfırdan yeniden yazıldı. API'ler uyumlu değildir; değişiklikler [CHANGELOG.md](CHANGELOG.md)
+dosyasında listelenir.
 
 ## Kullanım
 

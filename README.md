@@ -123,9 +123,11 @@ targets: [
 ```
 
 Version 2.0.0 (October 2026) is the first release of the current library. The earlier release,
-1.0.0 (February 2026), predates it: in June 2026 its sources were replaced with placeholder code,
-and in October 2026 the library was rebuilt from scratch around validated data, tested models and
-safe model files. The APIs are not compatible; [CHANGELOG.md](CHANGELOG.md) lists the changes.
+1.0.0 (February 2026), predates it: three days after its release the app-architecture modules were
+removed and a smaller machine learning core was written; in June 2026 that core was refactored, its
+tests were reduced to a single placeholder test and a few small stub layers were added; in October
+2026 the library was rebuilt from scratch around validated data, tested models and safe model files.
+The APIs are not compatible; [CHANGELOG.md](CHANGELOG.md) lists the changes.
 
 ## Usage
 

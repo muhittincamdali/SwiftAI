@@ -1,4 +1,4 @@
-<!-- i18n-source: README.md@f259cb6cdf7b9b545881d4d6ec8eef1e0f111f95 status=reviewed -->
+<!-- i18n-source: README.md@e0c55bc21df63f9a2618b00bda59aa525f4235d2 status=reviewed -->
 <!-- brand:start -->
 
 <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftAI/master/.github/brand/banner-ja-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/muhittincamdali/SwiftAI/master/.github/brand/banner-ja-light.svg"><img src="https://raw.githubusercontent.com/muhittincamdali/SwiftAI/master/.github/brand/banner-ja-light.svg" alt="SwiftAI: 純粋な Swift による機械学習。モデルをデバイス上で学習、評価、保存。"></picture></p>
@@ -108,7 +108,7 @@ targets: [
 ]
 ```
 
-バージョン 2.0.0（2026 年 10 月）は、現在のライブラリの最初のリリースです。それ以前のリリースである 1.0.0（2026 年 2 月）は、これより前のものです。2026 年 6 月にそのソースはプレースホルダーのコードに置き換えられ、2026 年 10 月に、検証済みのデータ、テスト済みのモデル、安全なモデルファイルを軸にライブラリをゼロから作り直しました。API に互換性はありません。変更点は [CHANGELOG.md](CHANGELOG.md) にまとめています。
+バージョン 2.0.0（2026 年 10 月）は、現在のライブラリの最初のリリースです。それ以前のリリースである 1.0.0（2026 年 2 月）は、これより前のものです。1.0.0 のリリースから 3 日後にアプリアーキテクチャのモジュールが削除され、より小さな機械学習コアが書かれました。2026 年 6 月にはそのコアがリファクタリングされ、テストはプレースホルダーのテスト 1 つに減り、小さなスタブのレイヤーがいくつか追加されました。2026 年 10 月に、検証済みのデータ、テスト済みのモデル、安全なモデルファイルを軸にライブラリをゼロから作り直しました。API に互換性はありません。変更点は [CHANGELOG.md](CHANGELOG.md) にまとめています。
 
 ## 使い方
 

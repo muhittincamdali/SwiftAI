@@ -9,9 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.0.0] - 2026-10-14
 
-A new library. In June 2026 the 1.0.0 sources were replaced with placeholder code; this release
-rebuilds SwiftAI from scratch as a dependency-free package for classical machine learning. No
-1.0.0 API remains.
+A new library. Version 1.0.0 was released on 2 February 2026; three days later its
+app-architecture modules were removed and a smaller machine learning core was written. In June 2026
+that core was refactored, its tests were reduced to a single placeholder test and a few small stub
+layers were added. This release rebuilds SwiftAI from scratch as a dependency-free package for
+classical machine learning. No 1.0.0 API remains.
 
 ### Added
 
